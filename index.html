@@ -64,7 +64,7 @@
   const blank=()=>({transactions:[],bills:[],shopping:[],foods:[],workouts:[],weights:[]});
   let data=blank(), currentUser=null, activeDataKey=null, authReady=false, acceptedTerms=false;
   let cloudReady=false, cloudUnsubscribe=null, loadingUid=null, cloudDoc=null;
-  let tab='finance'; let foodNotice=''; let nutritionDetailsId=''; let scannedProduct=null; let scanMessage=''; let manualBarcodeCode=''; let scanner=null; let scanBusy=false;
+  let tab='finance'; let foodNotice=''; let nutritionDetailsId=''; let scannedProduct=null; let scanMessage=''; let manualBarcodeCode=''; let scanner=null; let scanBusy=false; let scanAccepted=false;
   const $=s=>document.querySelector(s); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const money=n=>Number(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); const today=()=>new Date().toISOString().slice(0,10);
   const save=()=>{
@@ -105,7 +105,7 @@
     <div class="card"><h3>Histórico de movimentações</h3><div class="list">${data.transactions.length?data.transactions.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(t=>item(t.desc,`${t.date} · ${t.category}${t.note?' · '+t.note:''}`,`${t.kind==='in'?'+':'−'} ${money(t.amount)}`,'tx',t.id)).join(''):empty('Adicione sua primeira receita ou despesa.')}</div></div>`}
   function foodHTML(){const boughtItems=data.shopping.filter(x=>x.bought);const bought=boughtItems.length;const purchaseTotal=boughtItems.reduce((sum,x)=>sum+(x.price!==''&&x.price!=null&&Number.isFinite(Number(x.price))?Number(x.price):0),0);const pricedCount=boughtItems.filter(x=>x.price!==''&&x.price!=null&&Number.isFinite(Number(x.price))).length;return `${foodNotice?`<div class="notice" role="status">${esc(foodNotice)}</div>`:''}<div class="hero"><small>ALIMENTAÇÃO</small><h2>Planejar, comprar, registrar.</h2><p>Compras e consumo são listas separadas.</p></div><div class="grid"><div class="card"><div class="muted">Itens na lista</div><div class="metric">${data.shopping.length}</div></div><div class="card"><div class="muted">Já comprados</div><div class="metric">${bought}</div></div></div>
     <div class="card"><h3>🔎 Consultar produto pelo código de barras</h3>
-      <p class="muted">Aponte a câmera para o código de barras da embalagem. Se a câmera não funcionar, digite os números do código abaixo.</p>
+      <p class="muted">Leia o código de barras da embalagem (EAN/GTIN brasileiro, geralmente com 13 dígitos e prefixo 789 ou 790). A leitura agora prioriza a câmera traseira e mais quadros por segundo. Se a câmera não funcionar, digite os números abaixo.</p>
       <div class="actions"><button class="btn primary" type="button" data-start-scanner>📷 Abrir câmera e escanear</button><button class="btn" type="button" data-stop-scanner>Fechar câmera</button></div>
       <div id="barcode-reader" class="hidden" style="width:100%;max-width:420px;margin:12px auto"></div>
       <p class="muted">Dica: use boa iluminação, deixe a embalagem parada e ajuste a distância até as barras ficarem nítidas. Se a webcam não focar, digite os números do código.</p>
@@ -143,22 +143,24 @@
     if(data.productCatalog[code]){scannedProduct={...data.productCatalog[code]};scannedProduct.rating=evaluateProduct(scannedProduct);scanMessage='Produto recuperado do seu catálogo salvo neste dispositivo. Confira os dados.';render();return}
     let found=null, networkError=false;
     const fields='code,product_name,product_name_pt,product_name_en,generic_name,generic_name_pt,brands,quantity,nutriments,nutrition_grades,nutriscore_grade,image_front_url';
-    // API v2 é usada primeiro por sua resposta simples e documentada; v3 fica como alternativa.
-    const requests=[
+    // Consultar em paralelo a base global e a instância brasileira reduz a espera.
+    const baseUrls=[
       `https://world.openfoodfacts.org/api/v2/product/${encodeURIComponent(code)}.json?fields=${fields}&cc=br&lc=pt`,
-      `https://br.openfoodfacts.org/api/v2/product/${encodeURIComponent(code)}.json?fields=${fields}&cc=br&lc=pt`,
-      `https://world.openfoodfacts.org/api/v3/product/${encodeURIComponent(code)}.json?fields=${fields}&cc=br&lc=pt`
+      `https://br.openfoodfacts.org/api/v2/product/${encodeURIComponent(code)}.json?fields=${fields}&cc=br&lc=pt`
     ];
-    for(const url of requests){
+    const readProduct=async url=>{
       try{
         const response=await fetch(url,{headers:{'Accept':'application/json'}});
-        if(!response.ok){if(response.status>=500)networkError=true;continue}
-        const body=await response.json();
-        const product=body.product;
+        if(!response.ok){if(response.status>=500)networkError=true;return null}
+        const body=await response.json(), product=body.product;
         const isFound=(body.status===1||body.status==='success'||body.status_verbose==='product found')&&product&&typeof product==='object';
-        if(isFound){found=normalizeProduct(product,'Open Food Facts');break}
-      }catch(err){networkError=true}
-    }
+        return isFound?normalizeProduct(product,'Open Food Facts'):null;
+      }catch(err){networkError=true;return null}
+    };
+    const firstResults=await Promise.all(baseUrls.map(readProduct));
+    found=firstResults.find(Boolean)||null;
+    // API v3 fica como alternativa apenas se as duas consultas rápidas não encontrarem o produto.
+    if(!found){found=await readProduct(`https://world.openfoodfacts.org/api/v3/product/${encodeURIComponent(code)}.json?fields=${fields}&cc=br&lc=pt`)}
     if(!found){
       scanMessage=networkError?'Não consegui acessar a base pela internet agora. Confira a conexão e tente novamente; se continuar, cadastre o produto manualmente.':'Esse código não consta nas bases públicas de alimentos consultadas. Isso não significa que o código seja inválido: a GS1 pode identificar o produto sem disponibilizar os nutrientes. Cadastre-o abaixo para salvá-lo neste dispositivo.';
       manualBarcodeCode=code;render();return;
@@ -166,7 +168,27 @@
     data.productCatalog[code]=found;save();scannedProduct=found;scanMessage='Produto encontrado. Confira marca e nutrientes na embalagem antes de usar a avaliação.';render();
   }
   async function stopScanner(){if(scanner){try{await scanner.stop()}catch{}try{scanner.clear()}catch{}scanner=null}const reader=$('#barcode-reader');if(reader){reader.classList.add('hidden');reader.innerHTML=''}scanBusy=false}
-  async function startScanner(){if(scanBusy)return;scanBusy=true;scanMessage='';render();const reader=$('#barcode-reader');if(!reader){scanBusy=false;return}reader.classList.remove('hidden');if(!window.Html5Qrcode){scanMessage='O leitor de câmera não carregou. Confira a internet ou digite o código manualmente.';render();scanBusy=false;return}try{scanner=new Html5Qrcode('barcode-reader');await scanner.start({facingMode:'environment'},{fps:10,qrbox:{width:280,height:110},aspectRatio:1.777,formatsToSupport:[Html5QrcodeSupportedFormats.EAN_13,Html5QrcodeSupportedFormats.EAN_8,Html5QrcodeSupportedFormats.UPC_A,Html5QrcodeSupportedFormats.UPC_E]},async decoded=>{const code=decoded;await stopScanner();await lookupBarcode(code)},()=>{});scanMessage='Câmera ativa. Aponte para o código de barras.';const status=$('#scan-status');if(status){status.textContent=scanMessage;status.classList.remove('hidden')}}catch(err){await stopScanner();scanMessage='Não consegui abrir a câmera. Permita o acesso à câmera e use o app por HTTPS ou localhost. Você também pode digitar o código.';render()}finally{scanBusy=false}}
+  async function startScanner(){
+    if(scanBusy)return;scanBusy=true;scanAccepted=false;scanMessage='';render();
+    const reader=$('#barcode-reader');if(!reader){scanBusy=false;return}
+    reader.classList.remove('hidden');
+    if(!window.Html5Qrcode||!window.Html5QrcodeSupportedFormats){scanMessage='O leitor de câmera não carregou. Confira a internet ou digite o código manualmente.';render();scanBusy=false;return}
+    try{
+      // Alimentos brasileiros usam principalmente GTIN-13/EAN-13 (muitos começam por 789/790); também aceitamos EAN-8 e UPC.
+      // Menos formatos e uma faixa horizontal reduzem o trabalho por quadro e aceleram a leitura.
+      const formats=[Html5QrcodeSupportedFormats.EAN_13,Html5QrcodeSupportedFormats.EAN_8,Html5QrcodeSupportedFormats.UPC_A,Html5QrcodeSupportedFormats.UPC_E,Html5QrcodeSupportedFormats.CODE_128,Html5QrcodeSupportedFormats.ITF];
+      scanner=new Html5Qrcode('barcode-reader',{formatsToSupport:formats,verbose:false});
+      await scanner.start(
+        {facingMode:'environment'},
+        {fps:25,qrbox:(width,height)=>({width:Math.max(280,Math.min(Math.floor(width*.96),560)),height:Math.max(72,Math.min(Math.floor(height*.22),120))}),aspectRatio:1.777,disableFlip:false,videoConstraints:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720},advanced:[{focusMode:'continuous'}]}},
+        async decoded=>{if(!decoded||scanAccepted)return;const code=String(decoded).trim();if(!/^\d{8,14}$/.test(code))return;scanAccepted=true;scanMessage='Código lido. Consultando o produto…';const status=$('#scan-status');if(status)status.textContent=scanMessage;await stopScanner();await lookupBarcode(code)},
+        ()=>{}
+      );
+      scanMessage='Câmera ativa. Alinhe as barras na faixa horizontal, aproxime até ficarem nítidas e evite reflexos.';
+      const status=$('#scan-status');if(status){status.textContent=scanMessage;status.classList.remove('hidden')}
+    }catch(err){await stopScanner();console.error('Erro ao iniciar leitor de código de barras:',err);scanMessage='Não consegui abrir a câmera. Permita o acesso à câmera e use o app por HTTPS. Você também pode digitar o código.';render()}
+    finally{scanBusy=false}
+  }
   function fitnessHTML(){return `<div class="hero"><small>TREINOS E EVOLUÇÃO</small><h2>Consistência acima de tudo.</h2><p>Registre o que você fez e acompanhe seu histórico.</p></div><div class="grid"><div class="card"><div class="muted">Treinos registrados</div><div class="metric">${data.workouts.length}</div></div><div class="card"><div class="muted">Pesagens registradas</div><div class="metric">${data.weights.length}</div></div></div>
     <div class="card"><h3>Registrar treino/exercício</h3><form id="workForm" class="form"><div class="field"><label>Data</label><input name="date" type="date" value="${today()}" required></div><div class="field"><label>Treino</label><input name="session" required placeholder="Ex.: Treino A"></div><div class="field"><label>Exercício</label><input name="exercise" required placeholder="Ex.: supino máquina"></div><div class="field"><label>Séries</label><input name="sets" type="number" min="1" step="1" required></div><div class="field"><label>Repetições por série</label><input name="reps" type="number" min="1" step="1" required></div><div class="field"><label>Carga (kg, opcional)</label><input name="weight" type="number" min="0" step="0.25" placeholder="0 se sem carga"></div><div class="field full"><label>Notas (opcional)</label><input name="notes" placeholder="Como foi o exercício?"></div><div class="field full"><button class="btn primary">Salvar exercício</button></div></form></div>
     <div class="card"><h3>Registrar peso corporal</h3><form id="weightForm" class="form"><div class="field"><label>Data</label><input name="date" type="date" value="${today()}" required></div><div class="field"><label>Peso (kg)</label><input name="weight" type="number" min="1" max="500" step="0.1" required placeholder="Ex.: 97,0"></div><div class="field full"><button class="btn primary">Salvar pesagem</button></div></form><div class="list" style="margin-top:12px">${data.weights.length?data.weights.slice().sort((a,b)=>b.date.localeCompare(a.date)).map(w=>item('Peso corporal',w.date,`${w.weight} kg`,'weight',w.id)).join(''):empty('Registre uma pesagem para começar o histórico.')}</div></div>
