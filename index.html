@@ -174,17 +174,26 @@
     reader.classList.remove('hidden');
     if(!window.Html5Qrcode||!window.Html5QrcodeSupportedFormats){scanMessage='O leitor de câmera não carregou. Confira a internet ou digite o código manualmente.';render();scanBusy=false;return}
     try{
-      // Alimentos brasileiros usam principalmente GTIN-13/EAN-13 (muitos começam por 789/790); também aceitamos EAN-8 e UPC.
-      // Menos formatos e uma faixa horizontal reduzem o trabalho por quadro e aceleram a leitura.
-      const formats=[Html5QrcodeSupportedFormats.EAN_13,Html5QrcodeSupportedFormats.EAN_8,Html5QrcodeSupportedFormats.UPC_A,Html5QrcodeSupportedFormats.UPC_E,Html5QrcodeSupportedFormats.CODE_128,Html5QrcodeSupportedFormats.ITF];
+      // Prioriza GTIN-13/EAN-13, comum em produtos de supermercado no Brasil, e aceita formatos adicionais.
+      // Uma janela maior tolera códigos altos, pequenos desalinhamentos e embalagens com barras mais próximas das bordas.
+      const formats=[
+        Html5QrcodeSupportedFormats.EAN_13,
+        Html5QrcodeSupportedFormats.EAN_8,
+        Html5QrcodeSupportedFormats.UPC_A,
+        Html5QrcodeSupportedFormats.UPC_E,
+        Html5QrcodeSupportedFormats.CODE_128,
+        Html5QrcodeSupportedFormats.CODE_39,
+        Html5QrcodeSupportedFormats.ITF,
+        Html5QrcodeSupportedFormats.CODABAR
+      ].filter(v=>v!==undefined);
       scanner=new Html5Qrcode('barcode-reader',{formatsToSupport:formats,verbose:false});
       await scanner.start(
         {facingMode:'environment'},
-        {fps:25,qrbox:(width,height)=>({width:Math.max(280,Math.min(Math.floor(width*.96),560)),height:Math.max(72,Math.min(Math.floor(height*.22),120))}),aspectRatio:1.777,disableFlip:false,videoConstraints:{facingMode:{ideal:'environment'},width:{ideal:1280},height:{ideal:720},advanced:[{focusMode:'continuous'}]}},
-        async decoded=>{if(!decoded||scanAccepted)return;const code=String(decoded).trim();if(!/^\d{8,14}$/.test(code))return;scanAccepted=true;scanMessage='Código lido. Consultando o produto…';const status=$('#scan-status');if(status)status.textContent=scanMessage;await stopScanner();await lookupBarcode(code)},
+        {fps:18,qrbox:(width,height)=>({width:Math.max(240,Math.min(Math.floor(width*.94),640)),height:Math.max(120,Math.min(Math.floor(height*.42),260))}),disableFlip:false,videoConstraints:{facingMode:{ideal:'environment'},width:{ideal:1920},height:{ideal:1080}}},
+        async decoded=>{if(!decoded||scanAccepted)return;const code=String(decoded).trim().replace(/\s+/g,'');if(!/^\d{8,14}$/.test(code))return;scanAccepted=true;scanMessage='Código lido. Consultando o produto…';const status=$('#scan-status');if(status)status.textContent=scanMessage;await stopScanner();await lookupBarcode(code)},
         ()=>{}
       );
-      scanMessage='Câmera ativa. Alinhe as barras na faixa horizontal, aproxime até ficarem nítidas e evite reflexos.';
+      scanMessage='Câmera ativa. Centralize todas as barras na área de leitura, mantenha o celular firme e evite reflexos.';
       const status=$('#scan-status');if(status){status.textContent=scanMessage;status.classList.remove('hidden')}
     }catch(err){await stopScanner();console.error('Erro ao iniciar leitor de código de barras:',err);scanMessage='Não consegui abrir a câmera. Permita o acesso à câmera e use o app por HTTPS. Você também pode digitar o código.';render()}
     finally{scanBusy=false}
