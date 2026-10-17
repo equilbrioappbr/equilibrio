@@ -18,23 +18,12 @@
     .auth-gate{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto}.auth-card{width:min(100%,440px);background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:var(--shadow)}.auth-card h2{margin:8px 0}.auth-card p{line-height:1.55}.auth-logo{width:56px;height:56px;border-radius:18px;background:var(--brand);color:white;display:grid;place-items:center;font-size:30px}.google-btn{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);font-weight:700;display:flex;justify-content:center;align-items:center;gap:10px}.google-btn:disabled{opacity:.45;cursor:not-allowed}.privacy-link{border:0;background:none;color:var(--brand);text-decoration:underline;padding:0;font:inherit;cursor:pointer}.privacy-dialog{position:fixed;inset:0;z-index:120;background:#0009;display:flex;align-items:center;justify-content:center;padding:16px}.privacy-dialog-card{width:min(100%,600px);max-height:85vh;overflow:auto;background:var(--card);color:var(--text);border-radius:18px;padding:20px;border:1px solid var(--line)}.account-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.account-label{font-size:12px;color:var(--muted);max-width:160px;overflow-wrap:anywhere}.auth-error{color:var(--danger);font-size:13px;margin-top:12px}.consent-row{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.45;margin:16px 0}.consent-row input{margin-top:3px;flex-shrink:0}
     @media(min-width:680px){.wrap{padding:24px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.card{padding:20px}}
     @media(max-width:420px){.wrap{padding:12px}.form{grid-template-columns:1fr}.field.full{grid-column:auto}.metric{font-size:21px}.tab{font-size:13px}.hero h2{font-size:23px}}
+    .auth-gate.checking .auth-card > *{display:none!important}
+    .auth-gate.checking .auth-card::after{content:"Carregando Equilíbrio…";display:block;text-align:center;padding:24px;color:var(--muted);font-size:14px}
   </style>
-  
-<style>
-.auth-gate.checking .auth-card > * {
-  display: none;
-}
-.auth-gate.checking .auth-card::after {
-  content: "Carregando Equilíbrio…";
-  display: block;
-  text-align: center;
-  padding: 24px;
-  color: var(--muted);
-}
-</style>
 </head>
 <body>
-<section id="authGate" class="auth-gate" aria-label="Acesso ao Equilíbrio">
+<section id="authGate" class="auth-gate checking" aria-label="Acesso ao Equilíbrio">
   <div class="auth-card">
     <div class="auth-logo">✳</div>
     <h2>Bem-vindo ao Equilíbrio</h2>
@@ -187,7 +176,7 @@
   document.addEventListener('change',e=>{if(e.target.matches('[data-bought]')){const x=data.shopping.find(i=>i.id===e.target.dataset.bought);if(x){x.bought=e.target.checked;x.boughtAt=e.target.checked?today():'';save();render()}}});
   async function sharePurchaseHistory(){const items=data.shopping.filter(x=>x.bought);if(!items.length){alert('Ainda não há produtos no histórico de compras.');return}const total=items.reduce((sum,x)=>sum+(x.price!==''&&x.price!=null&&Number.isFinite(Number(x.price))?Number(x.price):0),0);const priced=items.filter(x=>x.price!==''&&x.price!=null&&Number.isFinite(Number(x.price))).length;const lines=['Equilíbrio — Histórico de compras','Data do envio: '+today(),'','Itens:',...items.map(x=>'- '+x.name+' | '+(x.qty||'quantidade não informada')+' | '+(x.price!==''&&x.price!=null&&Number.isFinite(Number(x.price))?money(x.price):'valor não informado')+' | '+(x.boughtAt||x.date||'data não informada')),'','Total dos valores informados: '+money(total),'Itens com preço: '+priced+' de '+items.length];const text=lines.join('\n');try{if(navigator.share){await navigator.share({title:'Histórico de compras — Equilíbrio',text});return}}catch(err){if(err&&err.name==='AbortError')return}try{if(navigator.clipboard&&navigator.clipboard.writeText){await navigator.clipboard.writeText(text);alert('Histórico copiado. Você pode colar em uma mensagem ou documento.');return}}catch{}const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='equilibrio-historico-compras-'+today()+'.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
   document.addEventListener('submit',e=>{e.preventDefault();const f=e.target,v=values(f);if(f.id==='barcodeForm'){lookupBarcode(v.barcode);return}else if(f.id==='manualProductForm'){const nullable=k=>v[k]===''?null:Number(v[k]);const name=v.name.trim();const code=v.barcode;const duplicate=data.shopping.some(x=>x.barcode===code);if(duplicate){manualBarcodeCode='';scanMessage='Este código já está na lista de compras.';render();return}const nutrition={kcal:nullable('kcal'),sugars:nullable('sugars'),satFat:nullable('satFat'),sodium:nullable('sodium'),protein:nullable('protein'),grade:''};const p={barcode:code,name,brand:v.brand.trim(),quantity:v.quantity.trim(),...nutrition,source:'Cadastro manual'};p.rating=evaluateProduct(p);data.productCatalog=data.productCatalog||{};data.productCatalog[code]=p;data.shopping.push({id:id(),name:(p.brand?p.brand+' — ':'')+p.name,qty:p.quantity||'1 unidade',price:'',category:v.category||'Outros',bought:false,barcode:code,nutrition,manual:true});save();manualBarcodeCode='';scanMessage='Produto cadastrado e adicionado à lista de compras. A avaliação nutricional só usa os valores que você informou.';render();return}else if(f.id==='txForm'){data.transactions.push({...v,id:id(),amount:Number(v.amount)})}else if(f.id==='billForm'){data.bills.push({...v,id:id(),amount:Number(v.amount),paid:v.paid==='yes'})}else if(f.id==='shopForm'){data.shopping.push({...v,id:id(),bought:false,price:v.price===''?'':Number(v.price)})}else if(f.id==='foodForm'){for(const k of ['kcal','protein','carbs','fat'])v[k]=v[k]===''?'':Number(v[k]);data.foods.push({...v,id:id()})}else if(f.id==='workForm'){v.sets=Number(v.sets);v.reps=Number(v.reps);v.weight=v.weight===''?'':Number(v.weight);data.workouts.push({...v,id:id()})}else if(f.id==='weightForm'){v.weight=Number(v.weight);data.weights.push({...v,id:id()})}save();if(f.id==='foodForm'){foodNotice='Alimento registrado com sucesso! Confira o Histórico de consumo.'}render();if(f.id==='foodForm'){setTimeout(()=>{foodNotice='';if(tab==='food')render()},5000)}});
-  const showAuth=(message='')=>{ $('#authGate').classList.remove('hidden'); $('#authStatus').textContent=message; $('#logoutBtn').classList.add('hidden'); $('#accountLabel').textContent=''; };
+  const showAuth=(message='')=>{ $('#authGate').classList.remove('hidden','checking'); $('#authStatus').textContent=message; $('#logoutBtn').classList.add('hidden'); $('#accountLabel').textContent=''; };
   const hideAuth=()=>$('#authGate').classList.add('hidden');
   const loadUserData=async(user)=>{
     if(!user||!acceptedTerms)return;
