@@ -27,8 +27,8 @@
     <h2>Bem-vindo ao Equilíbrio</h2>
     <p class="muted">Entre com sua conta Google para acessar suas finanças, alimentação e treinos.</p>
     <div class="notice"><strong>Seus registros ficam neste aparelho.</strong><br>O login identifica sua conta, mas não envia seus lançamentos financeiros, alimentos ou treinos para a nuvem. Os registros ficam no armazenamento local deste navegador e deste dispositivo.</div>
-    <p style="font-size:13px;line-height:1.5">Ao continuar, você aceita os Termos de Uso e declara ciência do <button class="privacy-link" type="button" id="openPrivacy">Aviso de Privacidade</button>. Você pode abrir o aviso se quiser; não é necessário abri-lo para continuar.</p>
-    <button class="btn primary" id="acceptContinue" type="button" style="width:100%;margin-bottom:10px">Aceitar e continuar</button>
+    <label class="consent-row" for="acceptTerms"><input id="acceptTerms" type="checkbox"><span>Li e aceito os Termos de Uso e declaro ciência do Aviso de Privacidade.</span></label>
+    <p style="font-size:12px;line-height:1.5;margin-top:-6px">A leitura do aviso é opcional: <button class="privacy-link" type="button" id="openPrivacy">Ler Aviso de Privacidade</button>.</p>
     <button class="google-btn" id="googleLogin" type="button" disabled><span aria-hidden="true" style="font-size:18px;font-weight:800">G</span> Entrar com Google</button>
     <p id="authStatus" class="auth-error" role="status"></p>
     <p class="muted" style="font-size:11px;margin-top:16px">Use o backup para transferir seus registros para outro aparelho. Limpar os dados do navegador pode apagá-los. O Equilíbrio não sincroniza os registros entre dispositivos.</p>
@@ -162,16 +162,34 @@
   $('#openPrivacy').addEventListener('click',()=>$('#privacyDialog').classList.remove('hidden'));
   const closePrivacy=()=>$('#privacyDialog').classList.add('hidden');
   $('#closePrivacy').addEventListener('click',closePrivacy);$('#privacyOk').addEventListener('click',closePrivacy);
-  $('#acceptContinue').addEventListener('click',()=>{acceptedTerms=true;localStorage.setItem('equilibrio-terms-accepted-v1','yes');$('#googleLogin').disabled=false;$('#authStatus').textContent='Aceite registrado neste navegador. Agora entre com Google.';$('#acceptContinue').textContent='Aceite registrado ✓';const existingUser=firebase.auth&&firebase.auth().currentUser;if(existingUser){loadUserData(existingUser);hideAuth()}});
-  if(localStorage.getItem('equilibrio-terms-accepted-v1')==='yes'){acceptedTerms=true;$('#googleLogin').disabled=false;$('#acceptContinue').textContent='Aceite registrado ✓'}
-  $('#googleLogin').addEventListener('click',async()=>{if(!acceptedTerms){$('#authStatus').textContent='Clique primeiro em “Aceitar e continuar”.';return}$('#googleLogin').disabled=true;$('#authStatus').textContent='Abrindo o acesso Google…';try{const provider=new firebase.auth.GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});await firebase.auth().signInWithRedirect(provider)}catch(err){$('#googleLogin').disabled=false;$('#authStatus').textContent=authError(err)}});
-  const authError=(err)=>{const code=err&&err.code||'';if(code==='auth/unauthorized-domain')return 'Este endereço ainda não está autorizado no Firebase. Adicione o domínio em Authentication → Settings → Authorized domains.';if(code==='auth/operation-not-allowed')return 'O login Google ainda não está ativado. No Firebase, abra Authentication → Sign-in method e habilite Google.';if(code==='auth/unauthorized-continue-uri')return 'O domínio deste site não está autorizado no Firebase.';return 'Não foi possível entrar com Google ('+(code||'erro de conexão')+'). Confira a conexão e se o provedor Google está ativado no Firebase.'};
+  const storedConsent=localStorage.getItem('equilibrio-terms-accepted-v1')==='yes';
+  acceptedTerms=storedConsent;
+  $('#acceptTerms').checked=storedConsent;
+  $('#googleLogin').disabled=!acceptedTerms;
+  $('#acceptTerms').addEventListener('change',()=>{
+    acceptedTerms=$('#acceptTerms').checked;
+    if(acceptedTerms){localStorage.setItem('equilibrio-terms-accepted-v1','yes');$('#authStatus').textContent='Aceite registrado neste navegador. Agora entre com Google.'}
+    else{localStorage.removeItem('equilibrio-terms-accepted-v1');$('#authStatus').textContent='Marque a caixa para aceitar os Termos de Uso e continuar.'}
+    $('#googleLogin').disabled=!acceptedTerms;
+    const existingUser=window.firebase&&firebase.auth&&firebase.auth().currentUser;
+    if(existingUser&&acceptedTerms){loadUserData(existingUser);hideAuth()}
+    else if(!acceptedTerms){showAuth('Marque a caixa para aceitar os Termos de Uso e continuar.')}
+  });
+  const authError=(err)=>{const code=err&&err.code||'';if(code==='auth/unauthorized-domain')return 'Domínio não autorizado no Firebase. Em Authentication → Settings → Authorized domains, confirme rafaboregas-stack.github.io.';if(code==='auth/operation-not-allowed')return 'O login Google não está habilitado no Firebase. Confira Authentication → Sign-in method.';if(code==='auth/unauthorized-continue-uri')return 'O endereço de retorno não está autorizado no Firebase.';if(code==='auth/popup-blocked')return 'O navegador bloqueou a janela de autenticação. Permita pop-ups e tente novamente.';if(code==='auth/network-request-failed')return 'Falha de conexão durante a autenticação. Confira a internet e tente novamente.';return 'Falha no login Google: '+(code||err?.message||'erro desconhecido')+'. Confira as configurações e tente novamente.'};
+  $('#googleLogin').addEventListener('click',async()=>{if(!acceptedTerms){$('#authStatus').textContent='Marque primeiro a caixa de aceite.';return}$('#googleLogin').disabled=true;$('#authStatus').textContent='Abrindo o acesso Google…';try{const provider=new firebase.auth.GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});await firebase.auth().signInWithRedirect(provider)}catch(err){$('#googleLogin').disabled=false;$('#authStatus').textContent=authError(err)}});
   $('#logoutBtn').addEventListener('click',async()=>{if(scanner)await stopScanner();try{await firebase.auth().signOut()}catch(err){alert('Não foi possível sair da conta. '+(err.message||''))}});
   try{
     if(!window.firebase||!firebase.initializeApp||!firebase.auth)throw new Error('Os arquivos do Firebase não carregaram. Confira sua conexão com a internet.');
     firebase.initializeApp(firebaseConfig);
-    firebase.auth().getRedirectResult().catch(err=>{if(err&&err.code!=='auth/no-auth-event')$('#authStatus').textContent=authError(err)});
-    firebase.auth().onAuthStateChanged(user=>{authReady=true;if(user&&acceptedTerms){loadUserData(user);hideAuth()}else{currentUser=null;activeDataKey=null;data=blank();showAuth(user?'Aceite os Termos de Uso para continuar.':'');$('#googleLogin').disabled=!acceptedTerms;}});
+    const auth=firebase.auth();
+    // Aguarda a resolução do redirecionamento antes de observar a sessão, para que o erro não seja apagado pela tela de login.
+    auth.getRedirectResult().catch(err=>{if(err&&err.code!=='auth/no-auth-event')window.__equilibrioAuthError=authError(err)}).finally(()=>{
+      auth.onAuthStateChanged(user=>{
+        authReady=true;
+        if(user&&acceptedTerms){loadUserData(user);hideAuth()}
+        else{currentUser=null;activeDataKey=null;data=blank();showAuth(window.__equilibrioAuthError||(user?'Marque a caixa para aceitar os Termos de Uso e continuar.':''));$('#googleLogin').disabled=!acceptedTerms;window.__equilibrioAuthError=''}
+      });
+    });
   }catch(err){showAuth('Configuração do login indisponível: '+(err.message||'erro ao iniciar Firebase'));}
   $('#themeBtn').addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=next;localStorage.setItem(THEME,next);$('#themeBtn').textContent=next==='dark'?'☀ Tema':'☾ Tema'});
   $('#exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({app:'Equilibrio',version:1,exportedAt:new Date().toISOString(),data},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='equilibrio-backup-'+today()+'.json';a.click();URL.revokeObjectURL(url)});
