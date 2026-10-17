@@ -19,6 +19,19 @@
     @media(min-width:680px){.wrap{padding:24px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.card{padding:20px}}
     @media(max-width:420px){.wrap{padding:12px}.form{grid-template-columns:1fr}.field.full{grid-column:auto}.metric{font-size:21px}.tab{font-size:13px}.hero h2{font-size:23px}}
   </style>
+  
+<style>
+.auth-gate.checking .auth-card > * {
+  display: none;
+}
+.auth-gate.checking .auth-card::after {
+  content: "Carregando Equilíbrio…";
+  display: block;
+  text-align: center;
+  padding: 24px;
+  color: var(--muted);
+}
+</style>
 </head>
 <body>
 <section id="authGate" class="auth-gate" aria-label="Acesso ao Equilíbrio">
