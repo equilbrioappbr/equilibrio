@@ -14,7 +14,7 @@
   <style>
     :root{--bg:#f3f6f3;--card:#fff;--text:#182720;--muted:#66766d;--line:#dce5de;--brand:#205c49;--brand2:#e0eee7;--danger:#a52f36;--shadow:0 6px 22px #183a2910}
     [data-theme="dark"]{--bg:#101713;--card:#1a241e;--text:#edf5ef;--muted:#a9b8ad;--line:#34453a;--brand:#8bd0ad;--brand2:#243c30;--danger:#ff8d92;--shadow:0 6px 22px #0003}
-    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:88px}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:900px;margin:auto;padding:16px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0 20px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:15px;background:var(--brand);color:white;display:grid;place-items:center;font-size:24px}.brand h1{font-size:22px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.btn{border:1px solid var(--line);border-radius:12px;padding:10px 13px;background:var(--card);color:var(--text)}.primary{background:var(--brand);color:white;border-color:var(--brand)}[data-theme="dark"] .primary{color:#102219}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}.tab{padding:13px 6px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--muted);font-weight:650}.tab.active{background:var(--brand2);border-color:var(--brand);color:var(--text)}.hero{background:var(--brand);color:white;border-radius:20px;padding:20px;margin-bottom:14px}.hero small{opacity:.8}.hero h2{font-size:25px;margin:5px 0}.hero p{margin:0;opacity:.9;font-size:13px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--shadow);margin-bottom:12px;min-width:0}.card h3{font-size:16px;margin:0 0 12px}.metric{font-size:23px;font-weight:750;overflow-wrap:anywhere}.muted{color:var(--muted);font-size:13px}.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.field{display:flex;flex-direction:column;gap:5px;min-width:0}.field.full{grid-column:1/-1}.field label{font-size:12px;color:var(--muted);font-weight:650}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--text);padding:11px;min-width:0}.field textarea{resize:vertical}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.list{display:grid;gap:8px}.item{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:12px;padding:11px}.item-main{min-width:0;overflow-wrap:anywhere}.item strong{display:block}.item small{color:var(--muted)}.item button{flex-shrink:0}.product-name-line{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.product-name-line strong{display:inline!important}.nutrition-info-btn{width:22px;height:22px;min-width:22px;border:1px solid var(--brand);border-radius:50%;background:var(--brand2);color:var(--text);font-size:14px;font-weight:800;line-height:1;padding:0;display:inline-grid;place-items:center}.nutrition-modal-backdrop{position:fixed;inset:0;background:#0008;z-index:20;display:flex;align-items:center;justify-content:center;padding:16px}.nutrition-modal{width:min(100%,560px);max-height:85vh;overflow:auto;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 20px 70px #0004}.nutrition-modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.nutrition-modal-head h3{margin:0 0 8px}.nutrition-modal .grid{margin-top:14px}.nutrition-modal .grid>div{padding:10px;border:1px solid var(--line);border-radius:10px}.checkline{display:flex;align-items:center;gap:8px}.checkline input{width:18px;height:18px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px}.section-title h2{font-size:20px;margin:8px 0 12px}.notice{background:var(--brand2);border-radius:12px;padding:12px;font-size:13px;margin-bottom:12px}.bottom{position:fixed;bottom:0;left:0;right:0;padding:10px 16px calc(10px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);display:flex;justify-content:center;gap:8px;z-index:5}.bottom button{max-width:900px}.empty{color:var(--muted);font-size:13px;text-align:center;padding:16px}.hidden{display:none!important}.smallbtn{padding:7px 9px;font-size:12px}.footnote{color:var(--muted);font-size:11px;line-height:1.5;margin:16px 2px}
+    *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding-bottom:150px}button,input,select,textarea{font:inherit}button{cursor:pointer}.wrap{max-width:900px;margin:auto;padding:16px}.top{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 0 20px}.brand{display:flex;align-items:center;gap:10px}.logo{width:44px;height:44px;border-radius:15px;background:var(--brand);color:white;display:grid;place-items:center;font-size:24px}.brand h1{font-size:22px;margin:0}.brand p{margin:2px 0 0;color:var(--muted);font-size:12px}.btn{border:1px solid var(--line);border-radius:12px;padding:10px 13px;background:var(--card);color:var(--text)}.primary{background:var(--brand);color:white;border-color:var(--brand)}[data-theme="dark"] .primary{color:#102219}.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}.tab{padding:13px 6px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--muted);font-weight:650}.tab.active{background:var(--brand2);border-color:var(--brand);color:var(--text)}.hero{background:var(--brand);color:white;border-radius:20px;padding:20px;margin-bottom:14px}.hero small{opacity:.8}.hero h2{font-size:25px;margin:5px 0}.hero p{margin:0;opacity:.9;font-size:13px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:var(--shadow);margin-bottom:12px;min-width:0}.card h3{font-size:16px;margin:0 0 12px}.metric{font-size:23px;font-weight:750;overflow-wrap:anywhere}.muted{color:var(--muted);font-size:13px}.form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.field{display:flex;flex-direction:column;gap:5px;min-width:0}.field.full{grid-column:1/-1}.field label{font-size:12px;color:var(--muted);font-weight:650}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--text);padding:11px;min-width:0}.field textarea{resize:vertical}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.list{display:grid;gap:8px}.item{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;border:1px solid var(--line);border-radius:12px;padding:11px}.item-main{min-width:0;overflow-wrap:anywhere}.item strong{display:block}.item small{color:var(--muted)}.item button{flex-shrink:0}.product-name-line{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.product-name-line strong{display:inline!important}.nutrition-info-btn{width:22px;height:22px;min-width:22px;border:1px solid var(--brand);border-radius:50%;background:var(--brand2);color:var(--text);font-size:14px;font-weight:800;line-height:1;padding:0;display:inline-grid;place-items:center}.nutrition-modal-backdrop{position:fixed;inset:0;background:#0008;z-index:20;display:flex;align-items:center;justify-content:center;padding:16px}.nutrition-modal{width:min(100%,560px);max-height:85vh;overflow:auto;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:18px;padding:18px;box-shadow:0 20px 70px #0004}.nutrition-modal-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.nutrition-modal-head h3{margin:0 0 8px}.nutrition-modal .grid{margin-top:14px}.nutrition-modal .grid>div{padding:10px;border:1px solid var(--line);border-radius:10px}.checkline{display:flex;align-items:center;gap:8px}.checkline input{width:18px;height:18px}.section-title{display:flex;justify-content:space-between;align-items:center;gap:8px}.section-title h2{font-size:20px;margin:8px 0 12px}.notice{background:var(--brand2);border-radius:12px;padding:12px;font-size:13px;margin-bottom:12px}.bottom{position:fixed;bottom:0;left:0;right:0;padding:8px 12px calc(8px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);display:flex;flex-direction:column;align-items:center;gap:6px;z-index:50}.bottom-actions{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;width:100%}.bottom button{max-width:900px;padding:8px 10px;font-size:13px}.instagram-fixed{font-size:12px;color:var(--muted);text-decoration:none;font-weight:650;line-height:1.25}.instagram-fixed:hover{text-decoration:underline;color:var(--brand)}.install-help{font-size:13px;line-height:1.5}.empty{color:var(--muted);font-size:13px;text-align:center;padding:16px}.hidden{display:none!important}.smallbtn{padding:7px 9px;font-size:12px}.footnote{color:var(--muted);font-size:11px;line-height:1.5;margin:16px 2px}
     .auth-gate{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;align-items:center;justify-content:center;padding:18px;overflow:auto}.auth-card{width:min(100%,440px);background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:22px;padding:24px;box-shadow:var(--shadow)}.auth-card h2{margin:8px 0}.auth-card p{line-height:1.55}.auth-logo{width:56px;height:56px;border-radius:18px;background:var(--brand);color:white;display:grid;place-items:center;font-size:30px}.google-btn{width:100%;padding:13px 16px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--text);font-weight:700;display:flex;justify-content:center;align-items:center;gap:10px}.google-btn:disabled{opacity:.45;cursor:not-allowed}.privacy-link{border:0;background:none;color:var(--brand);text-decoration:underline;padding:0;font:inherit;cursor:pointer}.privacy-dialog{position:fixed;inset:0;z-index:120;background:#0009;display:flex;align-items:center;justify-content:center;padding:16px}.privacy-dialog-card{width:min(100%,600px);max-height:85vh;overflow:auto;background:var(--card);color:var(--text);border-radius:18px;padding:20px;border:1px solid var(--line)}.account-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.account-label{font-size:12px;color:var(--muted);max-width:160px;overflow-wrap:anywhere}.auth-error{color:var(--danger);font-size:13px;margin-top:12px}.consent-row{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.45;margin:16px 0}.consent-row input{margin-top:3px;flex-shrink:0}
     @media(min-width:680px){.wrap{padding:24px}.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.card{padding:20px}}
     @media(max-width:420px){.wrap{padding:12px}.form{grid-template-columns:1fr}.field.full{grid-column:auto}.metric{font-size:21px}.tab{font-size:13px}.hero h2{font-size:23px}}
@@ -26,21 +26,21 @@
     <div class="auth-logo">✳</div>
     <h2>Bem-vindo ao Equilíbrio</h2>
     <p class="muted">Entre com sua conta Google para acessar suas finanças, alimentação e treinos.</p>
-    <div class="notice"><strong>Seus registros ficam neste aparelho.</strong><br>O login identifica sua conta, mas não envia seus lançamentos financeiros, alimentos ou treinos para a nuvem. Os registros ficam no armazenamento local deste navegador e deste dispositivo.</div>
+    <div class="notice"><strong>Seus registros são sincronizados com sua conta.</strong><br>Os lançamentos são guardados neste aparelho e enviados ao Firebase para que você possa acessar em outros dispositivos. As regras de segurança restringem o acesso à sua conta Google.</div>
     <label class="consent-row" for="acceptTerms"><input id="acceptTerms" type="checkbox"><span>Li e aceito os Termos de Uso e declaro ciência do Aviso de Privacidade.</span></label>
     <p style="font-size:12px;line-height:1.5;margin-top:-6px">A leitura do aviso é opcional: <button class="privacy-link" type="button" id="openPrivacy">Ler Aviso de Privacidade</button>.</p>
     <button class="google-btn" id="googleLogin" type="button" disabled><span aria-hidden="true" style="font-size:18px;font-weight:800">G</span> Entrar com Google</button>
     <p id="authStatus" class="auth-error" role="status"></p>
-    <p class="muted" style="font-size:11px;margin-top:16px">Use o backup para transferir seus registros para outro aparelho. Limpar os dados do navegador pode apagá-los. O Equilíbrio não sincroniza os registros entre dispositivos.</p>
+    <p class="muted" style="font-size:11px;margin-top:16px">Mantenha backups JSON regularmente. A sincronização exige conexão com a internet; mantenha os dados locais até confirmar que tudo está sincronizado.</p>
   </div>
 </section>
 <div id="privacyDialog" class="privacy-dialog hidden" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
   <div class="privacy-dialog-card"><div class="section-title"><h3 id="privacyTitle">Aviso de Privacidade — Equilíbrio</h3><button class="btn smallbtn" id="closePrivacy" type="button">Fechar</button></div>
     <p><strong>1. Dados da conta.</strong> Ao entrar com Google, o Firebase Authentication processa informações necessárias à autenticação, como identificador da conta, nome, e-mail e foto de perfil, conforme as permissões concedidas e as políticas do Google/Firebase.</p>
-    <p><strong>2. Registros pessoais.</strong> Seus lançamentos financeiros, contas, alimentos, lista e histórico de compras, pesos e treinos são guardados no armazenamento local do navegador, neste aparelho. O Equilíbrio não envia esses registros a um servidor e não os sincroniza com sua conta Google.</p>
-    <p><strong>3. Limites do armazenamento local.</strong> Os registros podem ser perdidos se você limpar os dados do navegador, desinstalar/remover os dados do app ou trocar de aparelho. Exporte backups JSON periodicamente e mantenha-os em local seguro. Um backup contém dados pessoais e não deve ser compartilhado publicamente.</p>
+    <p><strong>2. Registros pessoais.</strong> Seus lançamentos financeiros, contas, alimentos, lista e histórico de compras, pesos e treinos são guardados localmente e sincronizados com o Cloud Firestore associado ao projeto Equilíbrio. As regras do banco limitam leitura e gravação ao usuário autenticado cujo UID corresponde ao caminho dos dados. Os dados não são criptografados de ponta a ponta.</p>
+    <p><strong>3. Sincronização e backups.</strong> A sincronização depende de conexão, configuração do Firebase e regras de acesso válidas. Exporte backups JSON periodicamente e mantenha-os em local seguro. Um backup contém dados pessoais e não deve ser compartilhado publicamente. Não apague os dados locais até confirmar a sincronização.</p>
     <p><strong>4. Serviços externos.</strong> A autenticação é fornecida pelo Firebase/Google. A consulta de código de barras pode enviar o código pesquisado à base pública Open Food Facts; os botões de consulta GS1 abrem o site da GS1 Brasil. Esses serviços têm suas próprias políticas de privacidade.</p>
-    <p><strong>5. Segurança e finalidade.</strong> O aplicativo é uma ferramenta pessoal de organização, não um serviço bancário, diagnóstico médico ou aconselhamento profissional. Como os registros ficam no navegador, proteja o bloqueio do aparelho e não use um dispositivo compartilhado sem sair da conta.</p>
+    <p><strong>5. Segurança e finalidade.</strong> O aplicativo é uma ferramenta pessoal de organização, não um serviço bancário, diagnóstico médico ou aconselhamento profissional. Proteja a conta Google e saia da sessão em dispositivos compartilhados. O acesso aos dados depende da autenticação e das regras do Firebase.</p>
     <p><strong>6. Controle.</strong> Você pode sair da conta pelo botão “Sair”. Sair não apaga os registros locais. Para apagar registros, use as funções disponíveis no app ou limpe os dados locais do navegador, considerando que a ação pode ser irreversível sem backup.</p>
     <button class="btn primary" id="privacyOk" type="button">Entendi</button>
   </div>
@@ -49,21 +49,44 @@
   <header class="top"><div class="brand"><div class="logo">✳</div><div><h1>Equilíbrio</h1><p>Seu dia, mais organizado.</p></div></div><div class="account-actions"><span id="accountLabel" class="account-label"></span><button class="btn smallbtn hidden" id="logoutBtn" type="button">Sair</button><button class="btn" id="themeBtn" aria-label="Alternar tema">☾ Tema</button></div></header>
   <nav class="tabs" aria-label="Pilares"><button class="tab active" data-tab="finance">💰 Finanças</button><button class="tab" data-tab="food">🥗 Alimentação</button><button class="tab" data-tab="fitness">🏋️ Treinos</button></nav>
   <main id="app"></main>
-  <p class="footnote">Seus registros ficam no armazenamento local deste navegador e aparelho, separados por conta Google. Não há sincronização dos registros em nuvem. Faça backups regularmente. A consulta por código de barras usa bases públicas de alimentos; os dados podem estar incompletos. Para identificação oficial do GTIN, o app oferece atalho ao Verified by GS1 Brasil.</p>
+  <p class="footnote">Seus registros são vinculados à sua conta Google e sincronizados pelo Firebase quando a conexão está disponível. Mantenha backups JSON regularmente. Evite acessar seus dados em computadores compartilhados sem sair da conta ao terminar. A consulta por código de barras usa bases públicas de alimentos; os dados podem estar incompletos. Para identificação oficial do GTIN, o app oferece atalho ao Verified by GS1 Brasil.</p>
 </div>
-<div class="bottom"><button class="btn" id="exportBtn">⬇ Exportar backup</button><button class="btn" id="importBtn">⬆ Importar backup</button><input id="importFile" type="file" accept="application/json,.json" class="hidden"></div>
+<div class="bottom"><div class="bottom-actions"><button class="btn primary" id="installBtn" type="button">＋ Instalar app</button><button class="btn" id="exportBtn">⬇ Backup</button><button class="btn" id="importBtn">⬆ Importar</button><input id="importFile" type="file" accept="application/json,.json" class="hidden"></div><a class="instagram-fixed" href="https://www.instagram.com/rafael.boregas/" target="_blank" rel="noopener noreferrer">Instagram · @rafael.boregas ↗</a></div>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 <script>
 (() => {
   const LEGACY_KEY='equilibrio-v1-data', THEME='equilibrio-v1-theme';
   const blank=()=>({transactions:[],bills:[],shopping:[],foods:[],workouts:[],weights:[]});
   let data=blank(), currentUser=null, activeDataKey=null, authReady=false, acceptedTerms=false;
+  let cloudReady=false, cloudUnsubscribe=null, loadingUid=null, cloudDoc=null;
   let tab='finance'; let foodNotice=''; let nutritionDetailsId=''; let scannedProduct=null; let scanMessage=''; let manualBarcodeCode=''; let scanner=null; let scanBusy=false;
   const $=s=>document.querySelector(s); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const money=n=>Number(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); const today=()=>new Date().toISOString().slice(0,10);
-  const save=()=>{if(!activeDataKey||!currentUser)return;localStorage.setItem(activeDataKey,JSON.stringify(data))};
+  const save=()=>{
+    if(!activeDataKey||!currentUser)return;
+    localStorage.setItem(activeDataKey,JSON.stringify(data));
+    if(cloudReady&&cloudDoc){
+      const payload=JSON.parse(JSON.stringify(data));
+      cloudDoc.set({data:payload,updatedAt:firebase.firestore.FieldValue.serverTimestamp()})
+        .then(()=>{if(currentUser&&$('#accountLabel'))$('#accountLabel').textContent=(currentUser.displayName||currentUser.email||'Conta Google')+' · sincronizado'})
+        .catch(err=>{console.error('Erro ao sincronizar Equilíbrio:',err);if($('#accountLabel'))$('#accountLabel').textContent=(currentUser?.displayName||currentUser?.email||'Conta Google')+' · erro de sincronização';});
+    }
+  };
+  const mergeLocalAndCloud=(cloud,local)=>{
+    const out={...blank(),...(cloud||{}),...(local||{})};
+    for(const key of ['transactions','bills','shopping','foods','workouts','weights']){
+      const byId=new Map();
+      for(const item of [...(Array.isArray(cloud?.[key])?cloud[key]:[]),...(Array.isArray(local?.[key])?local[key]:[])]){
+        if(item&&item.id!=null)byId.set(String(item.id),item);
+      }
+      out[key]=Array.from(byId.values());
+    }
+    out.productCatalog={...(cloud?.productCatalog||{}),...(local?.productCatalog||{})};
+    return out;
+  };
   const firebaseConfig={apiKey:"AIzaSyAt1mPBPHhkJ1cR1OXWniPgOrBls2y7FhE",authDomain:"equilibrio-app-71155.firebaseapp.com",projectId:"equilibrio-app-71155",storageBucket:"equilibrio-app-71155.firebasestorage.app",messagingSenderId:"95057189834",appId:"1:95057189834:web:0c590ef31aa640494f8d33",measurementId:"G-52QDD75N3Z"};
   const id=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
   const empty=(msg)=>`<div class="empty">${msg}</div>`;
@@ -153,11 +176,47 @@
   document.addEventListener('submit',e=>{e.preventDefault();const f=e.target,v=values(f);if(f.id==='barcodeForm'){lookupBarcode(v.barcode);return}else if(f.id==='manualProductForm'){const nullable=k=>v[k]===''?null:Number(v[k]);const name=v.name.trim();const code=v.barcode;const duplicate=data.shopping.some(x=>x.barcode===code);if(duplicate){manualBarcodeCode='';scanMessage='Este código já está na lista de compras.';render();return}const nutrition={kcal:nullable('kcal'),sugars:nullable('sugars'),satFat:nullable('satFat'),sodium:nullable('sodium'),protein:nullable('protein'),grade:''};const p={barcode:code,name,brand:v.brand.trim(),quantity:v.quantity.trim(),...nutrition,source:'Cadastro manual'};p.rating=evaluateProduct(p);data.productCatalog=data.productCatalog||{};data.productCatalog[code]=p;data.shopping.push({id:id(),name:(p.brand?p.brand+' — ':'')+p.name,qty:p.quantity||'1 unidade',price:'',category:v.category||'Outros',bought:false,barcode:code,nutrition,manual:true});save();manualBarcodeCode='';scanMessage='Produto cadastrado e adicionado à lista de compras. A avaliação nutricional só usa os valores que você informou.';render();return}else if(f.id==='txForm'){data.transactions.push({...v,id:id(),amount:Number(v.amount)})}else if(f.id==='billForm'){data.bills.push({...v,id:id(),amount:Number(v.amount),paid:v.paid==='yes'})}else if(f.id==='shopForm'){data.shopping.push({...v,id:id(),bought:false,price:v.price===''?'':Number(v.price)})}else if(f.id==='foodForm'){for(const k of ['kcal','protein','carbs','fat'])v[k]=v[k]===''?'':Number(v[k]);data.foods.push({...v,id:id()})}else if(f.id==='workForm'){v.sets=Number(v.sets);v.reps=Number(v.reps);v.weight=v.weight===''?'':Number(v.weight);data.workouts.push({...v,id:id()})}else if(f.id==='weightForm'){v.weight=Number(v.weight);data.weights.push({...v,id:id()})}save();if(f.id==='foodForm'){foodNotice='Alimento registrado com sucesso! Confira o Histórico de consumo.'}render();if(f.id==='foodForm'){setTimeout(()=>{foodNotice='';if(tab==='food')render()},5000)}});
   const showAuth=(message='')=>{ $('#authGate').classList.remove('hidden'); $('#authStatus').textContent=message; $('#logoutBtn').classList.add('hidden'); $('#accountLabel').textContent=''; };
   const hideAuth=()=>$('#authGate').classList.add('hidden');
-  const loadUserData=(user)=>{currentUser=user;activeDataKey='equilibrio-v1-data-'+user.uid;try{data={...blank(),...JSON.parse(localStorage.getItem(activeDataKey)||'{}')}}catch{data=blank()};
-    // Legacy data is never assigned to an account automatically. Offer a deliberate, one-time local migration.
-    const hasCurrent=!!localStorage.getItem(activeDataKey), legacyRaw=localStorage.getItem(LEGACY_KEY);
-    if(!hasCurrent&&legacyRaw){let legacy;try{legacy=JSON.parse(legacyRaw)}catch{legacy=null}if(legacy&&confirm('Encontramos registros antigos do Equilíbrio neste navegador, ainda não vinculados a uma conta. Deseja copiá-los para esta conta neste aparelho? Nada será enviado à nuvem.')){data={...blank(),...legacy};save();}}
-    $('#accountLabel').textContent=user.displayName||user.email||'Conta Google';$('#logoutBtn').classList.remove('hidden');render();
+  const loadUserData=async(user)=>{
+    if(!user||!acceptedTerms)return;
+    if(cloudReady&&currentUser?.uid===user.uid)return;
+    if(loadingUid===user.uid)return;
+    loadingUid=user.uid;cloudReady=false;
+    if(cloudUnsubscribe){cloudUnsubscribe();cloudUnsubscribe=null}
+    currentUser=user;activeDataKey='equilibrio-v1-data-'+user.uid;
+    let local={};try{local=JSON.parse(localStorage.getItem(activeDataKey)||'{}')||{}}catch{local={}}
+    // Keep the original local-only records as a candidate for a one-time cloud migration.
+    const legacyRaw=localStorage.getItem(LEGACY_KEY);
+    if(!Object.keys(local).length&&legacyRaw){let legacy;try{legacy=JSON.parse(legacyRaw)}catch{legacy=null}if(legacy&&confirm('Encontramos registros antigos do Equilíbrio neste navegador, ainda não vinculados à sua conta. Deseja incluí-los na sincronização desta conta Google? Eles serão enviados ao Firebase.'))local=legacy;}
+    data={...blank(),...local};
+    $('#accountLabel').textContent=(user.displayName||user.email||'Conta Google')+' · conectando…';
+    $('#logoutBtn').classList.remove('hidden');render();
+    try{
+      cloudDoc=firebase.firestore().collection('users').doc(user.uid).collection('appData').doc('main');
+      const snap=await cloudDoc.get();
+      if(currentUser?.uid!==user.uid)return;
+      if(snap.exists){
+        data=mergeLocalAndCloud(snap.data()?.data||{},local);
+      }else{
+        data={...blank(),...local};
+      }
+      localStorage.setItem(activeDataKey,JSON.stringify(data));
+      cloudReady=true;
+      await cloudDoc.set({data:JSON.parse(JSON.stringify(data)),updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});
+      cloudUnsubscribe=cloudDoc.onSnapshot(snapshot=>{
+        if(!snapshot.exists||!currentUser||currentUser.uid!==user.uid)return;
+        const remote=snapshot.data()?.data;
+        if(remote&&typeof remote==='object'){
+          data={...blank(),...remote};
+          localStorage.setItem(activeDataKey,JSON.stringify(data));
+          render();
+        }
+      },err=>{console.error('Erro no listener de sincronização:',err);if($('#accountLabel'))$('#accountLabel').textContent=(user.displayName||user.email||'Conta Google')+' · sincronização indisponível';});
+      $('#accountLabel').textContent=(user.displayName||user.email||'Conta Google')+' · sincronizado';render();hideAuth();
+    }catch(err){
+      cloudReady=false;cloudDoc=null;
+      console.error('Falha ao conectar com Firestore:',err);
+      showAuth('Não foi possível ativar a sincronização. Confira se o Firestore foi criado e se as regras de segurança foram publicadas. Código: '+(err.code||err.message||'erro desconhecido'));
+    }finally{loadingUid=null}
   };
   $('#openPrivacy').addEventListener('click',()=>$('#privacyDialog').classList.remove('hidden'));
   const closePrivacy=()=>$('#privacyDialog').classList.add('hidden');
@@ -172,23 +231,40 @@
     else{localStorage.removeItem('equilibrio-terms-accepted-v1');$('#authStatus').textContent='Marque a caixa para aceitar os Termos de Uso e continuar.'}
     $('#googleLogin').disabled=!acceptedTerms;
     const existingUser=window.firebase&&firebase.auth&&firebase.auth().currentUser;
-    if(existingUser&&acceptedTerms){loadUserData(existingUser);hideAuth()}
+    if(existingUser&&acceptedTerms){loadUserData(existingUser)}
     else if(!acceptedTerms){showAuth('Marque a caixa para aceitar os Termos de Uso e continuar.')}
   });
   const authError=(err)=>{const code=err&&err.code||'';if(code==='auth/unauthorized-domain')return 'Domínio não autorizado no Firebase. Em Authentication → Settings → Authorized domains, confirme rafaboregas-stack.github.io.';if(code==='auth/operation-not-allowed')return 'O login Google não está habilitado no Firebase. Confira Authentication → Sign-in method.';if(code==='auth/unauthorized-continue-uri')return 'O endereço de retorno não está autorizado no Firebase.';if(code==='auth/popup-blocked')return 'O navegador bloqueou a janela de autenticação. Permita pop-ups e tente novamente.';if(code==='auth/network-request-failed')return 'Falha de conexão durante a autenticação. Confira a internet e tente novamente.';return 'Falha no login Google: '+(code||err?.message||'erro desconhecido')+'. Confira as configurações e tente novamente.'};
-  $('#googleLogin').addEventListener('click',async()=>{if(!acceptedTerms){$('#authStatus').textContent='Marque primeiro a caixa de aceite.';return}$('#googleLogin').disabled=true;$('#authStatus').textContent='Abrindo o acesso Google…';try{const provider=new firebase.auth.GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});const result=await firebase.auth().signInWithPopup(provider);if(result&&result.user&&acceptedTerms){loadUserData(result.user);hideAuth()}}catch(err){$('#googleLogin').disabled=false;$('#authStatus').textContent=authError(err)}});
+  $('#googleLogin').addEventListener('click',async()=>{if(!acceptedTerms){$('#authStatus').textContent='Marque primeiro a caixa de aceite.';return}$('#googleLogin').disabled=true;$('#authStatus').textContent='Abrindo o acesso Google…';try{const provider=new firebase.auth.GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});const result=await firebase.auth().signInWithPopup(provider);if(result&&result.user&&acceptedTerms){await loadUserData(result.user)}}catch(err){$('#googleLogin').disabled=false;$('#authStatus').textContent=authError(err)}});
   $('#logoutBtn').addEventListener('click',async()=>{if(scanner)await stopScanner();try{await firebase.auth().signOut()}catch(err){alert('Não foi possível sair da conta. '+(err.message||''))}});
   try{
-    if(!window.firebase||!firebase.initializeApp||!firebase.auth)throw new Error('Os arquivos do Firebase não carregaram. Confira sua conexão com a internet.');
+    if(!window.firebase||!firebase.initializeApp||!firebase.auth||!firebase.firestore)throw new Error('Os arquivos do Firebase não carregaram. Confira sua conexão com a internet.');
     firebase.initializeApp(firebaseConfig);
     const auth=firebase.auth();
+    firebase.firestore().enablePersistence({synchronizeTabs:true}).catch(err=>console.warn('Persistência offline do Firestore indisponível:',err.code||err.message));
     // O login usa janela popup para evitar problemas de armazenamento entre sites durante redirecionamentos.
     auth.onAuthStateChanged(user=>{
       authReady=true;
-      if(user&&acceptedTerms){loadUserData(user);hideAuth()}
+      if(user&&acceptedTerms){loadUserData(user)}
       else{currentUser=null;activeDataKey=null;data=blank();showAuth(window.__equilibrioAuthError||(user?'Marque a caixa para aceitar os Termos de Uso e continuar.':''));$('#googleLogin').disabled=!acceptedTerms;window.__equilibrioAuthError=''}
     });
   }catch(err){showAuth('Configuração do login indisponível: '+(err.message||'erro ao iniciar Firebase'));}
+  let deferredInstallPrompt=null;
+  const installBtn=$('#installBtn');
+  const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent)&&!window.MSStream;
+  const isStandalone=()=>window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;
+  if(isStandalone()){installBtn.textContent='✓ App instalado';installBtn.disabled=true;installBtn.classList.remove('primary')}
+  window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();deferredInstallPrompt=event;installBtn.classList.remove('hidden');installBtn.textContent='＋ Instalar app'});
+  window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;installBtn.textContent='✓ App instalado';installBtn.disabled=true;installBtn.classList.remove('primary')});
+  installBtn.addEventListener('click',async()=>{
+    if(isStandalone()){alert('O Equilíbrio já está instalado neste aparelho.');return}
+    if(deferredInstallPrompt){deferredInstallPrompt.prompt();const choice=await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;if(choice&&choice.outcome==='accepted'){installBtn.textContent='Instalação solicitada'}return}
+    if(isIOS()){
+      alert('Para instalar no iPhone: abra o Equilíbrio no Safari, toque no botão Compartilhar (quadrado com seta para cima), escolha “Adicionar à Tela de Início” e toque em “Adicionar”. Se não aparecer, role a lista de opções para baixo.');
+    }else{
+      alert('Para instalar: abra este site no Chrome, toque no menu ⋮ e escolha “Instalar app” ou “Adicionar à tela inicial”. Se a opção não aparecer, atualize a página e confirme que o site está aberto em HTTPS.');
+    }
+  });
   $('#themeBtn').addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=next;localStorage.setItem(THEME,next);$('#themeBtn').textContent=next==='dark'?'☀ Tema':'☾ Tema'});
   $('#exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({app:'Equilibrio',version:1,exportedAt:new Date().toISOString(),data},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='equilibrio-backup-'+today()+'.json';a.click();URL.revokeObjectURL(url)});
   $('#importBtn').addEventListener('click',()=>$('#importFile').click());$('#importFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const parsed=JSON.parse(await file.text());const incoming=parsed.data||parsed;if(!incoming||!Array.isArray(incoming.transactions)||!Array.isArray(incoming.shopping)||!Array.isArray(incoming.workouts))throw new Error('Formato não reconhecido');if(confirm('Importar este backup substituirá os dados atuais deste navegador. Continuar?')){data={...blank(),...incoming};save();render();alert('Backup importado.')}}catch(err){alert('Não foi possível importar este arquivo. Selecione um backup JSON exportado pelo Equilíbrio.')}e.target.value=''});
