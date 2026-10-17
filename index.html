@@ -176,19 +176,17 @@
     else if(!acceptedTerms){showAuth('Marque a caixa para aceitar os Termos de Uso e continuar.')}
   });
   const authError=(err)=>{const code=err&&err.code||'';if(code==='auth/unauthorized-domain')return 'Domínio não autorizado no Firebase. Em Authentication → Settings → Authorized domains, confirme rafaboregas-stack.github.io.';if(code==='auth/operation-not-allowed')return 'O login Google não está habilitado no Firebase. Confira Authentication → Sign-in method.';if(code==='auth/unauthorized-continue-uri')return 'O endereço de retorno não está autorizado no Firebase.';if(code==='auth/popup-blocked')return 'O navegador bloqueou a janela de autenticação. Permita pop-ups e tente novamente.';if(code==='auth/network-request-failed')return 'Falha de conexão durante a autenticação. Confira a internet e tente novamente.';return 'Falha no login Google: '+(code||err?.message||'erro desconhecido')+'. Confira as configurações e tente novamente.'};
-  $('#googleLogin').addEventListener('click',async()=>{if(!acceptedTerms){$('#authStatus').textContent='Marque primeiro a caixa de aceite.';return}$('#googleLogin').disabled=true;$('#authStatus').textContent='Abrindo o acesso Google…';try{const provider=new firebase.auth.GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});await firebase.auth().signInWithRedirect(provider)}catch(err){$('#googleLogin').disabled=false;$('#authStatus').textContent=authError(err)}});
+  $('#googleLogin').addEventListener('click',async()=>{if(!acceptedTerms){$('#authStatus').textContent='Marque primeiro a caixa de aceite.';return}$('#googleLogin').disabled=true;$('#authStatus').textContent='Abrindo o acesso Google…';try{const provider=new firebase.auth.GoogleAuthProvider();provider.setCustomParameters({prompt:'select_account'});const result=await firebase.auth().signInWithPopup(provider);if(result&&result.user&&acceptedTerms){loadUserData(result.user);hideAuth()}}catch(err){$('#googleLogin').disabled=false;$('#authStatus').textContent=authError(err)}});
   $('#logoutBtn').addEventListener('click',async()=>{if(scanner)await stopScanner();try{await firebase.auth().signOut()}catch(err){alert('Não foi possível sair da conta. '+(err.message||''))}});
   try{
     if(!window.firebase||!firebase.initializeApp||!firebase.auth)throw new Error('Os arquivos do Firebase não carregaram. Confira sua conexão com a internet.');
     firebase.initializeApp(firebaseConfig);
     const auth=firebase.auth();
-    // Aguarda a resolução do redirecionamento antes de observar a sessão, para que o erro não seja apagado pela tela de login.
-    auth.getRedirectResult().catch(err=>{if(err&&err.code!=='auth/no-auth-event')window.__equilibrioAuthError=authError(err)}).finally(()=>{
-      auth.onAuthStateChanged(user=>{
-        authReady=true;
-        if(user&&acceptedTerms){loadUserData(user);hideAuth()}
-        else{currentUser=null;activeDataKey=null;data=blank();showAuth(window.__equilibrioAuthError||(user?'Marque a caixa para aceitar os Termos de Uso e continuar.':''));$('#googleLogin').disabled=!acceptedTerms;window.__equilibrioAuthError=''}
-      });
+    // O login usa janela popup para evitar problemas de armazenamento entre sites durante redirecionamentos.
+    auth.onAuthStateChanged(user=>{
+      authReady=true;
+      if(user&&acceptedTerms){loadUserData(user);hideAuth()}
+      else{currentUser=null;activeDataKey=null;data=blank();showAuth(window.__equilibrioAuthError||(user?'Marque a caixa para aceitar os Termos de Uso e continuar.':''));$('#googleLogin').disabled=!acceptedTerms;window.__equilibrioAuthError=''}
     });
   }catch(err){showAuth('Configuração do login indisponível: '+(err.message||'erro ao iniciar Firebase'));}
   $('#themeBtn').addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';document.documentElement.dataset.theme=next;localStorage.setItem(THEME,next);$('#themeBtn').textContent=next==='dark'?'☀ Tema':'☾ Tema'});
