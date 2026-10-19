@@ -1,4 +1,4 @@
-const CACHE_NAME = 'equilibrio-v27-food-camera-shell';
+const CACHE_NAME = 'equilibrio-v28-local-midnight-shell';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {

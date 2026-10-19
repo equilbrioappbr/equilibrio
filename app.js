@@ -6,7 +6,9 @@
   let cloudReady=false, cloudUnsubscribe=null, loadingUid=null, cloudDoc=null;
   let tab='finance'; let showLevelRoadmap=false; let foodNotice=''; let foodEditingId=''; let nutritionDetailsId=''; let financeShowAll=false; let shoppingImportText=''; let scannedProduct=null; let scanMessage=''; let manualBarcodeCode=''; let scanner=null; let scanBusy=false; let scanAccepted=false; let billEditingId=null; let foodSearchResults=[]; let foodSearchMessage=''; let hydrationCount=0;
   const $=s=>document.querySelector(s); const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const money=n=>Number(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'}); const today=()=>new Date().toISOString().slice(0,10);
+  const money=n=>Number(n||0).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+  // Use the device's local calendar date (Brazil), never UTC's ISO date for daily goals.
+  const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
   const save=()=>{
     if(!activeDataKey||!currentUser)return;
     localStorage.setItem(activeDataKey,JSON.stringify(data));
@@ -39,6 +41,25 @@
     document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===tab));
     $('#app').innerHTML=tab==='finance'?financeHTML():tab==='food'?foodHTML():fitnessHTML();if(tab==='food')updateFoodNutritionEstimate();
   }
+  // Refresh the visible daily totals at local midnight, even if the app stays open.
+  let dailyRolloverTimer=null;
+  function scheduleDailyRollover(){
+    if(dailyRolloverTimer!==null)clearTimeout(dailyRolloverTimer);
+    const now=new Date();
+    const nextMidnight=new Date(now.getFullYear(),now.getMonth(),now.getDate()+1,0,0,1,0);
+    dailyRolloverTimer=setTimeout(()=>{
+      if(currentUser&&activeDataKey)render();
+      scheduleDailyRollover();
+    },Math.max(1000,nextMidnight.getTime()-now.getTime()));
+  }
+  let lastObservedDay=today();
+  function refreshIfDayChanged(){
+    const currentDay=today();
+    if(currentDay!==lastObservedDay){lastObservedDay=currentDay;if(currentUser&&activeDataKey)render();}
+  }
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshIfDayChanged()});
+  window.addEventListener('focus',refreshIfDayChanged);
+  scheduleDailyRollover();
   function financeHTML(){
     const m=today().slice(0,7),tx=data.transactions.filter(x=>x.date?.startsWith(m));
     const inc=tx.filter(x=>x.kind==='in').reduce((a,x)=>a+Number(x.amount||0),0),out=tx.filter(x=>x.kind==='out').reduce((a,x)=>a+Number(x.amount||0),0);
