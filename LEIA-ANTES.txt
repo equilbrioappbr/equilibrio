@@ -41,3 +41,12 @@ ATUALIZAÇÃO v25 — TRILHA DE NÍVEIS
 - Os três níveis finais, incluindo nomes e metas, permanecem secretos na trilha. A progressão de XP para a faixa secreta também não é exibida.
 - Primeiro nível renomeado para Batata de Fralda 🥔👶🩲; último nível secreto: Deus Batatão Fortão 🥔💪⚡, revelado apenas quando conquistado.
 - Mantidas as metas mensais, os cálculos de XP, os dados locais e a sincronização Firebase existentes.
+
+
+ATUALIZAÇÃO v27 — FOTO E CÁLCULO NUTRICIONAL
+- Restaurada a captura de foto pela câmera do dispositivo na área “Registrar alimento consumido”; a foto é reduzida antes de ser anexada ao registro e aparece no histórico no mesmo dispositivo. Para proteger o limite de tamanho do documento e manter a sincronização funcionando, a foto não é enviada ao Firestore nesta versão.
+- Ao sair do campo de alimento, o app preenche nutrientes médios para alimentos comuns conhecidos pela tabela local ou tenta consultar a base pública Open Food Facts.
+- Ao informar/alterar a quantidade em gramas/ml, o resumo recalcula calorias, proteínas, carboidratos e gorduras da porção. Os valores de referência são por 100 g/ml e podem variar por preparo e marca.
+- Atualizado o nome do cache do service worker para a nova versão.
+- Limitação importante: esta atualização não inclui reconhecimento visual por IA. A câmera captura e anexa a foto, mas não identifica sozinha o alimento na imagem; isso exige integração segura com um serviço de visão/IA. Não foi adicionada configuração técnica ao fluxo do usuário final.
+- Validação realizada nesta edição: `node --check app.js` e `unzip -t` do pacote. Não foi possível executar teste em navegador real, verificar a sincronização Firebase após publicar ou rodar o Microsoft Defender neste ambiente.
