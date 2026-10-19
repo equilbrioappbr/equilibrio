@@ -1,24 +1,21 @@
-EQUILÍBRIO — LOGIN GOOGLE (VERSÃO DE TESTE)
+EQUILÍBRIO — PACOTE DE CORREÇÃO
 
-O que foi incluído:
-- Login Google via Firebase Authentication.
-- Aviso de Privacidade acessível por link, sem exigir que a pessoa abra o aviso.
-- Aceite explícito dos Termos de Uso e ciência do Aviso de Privacidade antes de continuar.
-- Registros financeiros, alimentares, de compras e treinos mantidos no armazenamento local do navegador, com uma chave separada por UID do Firebase.
-- Nenhum lançamento pessoal é enviado ao Firebase nem sincronizado entre aparelhos.
-- Migração dos registros antigos somente após confirmação explícita, quando houver dados antigos neste navegador.
+IMPORTANTE
+Este ZIP NÃO contém o projeto completo nem substitui o index.html. Como não foi possível recuperar a versão atual do repositório, ele contém um script que aplica a correção ao index.html existente, preservando o restante do código.
 
-ANTES DE PUBLICAR:
-1. No Firebase Console, abra Authentication > Sign-in method (ou Sign-in providers) e habilite Google. Escolha o e-mail de suporte e salve.
-2. Em Authentication > Settings > Authorized domains, confirme que o domínio usado pelo site está autorizado. Para GitHub Pages, normalmente será username.github.io (sem o caminho do repositório).
-3. Publique os arquivos desta pasta em HTTPS. Login Google não funcionará corretamente ao abrir index.html diretamente como arquivo local.
-4. Teste o login em janela normal e no Safari do iPhone.
+O que a correção faz
+- Mantém uma tela “Carregando Equilíbrio…” enquanto o Firebase restaura a sessão e os dados da conta.
+- Evita mostrar o formulário de login por um instante quando o usuário já está autenticado.
+- Faz a tela de login voltar a aparecer normalmente quando não há sessão ou ocorre erro de sincronização.
 
-PRIVACIDADE E LIMITES:
-- Firebase/Google processa dados necessários à autenticação, como identificador da conta e informações básicas do perfil.
-- Registros do app permanecem no armazenamento local deste navegador/dispositivo. Sair da conta não apaga os dados.
-- Limpar dados do navegador ou trocar de dispositivo pode fazer os registros locais deixarem de estar disponíveis. Exporte e guarde backups JSON com segurança.
-- Não coloque arquivos de backup nem informações pessoais em um repositório público.
-- A configuração web do Firebase está no front-end por design. Nunca adicione senhas, chaves privadas ou arquivos de conta de serviço.
+Como usar (Windows)
+1. Baixe o index.html atual do repositório: https://github.com/equilbrioappbr/equilibrio/blob/main/index.html
+   No GitHub, abra o arquivo e use o botão de download (ou Raw > salvar como).
+2. Faça uma cópia de segurança do index.html baixado.
+3. Coloque corrigir_equilibrio.py na mesma pasta do index.html.
+4. Abra o Terminal/Prompt nessa pasta e execute:
+   python corrigir_equilibrio.py index.html
+5. O script cria index_corrigido.html; ele não sobrescreve o arquivo original.
+6. Revise o resultado antes de substituir o index.html no GitHub. Faça commit apenas depois de conferir.
 
-IMPORTANTE: esta versão foi preparada, mas precisa ser testada no domínio final com o provedor Google efetivamente habilitado no Firebase.
+Se o script disser que não encontrou um trecho, NÃO force a alteração: significa que o código do repositório está diferente do esperado e precisa ser ajustado manualmente.

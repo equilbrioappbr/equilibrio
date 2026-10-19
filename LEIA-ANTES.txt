@@ -1,0 +1,43 @@
+EQUILÍBRIO — PACOTE DE ATUALIZAÇÃO v22 (RECONSTRUÍDO)
+
+CONTEÚDO
+- index.html: aplicativo com a importação de listas de compras e histórico financeiro recolhível.
+- sw.js, manifest.json e ícones: suporte PWA; cache com identificação v22.
+- firestore.rules: arquivo de referência. Não substitua as regras atualmente publicadas sem comparar o caminho de dados e as permissões do projeto.
+
+LISTA DE COMPRAS
+Copie a lista do app Notas ou de outro aplicativo e cole o texto no campo de importação, com um item por linha; ou selecione um arquivo .txt/.csv simples. Os itens entram somente na lista de compras, não no consumo alimentar nem nas finanças. Revise a lista antes de importar. Para consultar nutrição, use “Ver nutrição” e leia/digite o código de barras. Uma foto comum não identifica automaticamente os nutrientes.
+
+FINANÇAS
+O histórico mostra inicialmente cinco lançamentos recentes adicionados. Use “Visualizar mais” para expandir e “Mostrar menos” para recolher.
+
+ANÁLISE DE FOTOS
+Esta versão não inclui a opção de configurar serviço de análise de fotos nem inclui o backend opcional de IA.
+
+SEGURANÇA E PUBLICAÇÃO
+Este pacote foi recriado a partir dos arquivos do aplicativo revisados e não contém executáveis .exe, .bat ou .cmd. Isso não é uma certificação antivírus. Mantenha o antivírus ativado e verifique o arquivo antes de usar. Se o alerta continuar, não publique o ZIP e informe o nome exato da detecção.
+
+Antes de atualizar, faça backup do repositório e dos dados. O pacote não foi publicado automaticamente no GitHub Pages. Teste login Google, sincronização Firebase, finanças, lista de compras e Treinos após publicar. Não publique as regras de Firestore incluídas sem verificar se correspondem às regras atuais do seu projeto.
+
+
+REVISAO TECNICA v23
+- O JavaScript principal foi separado em app.js sem alterar a ordem de carregamento após as bibliotecas Firebase e do leitor de código de barras.
+- O service worker foi simplificado: não apaga caches de outros aplicativos e não intercepta solicitações para outros domínios.
+- Isso é uma revisão de código, não uma certificação antivírus. Faça a verificação com o Microsoft Defender antes de publicar; não restaure nem permita um arquivo que ele continue colocando em quarentena.
+
+
+ATUALIZAÇÃO DE GAMIFICAÇÃO v24
+- XP por dia: passos (10 XP ao atingir a meta diária), hidratação (8 XP ao atingir a meta configurada), registro de alimentação (3 XP/dia), treino (12 XP/dia) e bônus de consistência de 5 XP por cumprir passos + hidratação. Cada categoria conta no máximo uma vez por dia.
+- Progressão de nível ampliada: 0, 100, 300, 700, 1.500, 3.000, 5.500, 9.000, 15.000, 25.000, 40.000 e 60.000 XP acumulados.
+- Ranking pessoal mensal: soma de XP das atividades do mês e bônus por atingir 50%, 75%, 90% e 100% das metas mensais. Metas mensais derivadas da meta diária × número de dias do mês.
+- Cartão colecionável digital desbloqueado ao cumprir a meta mensal de passos e, quando configurada, a meta mensal de hidratação. O estilo visual é inspirado em cartão NFC, mas ainda não programa nem grava uma tag NFC física.
+- Os valores antigos de XP não eram armazenados separadamente; a pontuação total agora é recalculada a partir dos registros de hábitos existentes usando a nova tabela. A meta diária de passos configurada hoje também é aplicada ao recálculo histórico, então alterar essa meta pode mudar a pontuação exibida.
+- Não há sincronização social/competição entre usuários: “ranking mensal” nesta versão é a pontuação pessoal do mês.
+- Testes técnicos realizados: `node --check app.js` e integridade do ZIP. Não foi possível executar o Microsoft Defender nem testar o fluxo completo em navegador real neste ambiente.
+
+ATUALIZAÇÃO v25 — TRILHA DE NÍVEIS
+- Progressão com 12 estágios principais e 1 raridade extra, totalizando 13 níveis.
+- Símbolo e nome do nível atual abrem a trilha de evolução.
+- Os três níveis finais, incluindo nomes e metas, permanecem secretos na trilha. A progressão de XP para a faixa secreta também não é exibida.
+- Primeiro nível renomeado para Batata de Fralda 🥔👶🩲; último nível secreto: Deus Batatão Fortão 🥔💪⚡, revelado apenas quando conquistado.
+- Mantidas as metas mensais, os cálculos de XP, os dados locais e a sincronização Firebase existentes.
