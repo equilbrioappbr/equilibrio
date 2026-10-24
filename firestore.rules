@@ -1,8 +1,67 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+    function signedIn() { return request.auth != null; }
+    function owner(uid) { return signedIn() && request.auth.uid == uid; }
+    function follows(profileUid) {
+      return signedIn() && exists(/databases/$(database)/documents/profiles/$(profileUid)/followers/$(request.auth.uid));
+    }
+    function canReadPost() {
+      return signedIn() && (resource.data.uid == request.auth.uid || resource.data.visibility == 'public' || (resource.data.visibility == 'followers' && follows(resource.data.uid)));
+    }
+    function canReadParentPost(postId) {
+      let post = get(/databases/$(database)/documents/posts/$(postId));
+      return signedIn() && (post.data.uid == request.auth.uid || post.data.visibility == 'public' || (post.data.visibility == 'followers' && follows(post.data.uid)));
+    }
     match /users/{userId}/appData/{documentId} {
-      allow read, write: if request.auth != null && request.auth.uid == userId;
+      allow read, write: if owner(userId);
+    }
+    match /profiles/{profileUid} {
+      // Profile fields are limited to display name, username, bio, avatar URL and privacy.
+      // Never place email, finance, health or private journal data in this document.
+      allow read: if signedIn();
+      allow create, update, delete: if owner(profileUid);
+      match /following/{targetUid} {
+        allow read: if owner(profileUid);
+        allow create: if request.resource.data.uid == targetUid && (owner(profileUid) || (owner(targetUid) && exists(/databases/$(database)/documents/profiles/$(targetUid)/followers/$(profileUid))));
+        allow delete: if owner(profileUid) || owner(targetUid);
+        allow update: if false;
+      }
+      match /followers/{followerUid} {
+        allow read: if owner(profileUid) || owner(followerUid);
+        allow create: if request.resource.data.uid == followerUid && (owner(profileUid) || (owner(followerUid) && get(/databases/$(database)/documents/profiles/$(profileUid)).data.privacy == 'public'));
+        allow delete: if owner(profileUid) || owner(followerUid);
+        allow update: if false;
+      }
+      match /requests/{requesterUid} {
+        allow read, delete: if owner(profileUid) || owner(requesterUid);
+        allow create: if owner(profileUid) == false && owner(requesterUid) && request.resource.data.uid == requesterUid;
+        allow update: if false;
+      }
+    }
+    match /posts/{postId} {
+      allow read: if canReadPost();
+      allow create: if signedIn() && request.resource.data.uid == request.auth.uid
+        && request.resource.data.caption is string && request.resource.data.caption.size() <= 1500
+        && request.resource.data.visibility in ['public', 'followers']
+        && request.resource.data.category in ['evolucao', 'alimentacao', 'treino', 'exercicio', 'conquista'];
+      allow update: if signedIn() && request.resource.data.uid == resource.data.uid && (
+        (resource.data.uid == request.auth.uid && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['caption','visibility','category','likesCount'])) ||
+        (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likesCount']) && request.resource.data.likesCount is int && (request.resource.data.likesCount == resource.data.likesCount + 1 || request.resource.data.likesCount == resource.data.likesCount - 1))
+      );
+      allow delete: if signedIn() && resource.data.uid == request.auth.uid;
+      match /likes/{userId} {
+        allow read: if canReadParentPost(postId);
+        allow create: if signedIn() && request.auth.uid == userId && canReadParentPost(postId) && request.resource.data.uid == userId;
+        allow delete: if owner(userId) && canReadParentPost(postId);
+        allow update: if false;
+      }
+      match /comments/{commentId} {
+        allow read: if canReadParentPost(postId);
+        allow create: if signedIn() && canReadParentPost(postId) && request.resource.data.uid == request.auth.uid
+          && request.resource.data.text is string && request.resource.data.text.size() <= 500;
+        allow update, delete: if signedIn() && (resource.data.uid == request.auth.uid || get(/databases/$(database)/documents/posts/$(postId)).data.uid == request.auth.uid);
+      }
     }
   }
 }

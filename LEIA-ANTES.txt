@@ -1,68 +1,34 @@
-EQUILÍBRIO — PACOTE DE ATUALIZAÇÃO v22 (RECONSTRUÍDO)
+EQUILÍBRIO v30 — REDE SOCIAL (VERSÃO EXPERIMENTAL)
 
-CONTEÚDO
-- index.html: aplicativo com a importação de listas de compras e histórico financeiro recolhível.
-- sw.js, manifest.json e ícones: suporte PWA; cache com identificação v22.
-- firestore.rules: arquivo de referência. Não substitua as regras atualmente publicadas sem comparar o caminho de dados e as permissões do projeto.
+Esta versão mantém os módulos pessoais existentes (Finanças, Alimentação e Treinos) e adiciona a primeira estrutura da rede social: Início/Feed, Explorar, Publicar, Perfil de jogador, configurações, perfil público/privado, busca por @usuário, seguir/solicitar para seguir, aprovação/recusa de solicitações, fotos em publicações, curtidas, comentários e compartilhamento de links.
 
-LISTA DE COMPRAS
-Copie a lista do app Notas ou de outro aplicativo e cole o texto no campo de importação, com um item por linha; ou selecione um arquivo .txt/.csv simples. Os itens entram somente na lista de compras, não no consumo alimentar nem nas finanças. Revise a lista antes de importar. Para consultar nutrição, use “Ver nutrição” e leia/digite o código de barras. Uma foto comum não identifica automaticamente os nutrientes.
+IMPORTANTE: o ZIP é o pacote de arquivos do aplicativo. Ele não publica automaticamente no GitHub Pages nem altera as configurações remotas do Firebase. A área social precisa das regras abaixo publicadas no Firebase antes de ser usada com contas reais.
 
-FINANÇAS
-O histórico mostra inicialmente cinco lançamentos recentes adicionados. Use “Visualizar mais” para expandir e “Mostrar menos” para recolher.
+ANTES DE TESTAR
+1. Faça uma cópia/backup do projeto atual e dos dados importantes. Não apague a versão que já funciona para você.
+2. Descompacte o ZIP e copie o CONTEÚDO de src/equilibrio_v24 para a raiz do repositório GitHub Pages, conforme a estrutura usada atualmente.
+3. Firebase Console → projeto equilibrio-app-71155 → Firestore Database → Rules: substitua as regras atuais pelo conteúdo de firestore.rules e clique em Publicar. Essas regras preservam o acesso por UID aos dados pessoais e adicionam regras para perfis, publicações, curtidas, comentários, seguidores e solicitações.
+4. Firebase Console → Storage: ative o Firebase Storage se ainda não estiver ativo. Na aba Rules, publique o conteúdo de storage.rules. O app usa Storage para fotos de perfil e de publicações.
+5. Confirme em Authentication → Sign-in method que Google está habilitado e em Settings → Authorized domains que o domínio do app está autorizado.
+6. Publique os arquivos no GitHub Pages. Atualize o cache do PWA: feche o app instalado e abra o site novamente; se necessário, limpe os dados/cache do site no navegador.
+7. Teste com duas contas Google diferentes: publicar uma foto, curtir, comentar, procurar @usuário, seguir perfil público, solicitar acesso a perfil privado e aprovar/recusar a solicitação.
 
-ANÁLISE DE FOTOS
-Esta versão não inclui a opção de configurar serviço de análise de fotos nem inclui o backend opcional de IA.
+PRIVACIDADE
+- Ao mudar o perfil para privado, as publicações públicas existentes são convertidas para visibilidade de seguidores. Publicações novas em perfil privado ficam restritas a seguidores aprovados.
+- Dados financeiros, diário alimentar completo, peso e outros registros pessoais não são publicados automaticamente.
+- A autenticação e senha continuam sendo gerenciadas pelo Google; o app não armazena senha própria. O link de configurações abre a Conta Google.
+- Os documentos de perfil são legíveis por usuários autenticados para permitir busca por @usuário. Use neles apenas nome de exibição, @usuário, biografia, foto e preferência de privacidade; nunca coloque e-mail, finanças ou dados de saúde no documento público de perfil.
+- AVISO TÉCNICO SOBRE FOTOS: o app usa URLs de download do Firebase Storage para exibir imagens. Quem obtiver e compartilhar uma URL de download poderá acessar a imagem mesmo sem ver o post no feed. Portanto, não trate fotos sensíveis como conteúdo confidencial. Privacidade estrita de mídia exigiria uma implementação adicional com entrega autenticada de imagens/backend.
+- Esta é uma primeira versão social experimental, não uma plataforma moderada em produção. Ainda não inclui denúncias, bloqueios, mensagens diretas, verificação de conta, paginação avançada nem ferramentas administrativas contra abuso.
 
-SEGURANÇA E PUBLICAÇÃO
-Este pacote foi recriado a partir dos arquivos do aplicativo revisados e não contém executáveis .exe, .bat ou .cmd. Isso não é uma certificação antivírus. Mantenha o antivírus ativado e verifique o arquivo antes de usar. Se o alerta continuar, não publique o ZIP e informe o nome exato da detecção.
+COMO FUNCIONA
+- Navegação principal: Início, Explorar, Publicar, Perfil, Finanças, Alimentação e Treinos. Em celulares há uma barra inferior com atalhos sociais.
+- Perfil de jogador: XP/nível estimados a partir dos registros existentes. A pontuação exibida é uma apresentação inicial e ainda não é um sistema competitivo antifraude.
+- Publicação: foto de até 8 MB, legenda, categoria e visibilidade. Foto de perfil: até 5 MB.
+- Perfil: nome, @usuário, biografia, foto, opção público/privado, compartilhamento e acesso à Conta Google para gestão da senha.
+- O app precisa de internet para a área social e sincronização. Os módulos pessoais existentes continuam vinculados à conta Google pelo caminho /users/{uid}/appData/main.
 
-Antes de atualizar, faça backup do repositório e dos dados. O pacote não foi publicado automaticamente no GitHub Pages. Teste login Google, sincronização Firebase, finanças, lista de compras e Treinos após publicar. Não publique as regras de Firestore incluídas sem verificar se correspondem às regras atuais do seu projeto.
-
-
-REVISAO TECNICA v23
-- O JavaScript principal foi separado em app.js sem alterar a ordem de carregamento após as bibliotecas Firebase e do leitor de código de barras.
-- O service worker foi simplificado: não apaga caches de outros aplicativos e não intercepta solicitações para outros domínios.
-- Isso é uma revisão de código, não uma certificação antivírus. Faça a verificação com o Microsoft Defender antes de publicar; não restaure nem permita um arquivo que ele continue colocando em quarentena.
-
-
-ATUALIZAÇÃO DE GAMIFICAÇÃO v24
-- XP por dia: passos (10 XP ao atingir a meta diária), hidratação (8 XP ao atingir a meta configurada), registro de alimentação (3 XP/dia), treino (12 XP/dia) e bônus de consistência de 5 XP por cumprir passos + hidratação. Cada categoria conta no máximo uma vez por dia.
-- Progressão de nível ampliada: 0, 100, 300, 700, 1.500, 3.000, 5.500, 9.000, 15.000, 25.000, 40.000 e 60.000 XP acumulados.
-- Ranking pessoal mensal: soma de XP das atividades do mês e bônus por atingir 50%, 75%, 90% e 100% das metas mensais. Metas mensais derivadas da meta diária × número de dias do mês.
-- Cartão colecionável digital desbloqueado ao cumprir a meta mensal de passos e, quando configurada, a meta mensal de hidratação. O estilo visual é inspirado em cartão NFC, mas ainda não programa nem grava uma tag NFC física.
-- Os valores antigos de XP não eram armazenados separadamente; a pontuação total agora é recalculada a partir dos registros de hábitos existentes usando a nova tabela. A meta diária de passos configurada hoje também é aplicada ao recálculo histórico, então alterar essa meta pode mudar a pontuação exibida.
-- Não há sincronização social/competição entre usuários: “ranking mensal” nesta versão é a pontuação pessoal do mês.
-- Testes técnicos realizados: `node --check app.js` e integridade do ZIP. Não foi possível executar o Microsoft Defender nem testar o fluxo completo em navegador real neste ambiente.
-
-ATUALIZAÇÃO v25 — TRILHA DE NÍVEIS
-- Progressão com 12 estágios principais e 1 raridade extra, totalizando 13 níveis.
-- Símbolo e nome do nível atual abrem a trilha de evolução.
-- Os três níveis finais, incluindo nomes e metas, permanecem secretos na trilha. A progressão de XP para a faixa secreta também não é exibida.
-- Primeiro nível renomeado para Batata de Fralda 🥔👶🩲; último nível secreto: Deus Batatão Fortão 🥔💪⚡, revelado apenas quando conquistado.
-- Mantidas as metas mensais, os cálculos de XP, os dados locais e a sincronização Firebase existentes.
-
-
-ATUALIZAÇÃO v27 — FOTO E CÁLCULO NUTRICIONAL
-- Restaurada a captura de foto pela câmera do dispositivo na área “Registrar alimento consumido”; a foto é reduzida antes de ser anexada ao registro e aparece no histórico no mesmo dispositivo. Para proteger o limite de tamanho do documento e manter a sincronização funcionando, a foto não é enviada ao Firestore nesta versão.
-- Ao sair do campo de alimento, o app preenche nutrientes médios para alimentos comuns conhecidos pela tabela local ou tenta consultar a base pública Open Food Facts.
-- Ao informar/alterar a quantidade em gramas/ml, o resumo recalcula calorias, proteínas, carboidratos e gorduras da porção. Os valores de referência são por 100 g/ml e podem variar por preparo e marca.
-- Atualizado o nome do cache do service worker para a nova versão.
-- Limitação importante: esta atualização não inclui reconhecimento visual por IA. A câmera captura e anexa a foto, mas não identifica sozinha o alimento na imagem; isso exige integração segura com um serviço de visão/IA. Não foi adicionada configuração técnica ao fluxo do usuário final.
-- Validação realizada nesta edição: `node --check app.js` e `unzip -t` do pacote. Não foi possível executar teste em navegador real, verificar a sincronização Firebase após publicar ou rodar o Microsoft Defender neste ambiente.
-
-
-ATUALIZAÇÃO v28 — VIRADA DIÁRIA NO HORÁRIO LOCAL
-- Corrigida a função de data para usar o calendário local do aparelho, evitando que a data UTC desloque os registros e metas diárias perto da virada do dia.
-- O ranking geral calcula passos, alimentos, treinos, hidratação e XP diário usando a data local atual.
-- A tela atualiza automaticamente à meia-noite local e também verifica a data quando o usuário volta ao aplicativo.
-- Os contadores diários começam visualmente em zero para o novo dia; os registros antigos são preservados para histórico, XP acumulado e totais mensais. Não são apagados os dados do usuário.
-- O nome do cache PWA foi atualizado para que o navegador reconheça os arquivos desta versão.
-- Validação técnica: executar node --check app.js e unzip -t no pacote. Testes de navegador real e publicação no GitHub Pages não foram executados neste ambiente.
-
-VERSÃO 29 — CALENDÁRIO CLICÁVEL E HISTÓRICO DIÁRIO
-- Calendário de atividades compacto, com navegação por mês e indicação visual de dias com registros.
-- Ao tocar em uma data, abre um painel deslizante com passos, água, treinos, alimentação e XP calculado para aquele dia.
-- Histórico lista os registros que realmente existem na data selecionada; dias sem registros são identificados sem inventar dados.
-- Mantida a virada diária pela data local do aparelho da versão 28. XP total e registros históricos continuam preservados.
-- Validação de sintaxe JavaScript e integridade do ZIP executadas antes da entrega. Ainda é necessário testar em navegador/dispositivo e publicar no GitHub Pages.
+VALIDAÇÃO DESTA ENTREGA
+- JavaScript verificado com `node --check`.
+- Integridade do ZIP será verificada antes da entrega.
+- Não foi feito login real no Firebase, teste com duas contas, teste completo em navegador móvel nem publicação ao vivo. Faça os testes da lista antes de divulgar aos testers.
