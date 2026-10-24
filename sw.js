@@ -1,4 +1,4 @@
-const CACHE_NAME = 'equilibrio-v30-social-network';
+const CACHE_NAME = 'equilibrio-v31-modern-social';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {

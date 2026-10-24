@@ -1,0 +1,28 @@
+EQUILÍBRIO v31 — REDESIGN MODERNO
+
+OBJETIVO
+Atualizar a experiência visual para uma rede social mobile-first, mantendo os módulos pessoais existentes e a estrutura de dados da versão 30.
+
+MUDANÇAS DE INTERFACE
+- Barra inferior fixa no celular com cinco destinos: Início, Explorar, Publicar, Evolução e Perfil.
+- Navegação desktop simplificada para os mesmos cinco destinos.
+- Cabeçalho mais compacto, cartões modernos, tipografia e espaçamento renovados, cores verde-esmeralda e suporte ao tema escuro.
+- Início inclui atalhos para Finanças, Alimentação e Treinos, sem misturar esses dados privados no feed.
+- Melhorias de apresentação do feed, perfil e formulários em telas pequenas.
+- Atualização do nome de cache do service worker para v31.
+
+PRESERVAÇÃO
+- O app.js é baseado no pacote v30-reconstruída; os módulos de Finanças, Alimentação e Treinos continuam no código.
+- O Firestore e a autenticação Google continuam usando a configuração existente.
+- Não habilita Firebase Storage nem envia fotos para o Storage.
+- A foto escolhida para compartilhar externamente permanece local no dispositivo.
+
+ANTES DE PUBLICAR
+1. Faça backup dos arquivos atuais no GitHub e dos dados locais.
+2. Substitua os arquivos da raiz pelos arquivos deste pacote, sem criar uma pasta externa adicional.
+3. Não altere o plano de preços do Firebase.
+4. Teste login Google, dados financeiros, alimentos, compras/código de barras, treinos, calendário/histórico, feed, perfil e navegação em desktop e celular.
+5. Teste com duas contas Google e confirme regras Firestore antes de convidar testers.
+
+LIMITAÇÃO
+Este pacote foi verificado por sintaxe JavaScript e integridade do ZIP, mas ainda exige teste real no Firebase e em dispositivos. Não considerar pronto para produção antes desses testes.

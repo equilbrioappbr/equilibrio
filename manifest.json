@@ -2,13 +2,13 @@
   "id": "./",
   "name": "Equilíbrio",
   "short_name": "Equilíbrio",
-  "description": "Rede social de evolução pessoal com finanças, alimentação e treinos.",
+  "description": "Sua rede de evolução pessoal: comunidade, hábitos, finanças e treinos.",
   "lang": "pt-BR",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f3f6f3",
-  "theme_color": "#163b32",
+  "background_color": "#f7f8fa",
+  "theme_color": "#176b52",
   "icons": [
     {
       "src": "./icon-192.png",

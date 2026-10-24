@@ -1,4 +1,4 @@
-EQUILÍBRIO v30 — LEIA ANTES DE PUBLICAR
+EQUILÍBRIO v31 — LEIA ANTES DE PUBLICAR
 
 OBJETIVO
 Esta versão reorganiza a navegação para uma experiência social: Feed, Explorar, Criar, Evolução e Perfil. Finanças, Alimentação e Treinos continuam acessíveis. A versão v29 é a referência funcional a preservar.
@@ -34,3 +34,7 @@ LIMITAÇÕES
 - Não é possível prometer postagem automática no feed do Instagram via PWA; a pessoa confirma a publicação no aplicativo de destino.
 - Esta é uma versão experimental. Não publique para todos os testers antes dos testes com duas contas.
 - O ZIP foi validado estaticamente (integridade e sintaxe JavaScript), mas não foi conectado ao seu Firebase nem testado em navegador real.
+
+
+VERSÃO 31 — REDESIGN
+A navegação foi simplificada para Início, Explorar, Publicar, Evolução e Perfil, com barra inferior fixa em celulares. Finanças, Alimentação e Treinos ficam acessíveis pelos atalhos em Início e Evolução. Faça backup antes de publicar e teste todos os módulos.
