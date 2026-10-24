@@ -1,0 +1,12 @@
+EQUILÍBRIO v32 — INÍCIO PREMIUM
+
+Escopo desta versão:
+- Redesenho direcionado da tela Início em verde-esmeralda, preto e superfícies discretas.
+- Feed com filtros locais “Para você” e “Seguindo”; usa os posts e a lista de pessoas seguidas que já foram carregados, sem novas consultas ao Firestore ao alternar.
+- Atalhos compactos para Finanças, Alimentação e Treinos mantidos.
+- Tema inicial segue a preferência do sistema operacional quando o usuário ainda não escolheu um tema. A escolha manual continua sendo salva.
+- Animações discretas e respeito à preferência de movimento reduzido.
+- Cache do service worker atualizado para publicar a nova versão.
+
+Validação realizada: node --check app.js; JSON do manifest validado; integridade do ZIP validada.
+Não foi realizado teste em navegador real, iPhone ou Firebase de produção. O filtro “Para você” usa publicações já carregadas no estado atual; não implementa recomendação algorítmica nem novas consultas.

@@ -1,51 +1,12 @@
-EQUILÍBRIO v31 — LEIA ANTES DE PUBLICAR
+EQUILÍBRIO v32 — LEIA ANTES DE PUBLICAR
 
-OBJETIVO
-Esta versão reorganiza a navegação para uma experiência social: Feed, Explorar, Criar, Evolução e Perfil. Finanças, Alimentação e Treinos continuam acessíveis. A versão v29 é a referência funcional a preservar.
+1. Faça backup do repositório atual antes de substituir arquivos.
+2. Extraia este ZIP e envie os arquivos para a raiz do repositório GitHub Pages, mantendo a estrutura.
+3. Publique por commit e aguarde o GitHub Pages concluir.
+4. O service worker usa uma nova chave de cache para reconhecer esta versão.
+5. Teste login, feed, alternância Para você/Seguindo, Publicar, perfil, selos, Finanças, Alimentação, Treinos, tema claro/escuro e sincronização em PC e iPhone.
+6. Não altere as regras do Firestore nem ative Firebase Storage pago para esta atualização visual.
 
-IMPORTANTE: não substitua seu repositório sem backup. Guarde uma cópia dos arquivos atuais e mantenha a versão 29 em um ZIP separado.
+Mudança de escopo: esta versão redesenha apenas a tela Início. Os filtros de feed são locais e usam dados já carregados; alternar os filtros não faz novas leituras ao Firestore. “Para você” significa o conjunto de publicações públicas/permitidas que já foi carregado, não um algoritmo de recomendação.
 
-FOTOS E CUSTO
-- Esta versão NÃO usa Firebase Storage e não carrega o SDK do Storage. Não faça upgrade do plano Firebase.
-- Publicações internas guardam texto, categoria, autor e visibilidade no Firestore.
-- A foto escolhida na tela Criar fica no aparelho e só é usada para gerar uma arte local de compartilhamento. Ela não é enviada nem armazenada pelo Equilíbrio.
-- Se o compartilhamento de imagem direto não for compatível com o navegador/aplicativo, a arte é baixada para ser anexada manualmente no Instagram/WhatsApp.
-- Fotos antigas que já estavam em publicações podem continuar referenciadas por URLs antigas; esta versão não cria novos uploads.
-
-ARQUIVOS
-O ZIP contém os arquivos da aplicação na raiz: index.html, app.js, sw.js, manifest.json, ícones e firestore.rules. Copie o CONTEÚDO desta pasta para a raiz do repositório GitHub Pages, não a pasta externa inteira.
-
-FIREBASE
-1. Não altere o plano de preços. Não habilite Storage.
-2. Em Firestore Database > Rules, faça backup das regras atuais antes de qualquer alteração.
-3. A aplicação social precisa das regras Firestore incluídas neste pacote. Leia e revise as regras antes de publicar; regras incorretas podem bloquear recursos ou expor dados.
-4. Authentication: confirme Google habilitado e o domínio do GitHub Pages em Authorized domains.
-
-TESTES OBRIGATÓRIOS ANTES DE DIVULGAR
-1. Entrar com uma conta Google já existente.
-2. Confirmar que Finanças, Alimentação e Treinos carregam e que um registro de teste persiste após atualizar.
-3. Testar calendário e histórico da v29.
-4. Criar uma publicação de texto; confirmar que aparece no Feed.
-5. Testar perfil e @usuário, curtida, comentário, link de compartilhamento e privacidade.
-6. Escolher uma foto na tela Criar e gerar a arte. Confirmar que a foto não aparece em Storage/Firebase e que é possível baixar a arte.
-7. Testar em uma segunda conta e num celular.
-
-LIMITAÇÕES
-- Não é possível prometer postagem automática no feed do Instagram via PWA; a pessoa confirma a publicação no aplicativo de destino.
-- Esta é uma versão experimental. Não publique para todos os testers antes dos testes com duas contas.
-- O ZIP foi validado estaticamente (integridade e sintaxe JavaScript), mas não foi conectado ao seu Firebase nem testado em navegador real.
-
-
-VERSÃO 31 — REDESIGN
-A navegação foi simplificada para Início, Explorar, Publicar, Evolução e Perfil, com barra inferior fixa em celulares. Finanças, Alimentação e Treinos ficam acessíveis pelos atalhos em Início e Evolução. Faça backup antes de publicar e teste todos os módulos.
-
-SELOS DE VERIFICAÇÃO (v31)
-- O selo dourado aparece junto ao nome da conta cujo UID está configurado como proprietário em app.js.
-- O selo roxo aparece junto ao nome da conta exclusiva de influenciadora configurada em app.js.
-- Os selos são renderizados pelo UID e não pelo nome/@, e não existe botão de remoção no perfil.
-- O selo de testador usa uma forma original do Equilíbrio, sem o pássaro ou a marca gráfica do Twitter.
-- Neste pacote, somente os dois UIDs fornecidos foram atribuídos. Os outros tipos de selo e benefícios ficam para uma etapa posterior.
-- IMPORTANTE: a atribuição atual é uma regra de apresentação no cliente. Não é verificação antifraude robusta contra alguém que altere o código publicado. Para uma garantia forte, será necessário atribuir selos por backend confiável / Firebase Admin SDK e bloquear campos de selo nas regras do Firestore. Não coloque os UIDs dos selos em campos de perfil editáveis.
-
-
-CORRECAO DE ATUALIZACAO: esta compilacao tenta verificar a nova versao ao abrir e remove caches antigos do Equilibrio. Depois de publicar, feche e reabra o PWA no iPhone com internet. A primeira abertura apos a atualizacao pode recarregar uma vez.
+Validações automáticas realizadas: sintaxe JavaScript, JSON do manifest e integridade do ZIP. Não foi feito teste real no Firebase ou em dispositivos.
