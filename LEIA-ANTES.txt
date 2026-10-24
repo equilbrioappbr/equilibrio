@@ -59,3 +59,10 @@ ATUALIZAÇÃO v28 — VIRADA DIÁRIA NO HORÁRIO LOCAL
 - Os contadores diários começam visualmente em zero para o novo dia; os registros antigos são preservados para histórico, XP acumulado e totais mensais. Não são apagados os dados do usuário.
 - O nome do cache PWA foi atualizado para que o navegador reconheça os arquivos desta versão.
 - Validação técnica: executar node --check app.js e unzip -t no pacote. Testes de navegador real e publicação no GitHub Pages não foram executados neste ambiente.
+
+VERSÃO 29 — CALENDÁRIO CLICÁVEL E HISTÓRICO DIÁRIO
+- Calendário de atividades compacto, com navegação por mês e indicação visual de dias com registros.
+- Ao tocar em uma data, abre um painel deslizante com passos, água, treinos, alimentação e XP calculado para aquele dia.
+- Histórico lista os registros que realmente existem na data selecionada; dias sem registros são identificados sem inventar dados.
+- Mantida a virada diária pela data local do aparelho da versão 28. XP total e registros históricos continuam preservados.
+- Validação de sintaxe JavaScript e integridade do ZIP executadas antes da entrega. Ainda é necessário testar em navegador/dispositivo e publicar no GitHub Pages.
