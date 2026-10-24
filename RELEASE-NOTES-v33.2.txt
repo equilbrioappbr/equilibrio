@@ -1,0 +1,11 @@
+EQUILÍBRIO v33.2 — Políticas de LGPD e mensagem social
+
+Alterações:
+- Removida da página inicial a mensagem fixa “A área social precisa das regras do Firestore da versão 30. Confira LEIA-ANTES.txt.”
+- Falhas ao carregar a área social continuam registradas no console para diagnóstico, mas não exibem essa mensagem técnica fixa no feed. Isso não corrige por si só regras incorretas ou não publicadas no Firebase.
+- O botão do rodapé agora se chama “Políticas de LGPD”.
+- A página reúne informações sobre dados tratados, sincronização, publicações sociais, serviços externos, segurança e direitos dos titulares.
+- Instagram e nota sobre canal de suporte permanecem nessa página. O canal de suporte, controlador e procedimentos LGPD ainda precisam ser definidos antes do lançamento público.
+- Cache do service worker atualizado para v33.2.
+
+Validação: node --check app.js, conferência de texto e manifesto JSON. Não testado em navegador real nem publicado no GitHub Pages/Firebase.

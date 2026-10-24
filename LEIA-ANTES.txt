@@ -1,14 +1,10 @@
-EQUILÍBRIO v33.1 — LEIA ANTES DE PUBLICAR
+EQUILÍBRIO v33.2 — LEIA ANTES DE PUBLICAR
 
-1. Faça backup do repositório atual e do arquivo firestore.rules em produção.
-2. Extraia este ZIP e copie os arquivos da raiz para a raiz do repositório GitHub Pages, substituindo os arquivos correspondentes.
-3. Confira as diferenças antes de confirmar o commit. Não substitua regras do Firestore no console sem comparar com as regras de produção e testar as permissões. Este pacote não pede alteração das regras.
-4. Publique o commit e aguarde o GitHub Pages. O ZIP por si só NÃO atualiza o site.
-5. No iPhone, feche e reabra o site; se ainda houver cache antigo, feche a PWA e abra o endereço no Safari para forçar a atualização.
-6. Teste login Google, Finanças, Alimentação, Treinos, tema, sincronização, backup/importação, feed, curtidas/comentários, perfil e Sobre em computador e iPhone.
+1. Faça backup do repositório e das regras atuais do Firestore.
+2. Extraia este ZIP e copie os arquivos para a raiz do repositório GitHub Pages, substituindo os correspondentes.
+3. Confira o diff antes de fazer commit.
+4. Publique no GitHub Pages e aguarde a conclusão do deploy.
+5. Teste login Google, módulos Finanças/Alimentação/Treinos, perfil, feed, sincronização, backup/importação e página “Políticas de LGPD” em computador e iPhone.
+6. Se o feed não carregar, consulte o console do navegador e as regras efetivamente publicadas no Firebase. A mensagem técnica fixa foi removida da interface; isso não significa que as regras de produção estejam corrigidas. Não substitua as regras do Firestore sem revisar e testar.
 
-O que mudou: destaque inicial compacto; atalhos mais claros; feed revela 5 posts adicionais por vez; aviso de sincronização e Instagram movidos para Sobre.
-
-Não implementado: Stories reais/fotos temporárias, anúncios entre Stories, cursor pagination do Firestore e novo registro de aceite social. O aceite de Termos/Privacidade existente foi preservado.
-
-O endereço de suporte ainda precisa ser definido.
+Esta versão não implementa Stories reais nem paginação por cursor do Firestore. O texto de LGPD é uma base informativa: antes do lançamento público, completar identificação do controlador, contato de suporte, retenção/exclusão e revisão jurídica.
