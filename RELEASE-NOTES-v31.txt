@@ -34,3 +34,6 @@ Atualização de selos:
 - Símbolo geométrico original do Equilíbrio; não replica o ícone do Twitter.
 - Os outros quatro níveis de selo ainda não foram atribuídos nesta etapa.
 - Limitação: atribuição client-side por UID; proteção robusta contra adulteração exige backend confiável.
+
+
+Correcao v31.1: limpeza de caches antigos do Equilibrio, rede primeiro para os arquivos principais, verificacao de atualizacao ao abrir e ativacao automatica do service worker novo. A sincronizacao Firebase ainda deve ser validada em dispositivos reais.

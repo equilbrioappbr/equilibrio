@@ -1,46 +1,56 @@
-const CACHE_NAME = 'equilibrio-v31-modern-social';
+const CACHE_NAME = 'equilibrio-v31.1-update-sync';
+const APP_PREFIX = 'equilibrio-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then((cache) => cache.addAll(CORE_FILES))
-      .then(() => self.skipWaiting())
-  );
+  event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_FILES)).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (event) => {
-  // Do not delete caches belonging to other apps or previous versions.
-  event.waitUntil(self.clients.claim());
+  event.waitUntil((async () => {
+    const keys = await caches.keys();
+    await Promise.all(keys.filter(key => key.startsWith(APP_PREFIX) && key !== CACHE_NAME).map(key => caches.delete(key)));
+    await self.clients.claim();
+  })());
 });
 
-self.addEventListener('fetch', (event) => {
+self.addEventListener('message', event => {
+  if (event.data === 'SKIP_WAITING') self.skipWaiting();
+});
+
+self.addEventListener('fetch', event => {
   const request = event.request;
   if (request.method !== 'GET') return;
-
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
 
-  // Network-first for page navigations, with a cached fallback for offline use.
-  if (request.mode === 'navigate') {
-    event.respondWith(
-      fetch(request).then((response) => {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put('./index.html', copy)).catch(() => {});
+  const path = url.pathname;
+  const isAppAsset = /\/(?:index\.html|app\.js|manifest\.json|sw\.js)$/.test(path) || path.endsWith('/');
+  if (request.mode === 'navigate' || isAppAsset) {
+    event.respondWith((async () => {
+      const cache = await caches.open(CACHE_NAME);
+      try {
+        const response = await fetch(request, {cache: 'no-store'});
+        if (response && response.ok) {
+          const key = request.mode === 'navigate' ? './index.html' : request;
+          await cache.put(key, response.clone());
+        }
         return response;
-      }).catch(() => caches.match('./index.html'))
-    );
+      } catch (error) {
+        const cached = await caches.match(request) || await cache.match('./index.html');
+        if (cached) return cached;
+        throw error;
+      }
+    })());
     return;
   }
 
-  // Cache-first for local static files only.
-  event.respondWith(
-    caches.match(request).then((cached) => cached || fetch(request).then((response) => {
-      if (response && response.ok) {
-        const copy = response.clone();
-        caches.open(CACHE_NAME).then((cache) => cache.put(request, copy)).catch(() => {});
-      }
-      return response;
-    }))
-  );
+  event.respondWith((async () => {
+    const cache = await caches.open(CACHE_NAME);
+    const cached = await cache.match(request);
+    if (cached) return cached;
+    const response = await fetch(request);
+    if (response && response.ok) await cache.put(request, response.clone());
+    return response;
+  })());
 });

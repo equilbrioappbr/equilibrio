@@ -442,6 +442,26 @@ leite integral
   $('#exportBtn').addEventListener('click',()=>{const blob=new Blob([JSON.stringify({app:'Equilibrio',version:1,exportedAt:new Date().toISOString(),data},null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='equilibrio-backup-'+today()+'.json';a.click();URL.revokeObjectURL(url)});
   $('#importBtn').addEventListener('click',()=>$('#importFile').click());$('#importFile').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;try{const parsed=JSON.parse(await file.text());const incoming=parsed.data||parsed;if(!incoming||!Array.isArray(incoming.transactions)||!Array.isArray(incoming.shopping)||!Array.isArray(incoming.workouts))throw new Error('Formato não reconhecido');if(confirm('Importar este backup substituirá os dados atuais deste navegador. Continuar?')){data={...blank(),...incoming};save();render();alert('Backup importado.')}}catch(err){alert('Não foi possível importar este arquivo. Selecione um backup JSON exportado pelo Equilíbrio.')}e.target.value=''});
   const savedTheme=localStorage.getItem(THEME)||'light';document.documentElement.dataset.theme=savedTheme;$('#themeBtn').textContent=savedTheme==='dark'?'☀ Tema':'☾ Tema';
-  if('serviceWorker' in navigator && location.protocol!=='file:'){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(err=>console.log('SW não registrado:',err)))}
+  if('serviceWorker' in navigator && location.protocol!=='file:'){
+    window.addEventListener('load', async () => {
+      try {
+        const registration = await navigator.serviceWorker.register('./sw.js', {updateViaCache:'none'});
+        registration.update().catch(()=>{});
+        registration.addEventListener('updatefound', () => {
+          const worker = registration.installing;
+          if (!worker) return;
+          worker.addEventListener('statechange', () => {
+            if (worker.state === 'installed' && navigator.serviceWorker.controller) worker.postMessage('SKIP_WAITING');
+          });
+        });
+        let reloading = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (reloading) return;
+          reloading = true;
+          window.location.reload();
+        });
+      } catch(err) { console.log('SW não registrado:', err); }
+    });
+  }
   // A interface de registros só é liberada depois que o Firebase confirma a sessão.
 })();
