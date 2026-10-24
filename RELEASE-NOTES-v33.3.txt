@@ -1,0 +1,10 @@
+EQUILÍBRIO v33.3 — Diagnóstico de permission-denied no perfil
+
+- Mensagem de erro ao salvar perfil agora orienta a verificar/publicar regras do Firestore.
+- Busca de @ agora apresenta instrução específica quando o Firestore retorna permission-denied.
+- Erros completos registrados no console para diagnóstico.
+- Service worker atualizado para v33.3.
+- Mantidas as regras incluídas na versão 33.2; elas permitem read de profiles para usuário autenticado e escrita apenas pelo proprietário.
+
+Atenção: para corrigir o erro no banco em produção, publique também firestore.rules no Firebase Console. O ZIP sozinho não altera as regras remotas.
+Validação local apenas; sem teste real do Firebase ou deploy do site.

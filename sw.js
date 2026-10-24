@@ -1,4 +1,4 @@
-const CACHE_NAME = 'equilibrio-v33-2-politicas-lgpd';
+const CACHE_NAME = 'equilibrio-v33-3-perfil-firestore';
 const APP_PREFIX = 'equilibrio-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 

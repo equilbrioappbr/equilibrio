@@ -1,10 +1,13 @@
-EQUILÍBRIO v33.2 — LEIA ANTES DE PUBLICAR
+EQUILÍBRIO v33.3 — Correção de diagnóstico do perfil e regras Firestore
 
-1. Faça backup do repositório e das regras atuais do Firestore.
-2. Extraia este ZIP e copie os arquivos para a raiz do repositório GitHub Pages, substituindo os correspondentes.
-3. Confira o diff antes de fazer commit.
-4. Publique no GitHub Pages e aguarde a conclusão do deploy.
-5. Teste login Google, módulos Finanças/Alimentação/Treinos, perfil, feed, sincronização, backup/importação e página “Políticas de LGPD” em computador e iPhone.
-6. Se o feed não carregar, consulte o console do navegador e as regras efetivamente publicadas no Firebase. A mensagem técnica fixa foi removida da interface; isso não significa que as regras de produção estejam corrigidas. Não substitua as regras do Firestore sem revisar e testar.
+IMPORTANTE: permission-denied ao buscar ou salvar @ costuma indicar que as regras ATIVAS no Firebase não permitem a operação. Alterar somente app.js/GitHub Pages não corrige as regras do banco.
 
-Esta versão não implementa Stories reais nem paginação por cursor do Firestore. O texto de LGPD é uma base informativa: antes do lançamento público, completar identificação do controlador, contato de suporte, retenção/exclusão e revisão jurídica.
+1. Faça backup do repositório e copie as regras atuais do Firestore para um local seguro.
+2. Publique o conteúdo de firestore.rules deste pacote no Firebase Console > Firestore Database > Rules, depois de revisar. Clique em Publicar. Estas regras permitem leitura de perfis apenas a usuários autenticados e escrita do documento /profiles/{uid} somente pelo próprio UID; dados pessoais/financeiros/saúde não devem ser colocados em profiles.
+3. Copie os arquivos do ZIP para a raiz do repositório GitHub Pages e publique o commit.
+4. Aguarde o deploy e feche/reabra o app para renovar o service worker.
+5. Teste: (a) editar @ e salvar; (b) buscar @ de outra conta; (c) confirmar que uma conta não consegue alterar o perfil de outra; (d) módulos e sincronização.
+
+Se continuar permission-denied depois de publicar as regras, confira no Firebase Console se o projeto selecionado é equilibrio-app-71155 e se as regras foram realmente publicadas. O app agora mostra orientação específica e registra o erro técnico no console.
+
+Validação local: node --check app.js, JSON do manifesto, ZIP íntegro. Não testado contra o Firebase real e não publicado em GitHub Pages.
