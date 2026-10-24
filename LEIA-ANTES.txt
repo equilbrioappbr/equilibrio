@@ -1,19 +1,14 @@
 EQUILÍBRIO v33.1 — LEIA ANTES DE PUBLICAR
 
-Esta atualização compacta o destaque principal para caber melhor na primeira tela de celulares. Não publique antes de fazer backup da versão atual e testar no computador e no iPhone. As regras do Firestore não foram modificadas neste pacote.
+1. Faça backup do repositório atual e do arquivo firestore.rules em produção.
+2. Extraia este ZIP e copie os arquivos da raiz para a raiz do repositório GitHub Pages, substituindo os arquivos correspondentes.
+3. Confira as diferenças antes de confirmar o commit. Não substitua regras do Firestore no console sem comparar com as regras de produção e testar as permissões. Este pacote não pede alteração das regras.
+4. Publique o commit e aguarde o GitHub Pages. O ZIP por si só NÃO atualiza o site.
+5. No iPhone, feche e reabra o site; se ainda houver cache antigo, feche a PWA e abra o endereço no Safari para forçar a atualização.
+6. Teste login Google, Finanças, Alimentação, Treinos, tema, sincronização, backup/importação, feed, curtidas/comentários, perfil e Sobre em computador e iPhone.
 
-EQUILÍBRIO v32 — LEIA ANTES DE PUBLICAR
+O que mudou: destaque inicial compacto; atalhos mais claros; feed revela 5 posts adicionais por vez; aviso de sincronização e Instagram movidos para Sobre.
 
-1. Faça backup do repositório atual antes de substituir arquivos.
-2. Extraia este ZIP e envie os arquivos para a raiz do repositório GitHub Pages, mantendo a estrutura.
-3. Publique por commit e aguarde o GitHub Pages concluir.
-4. O service worker usa uma nova chave de cache para reconhecer esta versão.
-5. Teste login, feed, alternância Para você/Seguindo, Publicar, perfil, selos, Finanças, Alimentação, Treinos, tema claro/escuro e sincronização em PC e iPhone.
-6. Não altere as regras do Firestore nem ative Firebase Storage pago para esta atualização visual.
+Não implementado: Stories reais/fotos temporárias, anúncios entre Stories, cursor pagination do Firestore e novo registro de aceite social. O aceite de Termos/Privacidade existente foi preservado.
 
-Mudança de escopo: esta versão redesenha apenas a tela Início. Os filtros de feed são locais e usam dados já carregados; alternar os filtros não faz novas leituras ao Firestore. “Para você” significa o conjunto de publicações públicas/permitidas que já foi carregado, não um algoritmo de recomendação.
-
-Validações automáticas realizadas: sintaxe JavaScript, JSON do manifest e integridade do ZIP. Não foi feito teste real no Firebase ou em dispositivos.
-
-
-V33 — Início social premium: a faixa Pessoas e novidades usa autores de publicações já carregadas, sem consultas por avatar. Ela não representa stories temporários. Notificações/mensagens não são anunciadas como ativas. Confira RELEASE-NOTES-v33.txt.
+O endereço de suporte ainda precisa ser definido.

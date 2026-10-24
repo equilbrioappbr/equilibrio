@@ -1,19 +1,18 @@
-EQUILÍBRIO v33.1 — INÍCIO COMPACTO
+EQUILÍBRIO v33.1 — INÍCIO COMPACTO E RODAPÉ ORGANIZADO
 
-Objetivo
-Reduzir a altura do destaque principal e melhorar a ocupação da primeira tela, especialmente em celulares como o iPhone 11.
+Alterações nesta versão:
+- Destaque inicial compacto e responsivo, com fundo visual discreto e sem elemento decorativo gigante.
+- Atalhos de Finanças, Alimentação e Treinos com hierarquia visual mais fácil de reconhecer.
+- Faixa de pessoas permanece uma prévia visual baseada em autores de publicações carregadas; NÃO é Stories real.
+- Feed exibe 5 publicações por vez e permite revelar mais em blocos de 5, reduzindo o comprimento inicial da página. A consulta de dados continua limitada pela estratégia já existente em app.js; isto não é paginação real por cursor do Firestore.
+- Aviso de sincronização e consulta de GTIN movido para a página Sobre. Instagram também está em Sobre.
+- Cache do service worker atualizado.
 
-Alterações
-- Destaque principal mais baixo, com tipografia e espaçamentos reduzidos.
-- Elemento decorativo redimensionado para ocupar menos espaço e não competir com o texto.
-- Botão “Compartilhar evolução” mantido visível no destaque compacto.
-- Cache do service worker atualizado para identificar esta versão.
-- Finanças, Alimentação, Treinos, feed, perfis, login, sincronização e regras do Firestore não foram intencionalmente alterados.
+Limites conhecidos:
+- Stories com mídia temporária, visualizador sequencial e anúncios entre Stories não foram implementados.
+- Paginação por cursor no Firestore ainda não foi implementada.
+- O aceite atual de Termos/Privacidade no login não foi alterado; não foi criado novo aceite social nem registro de consentimento no Firestore nesta versão.
+- O contato de suporte ainda precisa ser definido antes do lançamento.
+- Esta atualização não foi publicada no GitHub Pages nem alterou regras de produção do Firebase.
 
-Limites desta versão
-- A faixa de pessoas continua sendo uma descoberta de perfis, não Stories temporários reais.
-- Paginação progressiva real do feed e armazenamento de fotos/vídeos para Stories não foram implementados nesta atualização.
-- O aceite de termos/regras sociais não foi alterado; é necessário confirmar se o aceite único pretendido se refere aos Termos e regras da comunidade ou a um consentimento social separado.
-
-Validação
-Esta versão foi modificada a partir do pacote v33. A validação automatizada de sintaxe/estrutura deve ser concluída antes de publicar. Não foi publicada no GitHub Pages nem foram alteradas regras do Firebase em produção.
+Testes realizados antes da publicação: validar sintaxe JavaScript, JSON do manifesto, estrutura do ZIP e diferenças de versão. Testes reais em navegador/iPhone e Firebase ainda são necessários.
