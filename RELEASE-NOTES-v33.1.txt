@@ -1,0 +1,19 @@
+EQUILÍBRIO v33.1 — INÍCIO COMPACTO
+
+Objetivo
+Reduzir a altura do destaque principal e melhorar a ocupação da primeira tela, especialmente em celulares como o iPhone 11.
+
+Alterações
+- Destaque principal mais baixo, com tipografia e espaçamentos reduzidos.
+- Elemento decorativo redimensionado para ocupar menos espaço e não competir com o texto.
+- Botão “Compartilhar evolução” mantido visível no destaque compacto.
+- Cache do service worker atualizado para identificar esta versão.
+- Finanças, Alimentação, Treinos, feed, perfis, login, sincronização e regras do Firestore não foram intencionalmente alterados.
+
+Limites desta versão
+- A faixa de pessoas continua sendo uma descoberta de perfis, não Stories temporários reais.
+- Paginação progressiva real do feed e armazenamento de fotos/vídeos para Stories não foram implementados nesta atualização.
+- O aceite de termos/regras sociais não foi alterado; é necessário confirmar se o aceite único pretendido se refere aos Termos e regras da comunidade ou a um consentimento social separado.
+
+Validação
+Esta versão foi modificada a partir do pacote v33. A validação automatizada de sintaxe/estrutura deve ser concluída antes de publicar. Não foi publicada no GitHub Pages nem foram alteradas regras do Firebase em produção.

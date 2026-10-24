@@ -1,3 +1,7 @@
+EQUILÍBRIO v33.1 — LEIA ANTES DE PUBLICAR
+
+Esta atualização compacta o destaque principal para caber melhor na primeira tela de celulares. Não publique antes de fazer backup da versão atual e testar no computador e no iPhone. As regras do Firestore não foram modificadas neste pacote.
+
 EQUILÍBRIO v32 — LEIA ANTES DE PUBLICAR
 
 1. Faça backup do repositório atual antes de substituir arquivos.
