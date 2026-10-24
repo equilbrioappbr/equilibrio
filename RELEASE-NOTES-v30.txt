@@ -1,0 +1,21 @@
+EQUILÍBRIO v30 — RESUMO DAS ALTERAÇÕES
+
+Base: pacote da v30 social comparado com o pacote v29 calendário/histórico. Os módulos financeiros, alimentação, treinos, login Google, Firestore, tema, backup/importação, PWA, calendário e histórico foram mantidos no código-base.
+
+Novidades desta revisão:
+- Navegação social prioritária: Feed, Explorar, Criar, Evolução e Perfil.
+- Barra inferior móvel com as cinco áreas principais.
+- Finanças, Alimentação e Treinos continuam acessíveis pela navegação superior em telas maiores e pelos atalhos em Evolução.
+- Feed permite publicações de texto sem imagem armazenada.
+- Foto opcional na tela Criar é usada apenas localmente para gerar uma arte de compartilhamento.
+- Compartilhamento nativo de arquivo quando suportado; caso contrário, baixa a arte para anexar manualmente no Instagram/WhatsApp.
+- Perfil e publicações recebem links com parâmetros para tentar abrir o conteúdo compartilhado após autenticação.
+- Removida a dependência do Firebase Storage e seu SDK.
+- Consultas sociais simplificadas para reduzir a dependência de índices compostos do Firestore.
+- Service worker/cache alterado para forçar uma nova versão do PWA.
+
+Limitações e validação:
+- Não foi feito deploy no GitHub nem alteradas regras no Firebase.
+- Sintaxe JavaScript e estrutura ZIP foram validadas.
+- Não foi possível validar autenticação real, regras Firestore, compartilhamento nativo em Instagram/WhatsApp nem a experiência em dispositivos reais nesta sessão.
+- Esta versão deve ser testada com duas contas antes de liberar aos testers.

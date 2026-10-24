@@ -1,34 +1,36 @@
-EQUILÍBRIO v30 — REDE SOCIAL (VERSÃO EXPERIMENTAL)
+EQUILÍBRIO v30 — LEIA ANTES DE PUBLICAR
 
-Esta versão mantém os módulos pessoais existentes (Finanças, Alimentação e Treinos) e adiciona a primeira estrutura da rede social: Início/Feed, Explorar, Publicar, Perfil de jogador, configurações, perfil público/privado, busca por @usuário, seguir/solicitar para seguir, aprovação/recusa de solicitações, fotos em publicações, curtidas, comentários e compartilhamento de links.
+OBJETIVO
+Esta versão reorganiza a navegação para uma experiência social: Feed, Explorar, Criar, Evolução e Perfil. Finanças, Alimentação e Treinos continuam acessíveis. A versão v29 é a referência funcional a preservar.
 
-IMPORTANTE: o ZIP é o pacote de arquivos do aplicativo. Ele não publica automaticamente no GitHub Pages nem altera as configurações remotas do Firebase. A área social precisa das regras abaixo publicadas no Firebase antes de ser usada com contas reais.
+IMPORTANTE: não substitua seu repositório sem backup. Guarde uma cópia dos arquivos atuais e mantenha a versão 29 em um ZIP separado.
 
-ANTES DE TESTAR
-1. Faça uma cópia/backup do projeto atual e dos dados importantes. Não apague a versão que já funciona para você.
-2. Descompacte o ZIP e copie o CONTEÚDO de src/equilibrio_v24 para a raiz do repositório GitHub Pages, conforme a estrutura usada atualmente.
-3. Firebase Console → projeto equilibrio-app-71155 → Firestore Database → Rules: substitua as regras atuais pelo conteúdo de firestore.rules e clique em Publicar. Essas regras preservam o acesso por UID aos dados pessoais e adicionam regras para perfis, publicações, curtidas, comentários, seguidores e solicitações.
-4. Firebase Console → Storage: ative o Firebase Storage se ainda não estiver ativo. Na aba Rules, publique o conteúdo de storage.rules. O app usa Storage para fotos de perfil e de publicações.
-5. Confirme em Authentication → Sign-in method que Google está habilitado e em Settings → Authorized domains que o domínio do app está autorizado.
-6. Publique os arquivos no GitHub Pages. Atualize o cache do PWA: feche o app instalado e abra o site novamente; se necessário, limpe os dados/cache do site no navegador.
-7. Teste com duas contas Google diferentes: publicar uma foto, curtir, comentar, procurar @usuário, seguir perfil público, solicitar acesso a perfil privado e aprovar/recusar a solicitação.
+FOTOS E CUSTO
+- Esta versão NÃO usa Firebase Storage e não carrega o SDK do Storage. Não faça upgrade do plano Firebase.
+- Publicações internas guardam texto, categoria, autor e visibilidade no Firestore.
+- A foto escolhida na tela Criar fica no aparelho e só é usada para gerar uma arte local de compartilhamento. Ela não é enviada nem armazenada pelo Equilíbrio.
+- Se o compartilhamento de imagem direto não for compatível com o navegador/aplicativo, a arte é baixada para ser anexada manualmente no Instagram/WhatsApp.
+- Fotos antigas que já estavam em publicações podem continuar referenciadas por URLs antigas; esta versão não cria novos uploads.
 
-PRIVACIDADE
-- Ao mudar o perfil para privado, as publicações públicas existentes são convertidas para visibilidade de seguidores. Publicações novas em perfil privado ficam restritas a seguidores aprovados.
-- Dados financeiros, diário alimentar completo, peso e outros registros pessoais não são publicados automaticamente.
-- A autenticação e senha continuam sendo gerenciadas pelo Google; o app não armazena senha própria. O link de configurações abre a Conta Google.
-- Os documentos de perfil são legíveis por usuários autenticados para permitir busca por @usuário. Use neles apenas nome de exibição, @usuário, biografia, foto e preferência de privacidade; nunca coloque e-mail, finanças ou dados de saúde no documento público de perfil.
-- AVISO TÉCNICO SOBRE FOTOS: o app usa URLs de download do Firebase Storage para exibir imagens. Quem obtiver e compartilhar uma URL de download poderá acessar a imagem mesmo sem ver o post no feed. Portanto, não trate fotos sensíveis como conteúdo confidencial. Privacidade estrita de mídia exigiria uma implementação adicional com entrega autenticada de imagens/backend.
-- Esta é uma primeira versão social experimental, não uma plataforma moderada em produção. Ainda não inclui denúncias, bloqueios, mensagens diretas, verificação de conta, paginação avançada nem ferramentas administrativas contra abuso.
+ARQUIVOS
+O ZIP contém os arquivos da aplicação na raiz: index.html, app.js, sw.js, manifest.json, ícones e firestore.rules. Copie o CONTEÚDO desta pasta para a raiz do repositório GitHub Pages, não a pasta externa inteira.
 
-COMO FUNCIONA
-- Navegação principal: Início, Explorar, Publicar, Perfil, Finanças, Alimentação e Treinos. Em celulares há uma barra inferior com atalhos sociais.
-- Perfil de jogador: XP/nível estimados a partir dos registros existentes. A pontuação exibida é uma apresentação inicial e ainda não é um sistema competitivo antifraude.
-- Publicação: foto de até 8 MB, legenda, categoria e visibilidade. Foto de perfil: até 5 MB.
-- Perfil: nome, @usuário, biografia, foto, opção público/privado, compartilhamento e acesso à Conta Google para gestão da senha.
-- O app precisa de internet para a área social e sincronização. Os módulos pessoais existentes continuam vinculados à conta Google pelo caminho /users/{uid}/appData/main.
+FIREBASE
+1. Não altere o plano de preços. Não habilite Storage.
+2. Em Firestore Database > Rules, faça backup das regras atuais antes de qualquer alteração.
+3. A aplicação social precisa das regras Firestore incluídas neste pacote. Leia e revise as regras antes de publicar; regras incorretas podem bloquear recursos ou expor dados.
+4. Authentication: confirme Google habilitado e o domínio do GitHub Pages em Authorized domains.
 
-VALIDAÇÃO DESTA ENTREGA
-- JavaScript verificado com `node --check`.
-- Integridade do ZIP será verificada antes da entrega.
-- Não foi feito login real no Firebase, teste com duas contas, teste completo em navegador móvel nem publicação ao vivo. Faça os testes da lista antes de divulgar aos testers.
+TESTES OBRIGATÓRIOS ANTES DE DIVULGAR
+1. Entrar com uma conta Google já existente.
+2. Confirmar que Finanças, Alimentação e Treinos carregam e que um registro de teste persiste após atualizar.
+3. Testar calendário e histórico da v29.
+4. Criar uma publicação de texto; confirmar que aparece no Feed.
+5. Testar perfil e @usuário, curtida, comentário, link de compartilhamento e privacidade.
+6. Escolher uma foto na tela Criar e gerar a arte. Confirmar que a foto não aparece em Storage/Firebase e que é possível baixar a arte.
+7. Testar em uma segunda conta e num celular.
+
+LIMITAÇÕES
+- Não é possível prometer postagem automática no feed do Instagram via PWA; a pessoa confirma a publicação no aplicativo de destino.
+- Esta é uma versão experimental. Não publique para todos os testers antes dos testes com duas contas.
+- O ZIP foi validado estaticamente (integridade e sintaxe JavaScript), mas não foi conectado ao seu Firebase nem testado em navegador real.
