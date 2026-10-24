@@ -26,3 +26,11 @@ ANTES DE PUBLICAR
 
 LIMITAÇÃO
 Este pacote foi verificado por sintaxe JavaScript e integridade do ZIP, mas ainda exige teste real no Firebase e em dispositivos. Não considerar pronto para produção antes desses testes.
+
+Atualização de selos:
+- Adicionado selo dourado ao UID do proprietário fornecido.
+- Adicionado selo roxo ao UID da influenciadora exclusiva fornecido.
+- Selos aparecem ao lado do nome em publicações, perfil próprio, perfil visualizado, busca e solicitações.
+- Símbolo geométrico original do Equilíbrio; não replica o ícone do Twitter.
+- Os outros quatro níveis de selo ainda não foram atribuídos nesta etapa.
+- Limitação: atribuição client-side por UID; proteção robusta contra adulteração exige backend confiável.

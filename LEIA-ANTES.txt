@@ -38,3 +38,11 @@ LIMITAÇÕES
 
 VERSÃO 31 — REDESIGN
 A navegação foi simplificada para Início, Explorar, Publicar, Evolução e Perfil, com barra inferior fixa em celulares. Finanças, Alimentação e Treinos ficam acessíveis pelos atalhos em Início e Evolução. Faça backup antes de publicar e teste todos os módulos.
+
+SELOS DE VERIFICAÇÃO (v31)
+- O selo dourado aparece junto ao nome da conta cujo UID está configurado como proprietário em app.js.
+- O selo roxo aparece junto ao nome da conta exclusiva de influenciadora configurada em app.js.
+- Os selos são renderizados pelo UID e não pelo nome/@, e não existe botão de remoção no perfil.
+- O selo de testador usa uma forma original do Equilíbrio, sem o pássaro ou a marca gráfica do Twitter.
+- Neste pacote, somente os dois UIDs fornecidos foram atribuídos. Os outros tipos de selo e benefícios ficam para uma etapa posterior.
+- IMPORTANTE: a atribuição atual é uma regra de apresentação no cliente. Não é verificação antifraude robusta contra alguém que altere o código publicado. Para uma garantia forte, será necessário atribuir selos por backend confiável / Firebase Admin SDK e bloquear campos de selo nas regras do Firestore. Não coloque os UIDs dos selos em campos de perfil editáveis.
