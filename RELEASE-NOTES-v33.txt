@@ -1,0 +1,11 @@
+Equilíbrio v33 — Início Social Premium
+
+- Mantém a identidade verde-esmeralda/preto e os cinco destinos sociais.
+- Adiciona faixa horizontal Pessoas e novidades, no estilo stories, com perfis derivados das publicações já carregadas.
+- A faixa reutiliza socialPosts em memória e não cria consultas Firebase por avatar.
+- Mantém os filtros Para você/Seguindo e os módulos Finanças, Alimentação e Treinos.
+- Inclui rolagem horizontal suave, scrollbar discreta, área de toque e respeito a prefers-reduced-motion.
+
+Limites: a faixa representa autores das publicações já carregadas; não é um sistema de stories temporários. Notificações e mensagens não são simuladas. O feed Para você continua sendo uma seleção simples dos posts carregados, não um algoritmo personalizado.
+
+Validar após publicação: login, perfil, filtros, publicação, selos, módulos pessoais, sincronização e layout em iPhone/desktop. Não houve teste contra Firebase real nesta preparação.

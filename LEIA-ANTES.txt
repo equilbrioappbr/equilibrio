@@ -10,3 +10,6 @@ EQUILÍBRIO v32 — LEIA ANTES DE PUBLICAR
 Mudança de escopo: esta versão redesenha apenas a tela Início. Os filtros de feed são locais e usam dados já carregados; alternar os filtros não faz novas leituras ao Firestore. “Para você” significa o conjunto de publicações públicas/permitidas que já foi carregado, não um algoritmo de recomendação.
 
 Validações automáticas realizadas: sintaxe JavaScript, JSON do manifest e integridade do ZIP. Não foi feito teste real no Firebase ou em dispositivos.
+
+
+V33 — Início social premium: a faixa Pessoas e novidades usa autores de publicações já carregadas, sem consultas por avatar. Ela não representa stories temporários. Notificações/mensagens não são anunciadas como ativas. Confira RELEASE-NOTES-v33.txt.

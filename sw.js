@@ -1,4 +1,4 @@
-const CACHE_NAME = 'equilibrio-v32-home-premium';
+const CACHE_NAME = 'equilibrio-v33-home-premium';
 const APP_PREFIX = 'equilibrio-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 
