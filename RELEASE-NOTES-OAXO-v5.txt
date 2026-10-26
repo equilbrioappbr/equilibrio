@@ -1,0 +1,8 @@
+OAXO v5 — Símbolo e ícone alinhados à referência visual.
+
+- Ícones PWA 192x192 e 512x512 refeitos: arcos prateados sobre fundo preto grafite.
+- Símbolo no cabeçalho e tela de autenticação atualizado para acabamento prateado.
+- Cache do service worker atualizado quando identificado.
+- Arquivos funcionais e configuração Firebase mantidos a partir da versão-base v4.
+
+Faça backup antes de publicar. Este pacote ainda precisa ser testado no ambiente real. Não apague dados do Firebase.

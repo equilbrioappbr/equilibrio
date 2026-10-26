@@ -157,7 +157,13 @@
     @keyframes oaxoSymbolGlow{0%,100%{filter:drop-shadow(0 0 10px #dce2f018)}50%{filter:drop-shadow(0 0 22px #dce2f044)}}
     @keyframes oaxoProgress{0%{transform:translateX(-120%)}100%{transform:translateX(380%)}}
     @media(prefers-reduced-motion:reduce){#oaxoSplash,.oaxo-splash-content,.oaxo-splash-symbol,.oaxo-splash-progress span{animation:none!important;transition:none!important}}
-  </style>
+  
+/* OAXO v5: símbolo oficial em prata sobre preto, alinhado à referência fornecida */
+.logo.oaxo-emblem,.auth-logo.oaxo-emblem{background:linear-gradient(145deg,#141518,#030304)!important;border:1px solid #484c55!important;box-shadow:0 0 0 1px #ffffff08,inset 0 1px 0 #ffffff12,0 0 24px #d9dce315!important;border-radius:28%!important;}
+.oaxo-symbol{width:82%!important;height:82%!important;overflow:visible!important;filter:drop-shadow(0 0 3px #e7e9ef35)!important;}
+.oaxo-symbol path{fill:url(#oaxoSilver)!important;stroke:none!important;}
+.auth-logo.oaxo-emblem .oaxo-symbol{width:84%!important;height:84%!important;}
+</style>
 </head>
 <body>
 <div id="oaxoSplash" role="status" aria-label="Carregando OAXO">
