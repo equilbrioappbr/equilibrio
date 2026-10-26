@@ -1,0 +1,7 @@
+OAXO v1 — identidade visual
+- Marca e título atualizados para OAXO.
+- Slogan: Sua vida, em evolução.
+- Tema padrão preto/grafite com detalhes prateados.
+- Manifesto PWA e ícones atualizados.
+- Cache do service worker versionado para renovar os arquivos após publicação.
+- Firebase, regras e estrutura funcional preservados da base v33.3.

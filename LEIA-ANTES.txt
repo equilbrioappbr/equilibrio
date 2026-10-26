@@ -1,13 +1,17 @@
-EQUILÍBRIO v33.3 — Correção de diagnóstico do perfil e regras Firestore
+OAXO — atualização visual v1 (base Equilíbrio v33.3)
 
-IMPORTANTE: permission-denied ao buscar ou salvar @ costuma indicar que as regras ATIVAS no Firebase não permitem a operação. Alterar somente app.js/GitHub Pages não corrige as regras do banco.
+Esta versão atualiza a identidade visual para OAXO: nome, slogan, paleta preta/prateada, manifesto PWA, ícones e cache do service worker.
 
-1. Faça backup do repositório e copie as regras atuais do Firestore para um local seguro.
-2. Publique o conteúdo de firestore.rules deste pacote no Firebase Console > Firestore Database > Rules, depois de revisar. Clique em Publicar. Estas regras permitem leitura de perfis apenas a usuários autenticados e escrita do documento /profiles/{uid} somente pelo próprio UID; dados pessoais/financeiros/saúde não devem ser colocados em profiles.
-3. Copie os arquivos do ZIP para a raiz do repositório GitHub Pages e publique o commit.
-4. Aguarde o deploy e feche/reabra o app para renovar o service worker.
-5. Teste: (a) editar @ e salvar; (b) buscar @ de outra conta; (c) confirmar que uma conta não consegue alterar o perfil de outra; (d) módulos e sincronização.
+PRESERVAÇÃO: mantém app.js, as integrações Firebase existentes, as regras Firestore e os módulos da versão-base. Não cria projeto Firebase novo e não apaga dados do banco.
 
-Se continuar permission-denied depois de publicar as regras, confira no Firebase Console se o projeto selecionado é equilibrio-app-71155 e se as regras foram realmente publicadas. O app agora mostra orientação específica e registra o erro técnico no console.
+ANTES DE PUBLICAR:
+1. Guarde uma cópia da versão atualmente publicada e exporte os dados locais pelo recurso de backup do app, se houver registros apenas neste navegador.
+2. Extraia os arquivos deste ZIP e envie-os para a raiz do repositório GitHub Pages, substituindo os arquivos correspondentes.
+3. NÃO substitua firestore.rules no Firebase Console sem revisar/publicar conscientemente; o arquivo incluído é mantido da versão-base.
+4. No Firebase Console > Authentication > Settings > Authorized domains, adicione oaxo.com.br quando for usar o novo domínio. Confira também a configuração OAuth do Google se o fluxo de login exigir.
+5. Configure o domínio no GitHub Pages apenas depois que o DNS estiver pronto.
+6. Teste login Google, dados, sincronização, alimentação, treinos, finanças e instalação PWA.
 
-Validação local: node --check app.js, JSON do manifesto, ZIP íntegro. Não testado contra o Firebase real e não publicado em GitHub Pages.
+IMPORTANTE SOBRE DADOS LOCAIS: navegadores tratam o domínio antigo e oaxo.com.br como origens diferentes. Dados sincronizados no mesmo projeto Firebase devem continuar associados à mesma conta; dados guardados somente no armazenamento local do navegador não migram automaticamente entre domínios. Mantenha o endereço antigo disponível até conferir tudo.
+
+Esta atualização não foi publicada no GitHub nem testada contra o Firebase real.
