@@ -139,9 +139,42 @@
     .auth-card{background:linear-gradient(145deg,#111317,#08090b)!important;border-color:#414650!important;box-shadow:0 24px 70px #000b,inset 0 1px #ffffff0a!important}
     @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
+
+    /* OAXO v4 — tela de inicialização inspirada na referência oficial */
+    #oaxoSplash{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#191a1d 0%,#0b0b0d 38%,#030304 78%);color:#f3f4f6;opacity:1;visibility:visible;transition:opacity .65s ease,visibility .65s ease}
+    #oaxoSplash::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 35%,#ffffff04 50%,transparent 65%);pointer-events:none}
+    #oaxoSplash::after{content:"";position:absolute;left:50%;bottom:-35vh;width:min(110vw,800px);height:45vh;transform:translateX(-50%) perspective(500px) rotateX(66deg);border-top:1px solid #cbd0da20;background:repeating-linear-gradient(0deg,transparent 0 34px,#cbd0da08 35px 36px),linear-gradient(180deg,#cbd0da08,transparent);mask-image:linear-gradient(to bottom,#000,transparent);pointer-events:none}
+    #oaxoSplash.is-hidden{opacity:0;visibility:hidden;pointer-events:none}
+    .oaxo-splash-content{position:relative;z-index:1;display:flex;align-items:center;flex-direction:column;text-align:center;width:min(88vw,460px);transform:translateY(-2vh);animation:oaxoSplashRise 1s cubic-bezier(.2,.75,.25,1) both}
+    .oaxo-splash-symbol{width:clamp(88px,24vw,132px);height:clamp(88px,24vw,132px);filter:drop-shadow(0 0 15px #dce2f022);animation:oaxoSymbolGlow 3s ease-in-out infinite}
+    .oaxo-splash-symbol path{fill:url(#oaxoSplashSilver)}
+    .oaxo-splash-wordmark{font-size:clamp(43px,12vw,66px);font-weight:300;letter-spacing:.19em;margin:19px 0 0  .19em;line-height:1.1;background:linear-gradient(180deg,#fff 0%,#d9dce2 42%,#8c929e 54%,#f5f6f8 74%,#bfc4cd 100%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 30px #dfe5f00b}
+    .oaxo-splash-tagline{font-size:clamp(9px,2.4vw,12px);font-weight:500;letter-spacing:.42em;color:#d0d3da;margin:18px 0 0 .42em;text-transform:uppercase;white-space:nowrap}
+    .oaxo-splash-progress{width:112px;height:2px;margin-top:46px;border-radius:99px;background:#ffffff18;overflow:hidden}
+    .oaxo-splash-progress span{display:block;width:38%;height:100%;border-radius:99px;background:linear-gradient(90deg,#7e8490,#fff,#aeb4bf);box-shadow:0 0 12px #e3e8f477;animation:oaxoProgress 1.55s ease-in-out infinite}
+    .oaxo-splash-caption{margin-top:13px;color:#777d88;font-size:9px;letter-spacing:.24em;text-transform:uppercase}
+    @keyframes oaxoSplashRise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(-2vh)}}
+    @keyframes oaxoSymbolGlow{0%,100%{filter:drop-shadow(0 0 10px #dce2f018)}50%{filter:drop-shadow(0 0 22px #dce2f044)}}
+    @keyframes oaxoProgress{0%{transform:translateX(-120%)}100%{transform:translateX(380%)}}
+    @media(prefers-reduced-motion:reduce){#oaxoSplash,.oaxo-splash-content,.oaxo-splash-symbol,.oaxo-splash-progress span{animation:none!important;transition:none!important}}
   </style>
 </head>
 <body>
+<div id="oaxoSplash" role="status" aria-label="Carregando OAXO">
+  <div class="oaxo-splash-content">
+    <svg class="oaxo-splash-symbol" viewBox="0 0 100 100" aria-hidden="true">
+      <defs><linearGradient id="oaxoSplashSilver" x1="0" y1="0" x2="0.85" y2="1"><stop offset="0%" stop-color="#ffffff"/><stop offset="35%" stop-color="#d9dce2"/><stop offset="55%" stop-color="#8f96a2"/><stop offset="75%" stop-color="#f4f5f7"/><stop offset="100%" stop-color="#aeb4bf"/></linearGradient></defs>
+      <path d="M43 13 C20 24 11 39 11 50 C11 65 23 80 43 87 C31 72 27 62 27 50 C27 38 32 26 43 13Z"/>
+      <path d="M57 13 C80 24 89 39 89 50 C89 65 77 80 57 87 C69 72 73 62 73 50 C73 38 68 26 57 13Z"/>
+    </svg>
+    <div class="oaxo-splash-wordmark">OAXO</div>
+    <div class="oaxo-splash-tagline">Sua vida, em evolução.</div>
+    <div class="oaxo-splash-progress" aria-hidden="true"><span></span></div>
+    <div class="oaxo-splash-caption">Preparando sua evolução</div>
+  </div>
+</div>
+<script> (function(){var splash=document.getElementById('oaxoSplash');function hideSplash(){if(!splash)return;window.setTimeout(function(){splash.classList.add('is-hidden');window.setTimeout(function(){if(splash&&splash.parentNode)splash.parentNode.removeChild(splash)},750)},1500)}if(document.readyState==='complete'){hideSplash()}else{window.addEventListener('load',hideSplash,{once:true});window.setTimeout(hideSplash,4500)}})(); </script>
+
 <section id="authGate" class="auth-gate checking" aria-label="Acesso ao OAXO">
   <div class="auth-card">
     <div class="auth-logo oaxo-emblem" aria-label="Símbolo OAXO"><svg class="oaxo-symbol" viewBox="0 0 100 100" aria-hidden="true"><path d="M43 13 C20 24 11 39 11 50 C11 65 23 80 43 87 C31 72 27 62 27 50 C27 38 32 26 43 13Z"/><path d="M57 13 C80 24 89 39 89 50 C89 65 77 80 57 87 C69 72 73 62 73 50 C73 38 68 26 57 13Z"/></svg></div>

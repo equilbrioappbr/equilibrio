@@ -1,0 +1,9 @@
+OAXO v4 — Tela de carregamento
+
+- Adicionada tela inicial em tela cheia inspirada na referência visual OAXO enviada pelo usuário.
+- Fundo preto profundo com brilho grafite, símbolo prateado, wordmark OAXO, slogan e barra de progresso animada.
+- A tela some suavemente depois que a página carrega (com tempo limite de segurança).
+- Atualizada versão do cache do service worker para forçar atualização dos arquivos.
+- Mantidos app.js, manifest, regras e configuração Firebase da versão-base sem alterações.
+
+Publicação: faça backup do site atual e envie os arquivos do pacote à raiz do repositório. Não exclua dados do Firebase. A tela foi preparada no código, mas precisa ser testada no navegador/produção.

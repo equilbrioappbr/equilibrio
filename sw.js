@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v3-future-silver';
+const CACHE_NAME = 'oaxo-v4-splash-screen';
 const APP_PREFIX = 'equilibrio-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 
