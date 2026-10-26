@@ -118,12 +118,33 @@
     ::selection{background:#bfc5cf;color:#111318}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
 
+  
+    /* OAXO brand system v3 — aligned to the supplied black/silver brand board */
+    :root{--bg:#050505;--card:#0d0e10;--text:#f4f5f7;--muted:#a6aab2;--line:#292b30;--brand:#c8ccd4;--brand2:#1b1d22;--silver:#bec2ca;--shadow:0 14px 36px #000b,inset 0 1px 0 #ffffff08}
+    body{background:radial-gradient(ellipse at 50% -20%,#282a2e 0%,#101113 35%,transparent 65%),#050505;background-attachment:fixed}
+    .oaxo-emblem{background:linear-gradient(145deg,#f7f8fa 0%,#c4c8d0 28%,#7d838e 52%,#eef0f4 74%,#9da3ad 100%)!important;border:1px solid #f1f2f4!important;box-shadow:0 0 0 1px #aeb3bc55,0 0 24px #cbd0dc18,inset 0 1px 0 #fff!important;border-radius:50%!important}
+    .oaxo-symbol{width:76%;height:76%;display:block;overflow:visible;fill:#111317;filter:drop-shadow(0 1px 1px #fff9)}
+    .auth-logo.oaxo-emblem{width:100px;height:100px;border-radius:28px!important;background:linear-gradient(145deg,#08090b,#111317)!important;border:1px solid #4b4f58!important;box-shadow:0 0 0 1px #ffffff08,0 0 35px #cbd0dc12,inset 0 1px 0 #ffffff0c!important}
+    .auth-logo .oaxo-symbol{fill:url(#oaxoSilver);filter:drop-shadow(0 0 5px #d9dce355)}
+    .auth-logo .oaxo-symbol path,.logo .oaxo-symbol path{fill:#17191d;stroke:#dfe2e8;stroke-width:1.1}
+    .logo.oaxo-emblem{width:49px;height:49px;border-radius:15px!important;background:linear-gradient(145deg,#111317,#050505)!important;border-color:#484c55!important}
+    .logo .oaxo-symbol{fill:#191b20}
+    .home-hero{background:radial-gradient(ellipse at 86% 18%,#c7ccd51c 0,transparent 42%),linear-gradient(115deg,#08090b 0%,#15171b 55%,#24272d 100%)!important;border:1px solid #555b66!important;color:#f5f6f8!important;box-shadow:inset 0 1px 0 #ffffff0c,0 16px 38px #0008!important}
+    .home-hero .home-eyebrow{color:#c6cbd4!important}.home-live-dot{background:#d9dde4!important;box-shadow:0 0 0 4px #d9dde41c!important}.home-hero h2 em{color:#d9dde4!important}.home-hero p{color:#b8bdc6!important}
+    .home-create,.btn.primary{background:linear-gradient(145deg,#e7e9ed,#aeb4bf 55%,#d9dce2)!important;color:#111317!important;border:1px solid #f4f5f7!important;box-shadow:0 5px 20px #d9dde411,inset 0 1px #fff!important}
+    .home-hero-orbit,.home-hero-orbit:before{border-color:#d7dbe31c!important;box-shadow:0 0 0 25px #d7dbe308,0 0 0 52px #d7dbe305!important}.home-hero-orbit:after{background:radial-gradient(circle at 35% 30%,#d7dbe322,transparent 65%)!important}.home-hero-orbit span{color:#d9dde4!important;text-shadow:0 0 32px #d9dde433!important}
+    .home-module{background:linear-gradient(145deg,#111317,#0b0c0e)!important;border-color:#30343b!important;box-shadow:inset 0 1px #ffffff06,0 7px 18px #0005!important}.home-module-icon,.home-module:nth-child(1) .home-module-icon,.home-module:nth-child(2) .home-module-icon,.home-module:nth-child(3) .home-module-icon{background:linear-gradient(145deg,#292d34,#17191e)!important;color:#d4d8df!important;border:1px solid #414650!important}
+    .home-feed-switch button.active,.tab.active{background:linear-gradient(145deg,#2b2e35,#191b20)!important;color:#f2f3f5!important;border-color:#aeb4bf!important}.card{background:linear-gradient(145deg,#111317,#0b0c0e)!important;border-color:#2d3037!important}
+    .mobile-social-nav{background:#090a0c!important;border-top-color:#333740!important}.mobile-social-nav button.active,.mobile-social-nav button.active small{color:#e0e3e9!important}
+    .auth-card{background:linear-gradient(145deg,#111317,#08090b)!important;border-color:#414650!important;box-shadow:0 24px 70px #000b,inset 0 1px #ffffff0a!important}
+    @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+
   </style>
 </head>
 <body>
 <section id="authGate" class="auth-gate checking" aria-label="Acesso ao OAXO">
   <div class="auth-card">
-    <div class="auth-logo oaxo-emblem" aria-label="OAXO">O<span>A</span>X<span>O</span></div>
+    <div class="auth-logo oaxo-emblem" aria-label="Símbolo OAXO"><svg class="oaxo-symbol" viewBox="0 0 100 100" aria-hidden="true"><path d="M43 13 C20 24 11 39 11 50 C11 65 23 80 43 87 C31 72 27 62 27 50 C27 38 32 26 43 13Z"/><path d="M57 13 C80 24 89 39 89 50 C89 65 77 80 57 87 C69 72 73 62 73 50 C73 38 68 26 57 13Z"/></svg></div>
     <h2>Bem-vindo ao OAXO</h2>
     <p class="muted">Entre com sua conta Google para acessar suas finanças, alimentação e treinos.</p>
     <div class="notice"><strong>Seus registros são sincronizados com sua conta.</strong><br>Os lançamentos são guardados neste aparelho e enviados ao Firebase para que você possa acessar em outros dispositivos. As regras de segurança restringem o acesso à sua conta Google.</div>
@@ -146,7 +167,7 @@
   </div>
 </div>
 <div class="wrap">
-  <header class="top"><div class="brand"><div class="logo oaxo-emblem" aria-label="OAXO">O<span>A</span>X<span>O</span></div><div><h1>OAXO</h1><p>Sua vida, em evolução.</p></div></div><div class="account-actions"><span id="accountLabel" class="account-label"></span><button class="btn smallbtn hidden" id="logoutBtn" type="button">Sair</button><button class="btn" id="themeBtn" aria-label="Alternar tema">☾ Tema</button></div></header>
+  <header class="top"><div class="brand"><div class="logo oaxo-emblem" aria-label="Símbolo OAXO"><svg class="oaxo-symbol" viewBox="0 0 100 100" aria-hidden="true"><path d="M43 13 C20 24 11 39 11 50 C11 65 23 80 43 87 C31 72 27 62 27 50 C27 38 32 26 43 13Z"/><path d="M57 13 C80 24 89 39 89 50 C89 65 77 80 57 87 C69 72 73 62 73 50 C73 38 68 26 57 13Z"/></svg></div><div><h1>OAXO</h1><p>Sua vida, em evolução.</p></div></div><div class="account-actions"><span id="accountLabel" class="account-label"></span><button class="btn smallbtn hidden" id="logoutBtn" type="button">Sair</button><button class="btn" id="themeBtn" aria-label="Alternar tema">☾ Tema</button></div></header>
   <nav class="tabs social-tabs" aria-label="Navegação principal"><button class="tab active" data-tab="home"><span class="nav-icon">⌂</span>Início</button><button class="tab" data-tab="explore"><span class="nav-icon">⌕</span>Explorar</button><button class="tab" data-tab="compose"><span class="nav-icon nav-plus">＋</span>Publicar</button><button class="tab" data-tab="evolution"><span class="nav-icon">✦</span>Evolução</button><button class="tab" data-tab="profile"><span class="nav-icon">♙</span>Perfil</button></nav>
   <main id="app"></main>
   <nav class="mobile-social-nav" aria-label="Navegação principal"><button data-tab="home" aria-label="Início"><span class="nav-icon">⌂</span><small>Início</small></button><button data-tab="explore" aria-label="Explorar"><span class="nav-icon">⌕</span><small>Explorar</small></button><button data-tab="compose" aria-label="Publicar"><span class="nav-icon nav-plus">＋</span><small>Publicar</small></button><button data-tab="evolution" aria-label="Evolução"><span class="nav-icon">✦</span><small>Evolução</small></button><button data-tab="profile" aria-label="Perfil"><span class="nav-icon">♙</span><small>Perfil</small></button></nav>

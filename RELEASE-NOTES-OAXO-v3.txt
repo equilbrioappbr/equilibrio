@@ -1,0 +1,10 @@
+OAXO v3 — atualização visual alinhada à referência oficial enviada pelo usuário.
+
+- Marca com símbolo de arcos prateados, sem monograma genérico.
+- Ícones 192px e 512px redesenhados em preto e prata.
+- Fundo preto absoluto, cartões grafite, bordas metálicas e botões prateados.
+- Banner principal, atalhos, autenticação e navegação com a mesma direção visual.
+- Mantidos app.js, manifest e regras de dados da versão-base; Firebase não foi recriado.
+- Cache atualizado para v3.
+
+Faça backup da versão publicada antes de substituir os arquivos. Esta versão não foi testada contra o Firebase de produção.
