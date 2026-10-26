@@ -1,0 +1,12 @@
+OAXO v2 — FUTURE / GRAPHITE + SILVER
+
+Mudancas reais nesta versao:
+- Camada visual completa em preto/grafite com detalhes prateados.
+- Cartoes com profundidade, contornos metalicos e brilho discreto.
+- Botoes e abas redesenhados com gradientes prateados.
+- Cabecalho e simbolo OAXO redesenhados.
+- Novos icones PWA 192x192 e 512x512.
+- Cache do service worker atualizado para forcar a busca dos arquivos novos.
+- Mantidos app.js, Firebase, dados e modulos da versao-base.
+
+Esta versao nao foi publicada nem testada no Firebase real. Faca backup antes de substituir arquivos no GitHub.

@@ -1,17 +1,17 @@
-OAXO — atualização visual v1 (base Equilíbrio v33.3)
+OAXO - atualizacao visual v2 (base Equilibrio v33.3)
 
-Esta versão atualiza a identidade visual para OAXO: nome, slogan, paleta preta/prateada, manifesto PWA, ícones e cache do service worker.
+Esta versao aplica identidade visual mais evidente: preto profundo, grafite, prata, gradientes metalicos discretos, cartoes com profundidade, botoes e abas redesenhados, simbolo OAXO e novos icones PWA.
 
-PRESERVAÇÃO: mantém app.js, as integrações Firebase existentes, as regras Firestore e os módulos da versão-base. Não cria projeto Firebase novo e não apaga dados do banco.
+PRESERVACAO: app.js e configuracoes Firebase existentes sao mantidos; nao cria projeto Firebase novo nem apaga dados do banco.
 
 ANTES DE PUBLICAR:
-1. Guarde uma cópia da versão atualmente publicada e exporte os dados locais pelo recurso de backup do app, se houver registros apenas neste navegador.
-2. Extraia os arquivos deste ZIP e envie-os para a raiz do repositório GitHub Pages, substituindo os arquivos correspondentes.
-3. NÃO substitua firestore.rules no Firebase Console sem revisar/publicar conscientemente; o arquivo incluído é mantido da versão-base.
-4. No Firebase Console > Authentication > Settings > Authorized domains, adicione oaxo.com.br quando for usar o novo domínio. Confira também a configuração OAuth do Google se o fluxo de login exigir.
-5. Configure o domínio no GitHub Pages apenas depois que o DNS estiver pronto.
-6. Teste login Google, dados, sincronização, alimentação, treinos, finanças e instalação PWA.
+1. Guarde uma copia da versao atualmente publicada e exporte dados locais pelo recurso de backup do app.
+2. Extraia o ZIP e envie os arquivos para a raiz do repositorio GitHub Pages, substituindo os correspondentes.
+3. Nao publique/substitua firestore.rules no Firebase Console sem revisar conscientemente.
+4. Ao migrar para oaxo.com.br, adicione o dominio em Firebase Authentication > Settings > Authorized domains.
+5. Depois de publicar, faca recarga forcada no navegador (Ctrl+F5). No iPhone, feche e reabra o app instalado; se necessario, remova e reinstale o atalho para atualizar o icone.
+6. Teste login Google, dados, sincronizacao, alimentacao, treinos, financas e instalacao PWA.
 
-IMPORTANTE SOBRE DADOS LOCAIS: navegadores tratam o domínio antigo e oaxo.com.br como origens diferentes. Dados sincronizados no mesmo projeto Firebase devem continuar associados à mesma conta; dados guardados somente no armazenamento local do navegador não migram automaticamente entre domínios. Mantenha o endereço antigo disponível até conferir tudo.
+IMPORTANTE: dominio antigo e novo sao origens diferentes. Dados sincronizados no mesmo projeto Firebase devem continuar associados a mesma conta; dados somente locais nao migram automaticamente. Mantenha o endereco antigo ate conferir tudo.
 
-Esta atualização não foi publicada no GitHub nem testada contra o Firebase real.
+Esta atualizacao nao foi publicada nem testada contra o Firebase real.
