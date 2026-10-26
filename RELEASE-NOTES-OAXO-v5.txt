@@ -1,8 +1,9 @@
-OAXO v5 — Símbolo e ícone alinhados à referência visual.
+OAXO v6 — Correção do símbolo preto no topo da página inicial.
 
 - Ícones PWA 192x192 e 512x512 refeitos: arcos prateados sobre fundo preto grafite.
-- Símbolo no cabeçalho e tela de autenticação atualizado para acabamento prateado.
-- Cache do service worker atualizado quando identificado.
+- Corrigido o preenchimento SVG: o símbolo do cabeçalho agora aparece em prata clara, mesmo sem o gradiente que estava ausente.
+- Mantido o acabamento preto/grafite com contorno prateado na tela inicial e autenticação.
+- - Cache do service worker atualizado para forçar o navegador a buscar a correção.
 - Arquivos funcionais e configuração Firebase mantidos a partir da versão-base v4.
 
 Faça backup antes de publicar. Este pacote ainda precisa ser testado no ambiente real. Não apague dados do Firebase.
