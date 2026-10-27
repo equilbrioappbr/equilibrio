@@ -1,0 +1,15 @@
+OAXO v23 — Câmera, filtros e fluxo de publicação
+
+- O botão Publicar agora abre uma área de criação de conteúdo com identidade visual OAXO.
+- Incluído acesso à câmera do dispositivo por permissão do navegador, captura de foto e alternância entre câmera frontal/traseira quando suportada.
+- Incluída seleção de imagem pela galeria/arquivos.
+- Incluídos filtros de prévia: Original, Prata, Grafite, Âmbar, Frio e Cinema; o filtro selecionado é aplicado à imagem publicada.
+- Incluída legenda, categoria e configuração de visibilidade da publicação.
+- Fotos são redimensionadas/comprimidas no aparelho e anexadas ao documento da publicação no Firestore, para aparecer no feed e nos perfis existentes.
+- Publicações sem foto continuam funcionando como antes. Mantidos login, módulos pessoais, seguidores, feed e regras existentes.
+- Service worker atualizado para invalidar o cache anterior.
+
+Notas técnicas:
+- Câmera direta exige HTTPS e permissão concedida pelo navegador. Se não houver suporte, a galeria continua disponível.
+- Para manter compatibilidade sem alterar regras do Firebase Storage, a imagem comprimida é armazenada no documento Firestore. Há um limite de tamanho por publicação; imagens grandes são reduzidas e, se ainda excederem o limite de segurança do pacote, o app informa para selecionar uma imagem menor.
+- Validado sintaticamente com Node.js. Não foi possível testar câmera real, permissões do navegador nem regras/limites do Firebase em produção neste ambiente.
