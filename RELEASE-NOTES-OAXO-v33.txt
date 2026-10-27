@@ -1,0 +1,9 @@
+OAXO v33 — páginas exclusivas do Financeiro
+
+- Os cinco cartões do Centro Financeiro agora abrem uma visualização exclusiva para a seção escolhida.
+- O painel principal e os demais cartões ficam ocultos enquanto a seção está aberta.
+- Incluído botão “Voltar ao centro financeiro”.
+- O endereço/hash acompanha a seção selecionada e o botão voltar do navegador também é tratado.
+- Mantidos os módulos, dados e integrações existentes; nenhuma limpeza de dados foi executada.
+
+Validação técnica: app.js passou em `node --check`. Esta versão não foi testada em navegador real nem teve sincronização Firebase validada nesta execução.
