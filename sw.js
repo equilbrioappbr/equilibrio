@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v24-camera-direta-mobile';
+const CACHE_NAME = 'oaxo-v25-centro-financeiro-orbital';
 const APP_PREFIX = 'oaxo-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 

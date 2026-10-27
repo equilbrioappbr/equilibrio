@@ -1,0 +1,12 @@
+OAXO v25 — Centro Financeiro Orbital
+
+- Atualização restrita à aba Finanças.
+- Adicionado Centro Financeiro Orbital com animação de entrada, órbitas metálicas e atualização manual.
+- Cor de saúde financeira calculada a partir dos lançamentos do mês e contas vencidas: verde (saudável), azul (em evolução), âmbar (atenção), vermelho (crítico) e prata (dados insuficientes).
+- O núcleo exibe saldo do mês, entradas, saídas, quantidade de lançamentos e explicação textual da classificação.
+- Mantidas as metas financeiras, lançamentos, contas a pagar, histórico e referência educativa 50/30/20 já existentes.
+- Animações respeitam a preferência do dispositivo por movimento reduzido.
+- Atualizado o cache do service worker para v25.
+- Nenhuma alteração às regras do Firebase, autenticação ou estrutura dos dados.
+
+Validação realizada: sintaxe JavaScript verificada com node --check e integridade do ZIP verificada. Não foi possível executar teste de navegador/celular nem confirmar dados reais em produção nesta sessão.
