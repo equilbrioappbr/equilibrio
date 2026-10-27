@@ -172,6 +172,16 @@
 .home-feed-heading,.home-module-row{color:#eceef2}
 
 
+    /* OAXO v26 — Finance modules: clear hierarchy, compact cards, silver accents */
+    .finance-module{border:1px solid var(--line);background:linear-gradient(145deg,var(--card),color-mix(in srgb,var(--bg) 70%,var(--card)));}
+    .finance-module .section-title{align-items:center;gap:10px;flex-wrap:wrap}
+    .finance-module .item{gap:12px;align-items:center}
+    .finance-module .item-main{min-width:0;overflow-wrap:anywhere}
+    .finance-module .item-main small{line-height:1.55}
+    .finance-module .form{margin-top:14px}
+    .finance-module .card{box-shadow:none}
+    .finance-module .status-pill{white-space:normal;text-align:center}
+    @media(max-width:480px){.finance-module{padding:13px}.finance-module .item{align-items:flex-start}.finance-module .section-title h3{font-size:17px}}
     /* OAXO v25 — Finance-only animated orbital core and real-data health states */
     .finance-orbit{--orbit-health:#aeb5bf;position:relative;overflow:hidden;margin:0 0 16px;padding:20px;border:1px solid color-mix(in srgb,var(--orbit-health) 45%,var(--line));border-radius:24px;background:radial-gradient(ellipse at 50% 42%,color-mix(in srgb,var(--orbit-health) 13%,transparent),transparent 46%),linear-gradient(145deg,#15181d,#08090c 72%);color:#edf0f4;box-shadow:inset 0 1px 0 #ffffff0d,0 16px 40px #0002;isolation:isolate}
     .finance-orbit:before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.22;background-image:linear-gradient(#aab3bf12 1px,transparent 1px),linear-gradient(90deg,#aab3bf12 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(to bottom,black,transparent 85%);z-index:-1}

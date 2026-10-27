@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v25-centro-financeiro-orbital';
+const CACHE_NAME = 'oaxo-v26-financas-organizadas';
 const APP_PREFIX = 'oaxo-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 

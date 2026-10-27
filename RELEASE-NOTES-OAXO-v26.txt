@@ -1,0 +1,16 @@
+OAXO v26 — Organização do Centro Financeiro
+
+Base: OAXO v25. Mantém o Centro Financeiro Orbital e os módulos existentes.
+
+Mudanças na aba Finanças:
+- Hierarquia mais clara nos módulos de crédito e compromissos.
+- Novo cadastro de cartões, parcelamentos, financiamentos e empréstimos com valor total, saldo devedor, parcela, quantidade restante, próximo vencimento e juros opcionais.
+- Lista de contratos com opção de exclusão. Os contratos são salvos junto aos dados financeiros da conta.
+- A tela deixa de chamar a movimentação de “despesa/receita” no seletor e passa a usar “saída/entrada”; os registros internos continuam iguais para preservar os cálculos do saldo e diagnóstico.
+- Área Mercado preparada para ativos e cotações, sem inventar preços: integração com fonte de mercado fica explicitamente pendente.
+- Atualização da versão do service worker para entregar os novos arquivos.
+
+Notas de uso:
+- Cadastrar um contrato não lança automaticamente uma saída no saldo, evitando dupla contagem. Registre a parcela paga em Movimentações quando ela ocorrer.
+- A área Mercado ainda não mostra cotações ao vivo; isso requer uma fonte/API de cotações.
+- Não houve alteração intencional nos módulos Alimentação, Treinos, login ou regras do Firestore.
