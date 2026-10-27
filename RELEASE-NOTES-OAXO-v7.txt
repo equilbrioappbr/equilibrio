@@ -1,10 +1,9 @@
-OAXO v7 — tela de carregamento restaurada e Alimentação redesenhada com referência funcional no Welmi.
+OAXO v8 — símbolo oficial corrigido conforme a apresentação de marca aprovada.
 
-- Mantida a identidade visual preta e prata e corrigido o preenchimento do símbolo da tela de carregamento.
-- Tela de carregamento permanece visível por pelo menos 2,4 segundos e fecha após o carregamento, com limite de segurança.
-- Alimentação ganhou painel diário de calorias, progresso circular, meta editável, macros (proteína, carboidratos e gorduras), contagem de registros e atalhos para registrar/buscar alimentos.
-- Mantidos scanner de código de barras, consulta nutricional, lista e histórico de compras, fotos, histórico de consumo, finanças, treinos e autenticação.
-- A referência Welmi orienta o fluxo e as funções; o OAXO mantém marca e identidade próprias.
-- Estrutura de dados e Firebase existentes foram preservados; a meta de calorias fica nos dados da conta e usa 2.000 kcal como valor inicial apenas ilustrativo, ajustável pelo usuário.
+- Símbolo atualizado para o desenho oficial: dois arcos/crescents prateados, pontas voltadas para o centro e abertura vertical central, conforme a referência visual OAXO.
+- Atualizado o símbolo no topo da página, tela de carregamento e tela de autenticação.
+- Atualizados os ícones PWA de 192 px e 512 px para refletir o mesmo símbolo.
+- Mantida a tela de carregamento e as mudanças da área Alimentação inspiradas no Welmi da versão v7.
+- Não foram intencionalmente alterados Firebase, regras de acesso, estrutura de dados ou funções de alimentação.
 
-PUBLICAÇÃO: faça backup do site e exporte os dados locais antes de substituir os arquivos. Envie os arquivos deste ZIP para a raiz do repositório. Não recrie o Firebase e não altere regras no Firebase Console. Teste login, sincronização, tela de carregamento e registros após publicar.
+Antes de publicar, faça backup dos arquivos atuais. Substitua os arquivos do ZIP na raiz do repositório GitHub. Após publicar, force a atualização do navegador; no iPhone, pode ser necessário remover e reinstalar o atalho para atualizar o ícone do PWA.
