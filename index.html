@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0b0b0d">
+  <meta name="theme-color" content="#f0f1f3">
+  <script>(function(){try{var t=localStorage.getItem("equilibrio-v1-theme");if(!t&&window.matchMedia)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t||"light";}catch(e){document.documentElement.dataset.theme="light";}})();</script>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="OAXO">
@@ -250,6 +251,42 @@
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
 <!-- Leitor de código de barras carregado sob demanda, somente quando solicitado. -->
+
+<style id="oaxo-v18-brand-system">
+/* OAXO v18 — identidade visual conforme o painel de marca aprovado */
+:root{color-scheme:light dark}
+html[data-theme="light"]{color-scheme:light;--bg:#f0f1f3;--card:#fafbfc;--text:#151619;--muted:#686c74;--line:#d5d8de;--brand:#111216;--brand2:#e5e7eb;--danger:#b42332;--shadow:0 12px 34px #17191f12}
+html[data-theme="dark"]{color-scheme:dark;--bg:#050505;--card:#0d0e10;--text:#f4f5f7;--muted:#a6aab2;--line:#292b30;--brand:#c8ccd4;--brand2:#1b1d22;--danger:#ff737d;--shadow:0 14px 36px #000b,inset 0 1px 0 #ffffff08}
+html[data-theme="light"] body{background:radial-gradient(ellipse at 50% -18%,#ffffff 0%,#f0f1f3 55%,#e8eaee 100%)!important;background-attachment:fixed;color:var(--text)}
+html[data-theme="light"] .card,html[data-theme="light"] .auth-card,html[data-theme="light"] .privacy-dialog-card,html[data-theme="light"] .nutrition-modal,html[data-theme="light"] .calendar-card{background:rgba(255,255,255,.9)!important;color:var(--text)!important;border-color:var(--line)!important;box-shadow:var(--shadow)!important}
+html[data-theme="light"] .btn,html[data-theme="light"] .tab,html[data-theme="light"] .google-btn,html[data-theme="light"] .home-module,html[data-theme="light"] .mobile-social-nav,html[data-theme="light"] .social-tabs{background:#fafbfc!important;color:var(--text)!important;border-color:var(--line)!important}
+html[data-theme="light"] .tab.active,html[data-theme="light"] .social-tabs .tab.active{background:#e5e7eb!important;color:#111216!important;border-color:#bfc3ca!important}
+html[data-theme="light"] .btn.primary,html[data-theme="light"] .primary,html[data-theme="light"] button.primary{background:linear-gradient(145deg,#101114,#292b30)!important;color:#fff!important;border-color:#303239!important}
+html[data-theme="light"] input,html[data-theme="light"] select,html[data-theme="light"] textarea,html[data-theme="light"] .field input,html[data-theme="light"] .field select,html[data-theme="light"] .field textarea{background:#fff!important;color:#17181b!important;border-color:#d1d4da!important}
+html[data-theme="light"] .notice,html[data-theme="light"] .item,html[data-theme="light"] .social-profile-stats>div,html[data-theme="light"] .home-feed-switch,html[data-theme="light"] .home-empty{background:#f6f7f9!important;color:#22242a!important;border-color:#dfe1e6!important}
+html[data-theme="light"] .social-welcome,html[data-theme="light"] .home-hero{background:linear-gradient(135deg,#fff,#e8eaef)!important;color:#151619!important;border:1px solid #d9dce2!important}
+html[data-theme="light"] .social-welcome p,html[data-theme="light"] .home-hero p{color:#555a64!important}
+/* Wordmark geométrico, fino e espaçado; preto brilhante no tema claro, prata no escuro. */
+.brand h1,.oaxo-splash-wordmark{font-family:"Century Gothic","Avenir Next","Montserrat","Helvetica Neue",Arial,sans-serif!important;font-weight:300!important;letter-spacing:.23em!important;line-height:1.08!important}
+.brand h1{font-size:clamp(20px,5vw,25px)!important;margin-right:-.23em!important}
+html[data-theme="light"] .brand h1{background:linear-gradient(180deg,#000 0%,#303238 38%,#08090b 55%,#45474c 72%,#050505 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;text-shadow:0 1px 0 #fff,0 2px 4px #00000012!important}
+html[data-theme="dark"] .brand h1{background:linear-gradient(180deg,#fff 0%,#d9dce2 42%,#8c929e 54%,#f5f6f8 74%,#bfc4cd 100%)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;text-shadow:0 0 22px #dfe5f00b!important}
+html[data-theme="light"] .brand .logo.oaxo-emblem{background:linear-gradient(145deg,#fff,#e6e8ed)!important;border:1px solid #c9cdd4!important;box-shadow:inset 0 1px 0 #fff,0 5px 14px #00000012!important}
+html[data-theme="light"] .brand .logo .oaxo-symbol{filter:drop-shadow(0 1px 0 #fff)!important}
+html[data-theme="light"] .brand .logo .oaxo-symbol path{fill:url(#oaxoBlackChrome)!important;stroke:#08090b!important;stroke-width:.6!important}
+html[data-theme="dark"] .brand .logo.oaxo-emblem{background:linear-gradient(145deg,#111317,#050505)!important;border:1px solid #484c55!important}
+html[data-theme="light"] #oaxoSplash{background:radial-gradient(ellipse at 50% 42%,#fff 0%,#f0f1f3 48%,#e4e6ea 100%)!important;color:#101114!important}
+html[data-theme="light"] #oaxoSplash::after{border-top-color:#17191f18;background:repeating-linear-gradient(0deg,transparent 0 34px,#17191f08 35px 36px),linear-gradient(180deg,#17191f08,transparent)!important}
+html[data-theme="light"] .oaxo-splash-symbol path{fill:#111216!important;stroke:#050505!important}
+html[data-theme="light"] .oaxo-splash-wordmark{background:linear-gradient(180deg,#000,#41434a 42%,#050505 60%,#666970 78%,#050505)!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;text-shadow:0 1px 0 #fff!important}
+html[data-theme="light"] .oaxo-splash-tagline{color:#292b30!important}
+html[data-theme="light"] .oaxo-splash-progress{background:#17191f18!important}
+html[data-theme="light"] .oaxo-splash-progress span{background:linear-gradient(90deg,#555,#050505,#9da1a8)!important}
+html[data-theme="light"] .oaxo-splash-caption{color:#686c74!important}
+@media(prefers-reduced-motion:reduce){.brand h1,.oaxo-splash-wordmark{transition:none!important}}
+</style>
+
+<svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden"><defs><linearGradient id="oaxoBlackChrome" x1="0" y1="0" x2="0.8" y2="1"><stop offset="0%" stop-color="#000000"/><stop offset="32%" stop-color="#3b3d42"/><stop offset="52%" stop-color="#050505"/><stop offset="74%" stop-color="#55585f"/><stop offset="100%" stop-color="#050505"/></linearGradient></defs></svg>
 <script src="./app.js"></script>
 </body>
 </html>

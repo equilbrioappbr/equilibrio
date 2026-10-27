@@ -1,0 +1,11 @@
+OAXO v18 — Identidade visual e tema claro
+
+- Tema claro atualizado para branco Ártico/Alasca, com cartões claros e texto escuro.
+- Tema escuro continua preto absoluto com detalhes prateados.
+- A preferência salva do usuário continua sendo respeitada; o botão Tema alterna entre claro e escuro.
+- Marca principal OAXO com tipografia geométrica fina e espaçamento ampliado, inspirada na prancha de marca enviada.
+- Wordmark preto cromado no tema claro e prata metálica no tema escuro.
+- Tela de inicialização também acompanha o tema selecionado.
+- Cache do service worker atualizado para forçar a instalação dos novos arquivos.
+
+Atualização: substitua os arquivos do repositório pelos arquivos deste ZIP. Não altere Firebase, regras Firestore ou dados dos usuários.

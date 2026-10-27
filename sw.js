@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v17-splash-only';
+const CACHE_NAME = 'oaxo-v18-brand-theme';
 const APP_PREFIX = 'oaxo-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 
