@@ -1,0 +1,9 @@
+OAXO v20 — Ajuste de conforto visual do tema claro
+
+- Reduzido o brilho geral do tema claro com fundo cinza-álasca suave, sem branco puro em grandes áreas.
+- Cartões e botões usam tons foscos e menos luminosos, mantendo texto escuro e contraste legível.
+- Tema escuro preservado.
+- Marca vetorial OAXO preservada.
+- Cache do service worker atualizado para forçar a distribuição dos arquivos novos.
+
+Publicação: substituir os arquivos do repositório pelos arquivos deste ZIP e aguardar o GitHub Pages.
