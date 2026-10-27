@@ -1,0 +1,10 @@
+OAXO v7 — tela de carregamento restaurada e Alimentação redesenhada com referência funcional no Welmi.
+
+- Mantida a identidade visual preta e prata e corrigido o preenchimento do símbolo da tela de carregamento.
+- Tela de carregamento permanece visível por pelo menos 2,4 segundos e fecha após o carregamento, com limite de segurança.
+- Alimentação ganhou painel diário de calorias, progresso circular, meta editável, macros (proteína, carboidratos e gorduras), contagem de registros e atalhos para registrar/buscar alimentos.
+- Mantidos scanner de código de barras, consulta nutricional, lista e histórico de compras, fotos, histórico de consumo, finanças, treinos e autenticação.
+- A referência Welmi orienta o fluxo e as funções; o OAXO mantém marca e identidade próprias.
+- Estrutura de dados e Firebase existentes foram preservados; a meta de calorias fica nos dados da conta e usa 2.000 kcal como valor inicial apenas ilustrativo, ajustável pelo usuário.
+
+PUBLICAÇÃO: faça backup do site e exporte os dados locais antes de substituir os arquivos. Envie os arquivos deste ZIP para a raiz do repositório. Não recrie o Firebase e não altere regras no Firebase Console. Teste login, sincronização, tela de carregamento e registros após publicar.

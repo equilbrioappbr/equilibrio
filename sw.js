@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v2-future-silver';
+const CACHE_NAME = 'oaxo-v7-welmi-food';
 const APP_PREFIX = 'equilibrio-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 
