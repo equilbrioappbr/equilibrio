@@ -204,7 +204,7 @@
     <div class="oaxo-splash-caption">Preparando sua evolução</div>
   </div>
 </div>
-<script> (function(){var splash=document.getElementById('oaxoSplash');if(!splash)return;var started=Date.now(),loadFinished=document.readyState==='complete',dismissed=false;function hideSplash(){if(dismissed||!loadFinished)return;var wait=Math.max(0,2400-(Date.now()-started));window.setTimeout(function(){if(dismissed)return;dismissed=true;splash.classList.add('is-hidden');window.setTimeout(function(){if(splash&&splash.parentNode)splash.parentNode.removeChild(splash)},750)},wait)}if(!loadFinished)window.addEventListener('load',function(){loadFinished=true;hideSplash()},{once:true});hideSplash();window.setTimeout(function(){loadFinished=true;hideSplash()},6000)})(); </script>
+<script> (function(){var splash=document.getElementById('oaxoSplash');if(!splash)return;var dismissed=false;function hideSplash(){if(dismissed)return;dismissed=true;splash.classList.add('is-hidden');window.setTimeout(function(){if(splash&&splash.parentNode)splash.parentNode.removeChild(splash)},450)}/* Não aguarde imagens, fontes ou scripts externos: a tela inicial não deve bloquear o app. */var ready=function(){window.setTimeout(hideSplash,450)};if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready,{once:true});else ready();window.setTimeout(hideSplash,1800)})(); </script>
 
 <section id="authGate" class="auth-gate checking" aria-label="Acesso ao OAXO">
   <div class="auth-card">
@@ -241,7 +241,7 @@
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore-compat.js"></script>
 
-<script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+<!-- Leitor de código de barras carregado sob demanda, somente quando solicitado. -->
 <script src="./app.js"></script>
 </body>
 </html>

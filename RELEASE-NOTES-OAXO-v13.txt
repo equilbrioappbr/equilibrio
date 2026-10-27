@@ -1,0 +1,15 @@
+OAXO v13 — desempenho e carregamento
+
+Melhorias:
+- A tela inicial deixa de esperar todos os scripts externos e não segura o usuário por 2,4 segundos obrigatórios.
+- O leitor de código de barras só baixa sua biblioteca quando o usuário abre a função de câmera, reduzindo o trabalho inicial e o bloqueio de carregamento.
+- A interface principal aparece assim que os dados pessoais do Firestore estão prontos; o carregamento da área social passa a ocorrer em segundo plano.
+- Consultas independentes do perfil social são executadas em paralelo, reduzindo o tempo de espera acumulado.
+- Cache do service worker atualizado para a versão v13.
+
+Preservados:
+- Visual futurista preto e prata e tela de carregamento da marca.
+- Login Google, Firestore, sincronização, módulos e recursos sociais.
+- Leitura de código de barras sob demanda.
+
+Publicação: substitua os arquivos do repositório pelos arquivos deste ZIP e aguarde o GitHub Pages atualizar. Na primeira abertura após a atualização, pode ser necessário recarregar uma vez para aplicar a nova versão do cache.

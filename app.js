@@ -54,14 +54,31 @@
     if(!currentUser)return;
     try{
       await ensureSocialProfile();
-      const req=await db().collection('profiles').doc(currentUser.uid).collection('requests').get();
+      const profileRef=db().collection('profiles').doc(currentUser.uid);
+      // Consultas independentes em paralelo: evita somar a latência de cada ida ao Firestore.
+      const [req,follows,followersSnap,publicPosts,ownPosts]=await Promise.all([
+        profileRef.collection('requests').get(),
+        profileRef.collection('following').get(),
+        profileRef.collection('followers').get(),
+        db().collection('posts').where('visibility','==','public').limit(80).get(),
+        db().collection('posts').where('uid','==',currentUser.uid).limit(80).get()
+      ]);
       socialRequests=req.docs.map(d=>({id:d.id,...d.data()}));
-      const follows=await db().collection('profiles').doc(currentUser.uid).collection('following').get();
       socialFollowing=follows.docs.map(d=>d.id);
-      const followersSnap=await db().collection('profiles').doc(currentUser.uid).collection('followers').get();
       socialFollowers=followersSnap.docs.map(d=>d.id);
-      socialFollowerProfiles=(await Promise.all(socialFollowers.map(async uid=>{try{const p=await db().collection('profiles').doc(uid).get();return p.exists?{...p.data(),uid}: {uid,displayName:'Usuário do OAXO',username:''}}catch(e){return {uid,displayName:'Usuário do OAXO',username:''}}}))).sort((a,b)=>(a.displayName||'').localeCompare(b.displayName||'','pt-BR'));
-      const groups=[];groups.push(await db().collection('posts').where('visibility','==','public').limit(80).get());groups.push(await db().collection('posts').where('uid','==',currentUser.uid).limit(80).get());for(const followedUid of socialFollowing.slice(0,30)){groups.push(await db().collection('posts').where('uid','==',followedUid).limit(40).get())}const byId=new Map();for(const group of groups)for(const d of group.docs){const post={id:d.id,...d.data()};if(post.uid===currentUser.uid||post.visibility==='public'||(post.visibility==='followers'&&socialFollowing.includes(post.uid)))byId.set(d.id,post)}socialPosts=Array.from(byId.values()).sort((a,b)=>(b.createdAt?.toMillis?.()||0)-(a.createdAt?.toMillis?.()||0)).slice(0,60);
+      const followerProfileResults=await Promise.all(socialFollowers.map(async uid=>{
+        try{const p=await db().collection('profiles').doc(uid).get();return p.exists?{...p.data(),uid}:{uid,displayName:'Usuário do OAXO',username:''}}
+        catch(e){return {uid,displayName:'Usuário do OAXO',username:''}}
+      }));
+      socialFollowerProfiles=followerProfileResults.sort((a,b)=>(a.displayName||'').localeCompare(b.displayName||'','pt-BR'));
+      // Busca posts de quem o usuário segue em paralelo, com limite por perfil.
+      const followedPosts=await Promise.all(socialFollowing.slice(0,30).map(uid=>db().collection('posts').where('uid','==',uid).limit(40).get().catch(()=>null)));
+      const byId=new Map();
+      for(const group of [publicPosts,ownPosts,...followedPosts.filter(Boolean)])for(const d of group.docs){
+        const post={id:d.id,...d.data()};
+        if(post.uid===currentUser.uid||post.visibility==='public'||(post.visibility==='followers'&&socialFollowing.includes(post.uid)))byId.set(d.id,post);
+      }
+      socialPosts=Array.from(byId.values()).sort((a,b)=>(b.createdAt?.toMillis?.()||0)-(a.createdAt?.toMillis?.()||0)).slice(0,60);
     }catch(err){console.error('Falha ao carregar área social:',err);socialMessage=''}
   }
   // Selos calculados por UID: não são editáveis pelo formulário do perfil.
@@ -233,7 +250,13 @@ leite integral
     if(scanBusy)return;scanBusy=true;scanAccepted=false;scanMessage='';render();
     const reader=$('#barcode-reader');if(!reader){scanBusy=false;return}
     reader.classList.remove('hidden');
-    if(!window.Html5Qrcode||!window.Html5QrcodeSupportedFormats){scanMessage='O leitor de câmera não carregou. Confira a internet ou digite o código manualmente.';render();scanBusy=false;return}
+    if(!window.Html5Qrcode||!window.Html5QrcodeSupportedFormats){
+      scanMessage='Carregando leitor da câmera…';render();
+      try{await new Promise((resolve,reject)=>{const script=document.createElement('script');script.src='https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js';script.async=true;script.onload=resolve;script.onerror=()=>reject(new Error('Falha ao carregar o leitor'));document.head.appendChild(script)});}
+      catch(err){scanMessage='O leitor de câmera não carregou. Confira a internet ou digite o código manualmente.';render();scanBusy=false;return}
+      const refreshedReader=$('#barcode-reader');if(!refreshedReader){scanBusy=false;return}refreshedReader.classList.remove('hidden');
+      if(!window.Html5Qrcode||!window.Html5QrcodeSupportedFormats){scanMessage='O leitor de câmera não ficou disponível. Digite o código manualmente.';render();scanBusy=false;return}
+    }
     try{
       // Prioriza GTIN-13/EAN-13, comum em produtos de supermercado no Brasil, e aceita formatos adicionais.
       // Uma janela maior tolera códigos altos, pequenos desalinhamentos e embalagens com barras mais próximas das bordas.
@@ -380,7 +403,16 @@ leite integral
           render();
         }
       },err=>{console.error('Erro no listener de sincronização:',err);if($('#accountLabel'))$('#accountLabel').textContent=(user.displayName||user.email||'Conta Google')+' · sincronização indisponível';});
-      $('#accountLabel').textContent=(user.displayName||user.email||'Conta Google')+' · sincronizado';try{await loadSocial();const params=new URLSearchParams(location.search);const sharedProfile=params.get('profile');const sharedPost=params.get('post');if(sharedProfile){let snap=await db().collection('profiles').where('username','==',sharedProfile.toLowerCase()).limit(1).get();if(snap.empty)snap=await db().collection('profiles').doc(sharedProfile).get().then(d=>({empty:!d.exists,docs:d.exists?[d]:[]}));if(!snap.empty){const d=snap.docs[0];viewedProfile={...d.data(),uid:d.id};const canSee=d.id===user.uid||viewedProfile.privacy!=='private'||socialFollowing.includes(d.id);if(canSee){const ps=await db().collection('posts').where('uid','==',d.id).limit(80).get();viewedProfilePosts=ps.docs.map(x=>({id:x.id,...x.data()})).filter(x=>x.visibility==='public'||(x.visibility==='followers'&&socialFollowing.includes(d.id)));}else viewedProfilePosts=[];tab='viewProfile'}}else if(sharedPost){const d=await db().collection('posts').doc(sharedPost).get();if(d.exists){const post={id:d.id,...d.data()};const allowed=post.uid===user.uid||post.visibility==='public'||(post.visibility==='followers'&&socialFollowing.includes(post.uid));if(allowed){if(!socialPosts.some(x=>x.id===post.id))socialPosts.unshift(post);tab='home'}else socialMessage='Esta publicação é privada ou está disponível somente para seguidores aprovados.'}}}catch(e){console.warn('Área social ainda não configurada',e)}render();hideAuth();
+      $('#accountLabel').textContent=(user.displayName||user.email||'Conta Google')+' · sincronizado';
+      // Mostra a área principal assim que os dados pessoais chegam; a área social carrega em segundo plano.
+      render();hideAuth();
+      (async()=>{try{
+        await loadSocial();
+        const params=new URLSearchParams(location.search);const sharedProfile=params.get('profile');const sharedPost=params.get('post');
+        if(sharedProfile){let snap=await db().collection('profiles').where('username','==',sharedProfile.toLowerCase()).limit(1).get();if(snap.empty)snap=await db().collection('profiles').doc(sharedProfile).get().then(d=>({empty:!d.exists,docs:d.exists?[d]:[]}));if(!snap.empty){const d=snap.docs[0];viewedProfile={...d.data(),uid:d.id};const canSee=d.id===user.uid||viewedProfile.privacy!=='private'||socialFollowing.includes(d.id);if(canSee){const ps=await db().collection('posts').where('uid','==',d.id).limit(80).get();viewedProfilePosts=ps.docs.map(x=>({id:x.id,...x.data()})).filter(x=>x.visibility==='public'||(x.visibility==='followers'&&socialFollowing.includes(d.id)));}else viewedProfilePosts=[];tab='viewProfile'}}
+        else if(sharedPost){const d=await db().collection('posts').doc(sharedPost).get();if(d.exists){const post={id:d.id,...d.data()};const allowed=post.uid===user.uid||post.visibility==='public'||(post.visibility==='followers'&&socialFollowing.includes(post.uid));if(allowed){if(!socialPosts.some(x=>x.id===post.id))socialPosts.unshift(post);tab='home'}else socialMessage='Esta publicação é privada ou está disponível somente para seguidores aprovados.'}}
+      }catch(e){console.warn('Área social ainda não configurada',e)}
+      if(currentUser?.uid===user.uid)render();})();
     }catch(err){
       cloudReady=false;cloudDoc=null;
       console.error('Falha ao conectar com Firestore:',err);
