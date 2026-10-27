@@ -1,0 +1,9 @@
+OAXO v9 — tela principal alinhada à apresentação oficial da marca.
+
+- Mantém a tela de carregamento e os recursos da versão v7.
+- Atualiza a tela principal para preto absoluto, grafite e prata fria.
+- Atualiza textos do destaque para a proposta OAXO.
+- Ajusta cartões dos módulos para combinar com a referência visual aprovada.
+- Atualiza a chave de cache do service worker.
+
+Não substitui configuração Firebase nem regras de autenticação.
