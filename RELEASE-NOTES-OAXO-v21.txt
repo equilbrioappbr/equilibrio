@@ -1,0 +1,8 @@
+OAXO v21 — Contraste da página Início no tema claro
+
+- Hero da página Início com fundo cinza-álasca médio e texto escuro de alto contraste.
+- Texto “Em todas as áreas da vida” agora em grafite, sem prata clara.
+- Botão “Compartilhar evolução” em preto/grafite com texto branco.
+- “GENTE QUE INSPIRA” e “SUA COMUNIDADE” em grafite, removendo o verde no tema claro.
+- Tema escuro preservado.
+- Cache do service worker atualizado para v21.

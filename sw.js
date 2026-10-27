@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v20-soft-light-theme';
+const CACHE_NAME = 'oaxo-v21-home-light-contrast';
 const APP_PREFIX = 'oaxo-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 
