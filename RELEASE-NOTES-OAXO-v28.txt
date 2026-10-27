@@ -1,0 +1,7 @@
+OAXO v28 — Núcleo Orbital Holográfico
+
+Redesign visual da área Finanças com estética radical futurista: preto profundo, prata metálica e azul-ciano; brilho holográfico; plataforma orbital; navegação compacta; painéis escuros recolhíveis; melhor hierarquia e responsividade.
+
+O Centro Financeiro Orbital continua usando os dados e cálculos existentes em app.js. Não foram alteradas regras Firebase, autenticação, estrutura de dados ou os demais módulos.
+
+Validação: verificação de sintaxe JavaScript e integridade do ZIP. A integração com Firebase não foi testada em uma sessão real de navegador. Cotações ao vivo continuam não integradas.
