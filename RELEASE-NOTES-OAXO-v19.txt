@@ -1,0 +1,9 @@
+OAXO v19 — Tipografia vetorial oficial
+
+- Substitui a palavra OAXO em texto de sistema por um wordmark SVG geométrico desenhado para aproximar a referência enviada.
+- Usa O arredondado, A triangular sem barra horizontal e X diagonal, com espaçamento e traço fino.
+- A marca fica prateada no tema escuro e preto cromado no tema claro.
+- Atualiza a marca na tela de inicialização e no cabeçalho principal.
+- Não altera Firebase, autenticação, regras do Firestore ou dados dos usuários.
+
+Publicação: substituir os arquivos do repositório pelos arquivos deste ZIP e aguardar o GitHub Pages concluir o deploy.
