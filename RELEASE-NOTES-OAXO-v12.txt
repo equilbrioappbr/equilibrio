@@ -1,0 +1,7 @@
+OAXO v12 — abrir perfil ao tocar em um seguidor
+
+- A linha inteira do seguidor permanece clicável e abre o perfil da pessoa.
+- Ao abrir alguém a partir de Seguidores ou Seguindo, o botão Voltar retorna à lista de origem.
+- Atualizada a chave de cache do service worker para carregar os arquivos novos.
+
+Base: OAXO v11. ZIP verificado estruturalmente; não testado no site publicado.

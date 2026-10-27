@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v11-instagram-explore';
+const CACHE_NAME = 'oaxo-v12-follower-profile';
 const APP_PREFIX = 'equilibrio-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 
