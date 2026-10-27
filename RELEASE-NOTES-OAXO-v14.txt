@@ -1,0 +1,9 @@
+OAXO v14 — Correção ao abrir perfil de seguidor
+
+- Corrigida a abertura do perfil pela lista de seguidores e por outros atalhos.
+- A tela do perfil é exibida enquanto os dados são carregados.
+- Corrigida a consulta Firestore: agora busca publicações públicas separadamente e só busca publicações para seguidores quando o usuário atual tem permissão (é o próprio perfil ou já segue a pessoa).
+- Isso evita que uma consulta ampla de publicações privadas faça o Firestore negar a abertura do perfil inteiro.
+- Mantidos autenticação, projeto Firebase, dados locais e funcionalidades existentes.
+
+IMPORTANTE: este pacote altera o código do app, não publica nada automaticamente. Substitua os arquivos do site pelo conteúdo do ZIP. Não apague nem recrie o projeto Firebase.
