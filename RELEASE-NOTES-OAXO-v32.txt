@@ -1,0 +1,16 @@
+OAXO v32 — MONOLITH FINANCE DASHBOARD
+
+Alterações nesta versão:
+- Painel financeiro minimalista preto/prata, sem o visual orbital.
+- Resumo do mês com entradas, saídas, contas pendentes e metas ativas, calculados a partir dos dados já registrados.
+- Navegação financeira em cinco cartões: Diagnóstico, Planejamento, Crédito e dívidas, Movimentações e Mercado.
+- Cada cartão abre somente a respectiva seção; as demais permanecem ocultas.
+- Formulários, IDs de elementos, dados locais, estrutura Firebase e outros módulos foram preservados.
+- Não foi adicionada cotação fictícia nem integração bancária simulada.
+
+Validações executadas:
+- node --check app.js
+- Integridade do arquivo ZIP
+- Conferência dos IDs e dos links de navegação das cinco seções
+
+Limitação: não foi realizado teste visual automatizado em navegador nem teste real de sincronização com Firebase nesta sessão.
