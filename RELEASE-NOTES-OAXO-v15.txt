@@ -1,0 +1,11 @@
+OAXO v15 — Metas financeiras
+
+- Adiciona criação de metas na área Financeiro.
+- Cada meta inclui nome, valor desejado, valor já guardado, categoria e prazo opcional.
+- Mostra progresso percentual, valor restante e barra de progresso em visual preto/grafite/prata.
+- Permite excluir metas.
+- Metas ficam no mesmo armazenamento de dados pessoais da conta, sem publicação social.
+- Mantém os recursos existentes de Finanças, Alimentação, Treinos, autenticação e sincronização.
+- Atualiza o nome do cache do service worker para disponibilizar a nova versão.
+
+Para publicar: extraia o ZIP e substitua os arquivos do repositório GitHub Pages. Não apague nem recrie o Firebase.

@@ -1,0 +1,8 @@
+OAXO v17 — Tela de carregamento exclusiva
+
+- A tela de abertura OAXO permanece visível até o aplicativo definir a tela inicial correta (login ou área autenticada).
+- Removida a frase extra “Carregando OAXO…” que aparecia depois da animação.
+- A tela de abertura permanece por pelo menos 1,4 segundo para evitar um flash muito rápido.
+- Mantidos os recursos da versão 16, incluindo metas financeiras e tipografia da marca.
+
+Publicação: substitua os arquivos do repositório pelos desta versão e aguarde o GitHub Pages atualizar.

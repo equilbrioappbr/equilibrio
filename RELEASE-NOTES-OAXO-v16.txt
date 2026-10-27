@@ -1,0 +1,7 @@
+OAXO v16 — Marca principal e tipografia
+
+- Ajustada a palavra OAXO no cabeçalho principal para usar a tipografia leve, espaçada e com acabamento prateado da tela de abertura.
+- Mantidos símbolo oficial, cores preto/grafite/prata e funcionalidades da v15, incluindo metas financeiras.
+- Atualizado o nome do cache do service worker para forçar a atualização dos arquivos publicados.
+
+Atualização: substituir os arquivos do repositório pelo conteúdo deste ZIP e aguardar o GitHub Pages publicar.
