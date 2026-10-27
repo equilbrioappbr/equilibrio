@@ -1,0 +1,10 @@
+OAXO v24 — Publicar direto pela câmera no celular
+
+- Em telas móveis, tocar em Publicar entra diretamente na experiência de câmera e solicita permissão para usar a câmera do dispositivo.
+- Dentro da experiência de publicação ficam a captura, a alternância entre câmera frontal/traseira, a escolha pela galeria, os filtros OAXO e o formulário de legenda/publicação.
+- Layout móvel reorganizado para priorizar a prévia da câmera e os controles de captura/filtros.
+- No computador, o atalho Publicar fica oculto e a área de criação não é aberta; as demais áreas do aplicativo continuam disponíveis.
+- Atualizado o cache do service worker para a versão v24.
+- Preservados os dados e fluxos existentes de autenticação, Feed, perfis e módulos pessoais.
+
+Observações: a câmera direta depende de HTTPS, suporte do navegador e permissão do usuário. O fluxo foi validado estaticamente; é necessário testar no celular real após publicar.
