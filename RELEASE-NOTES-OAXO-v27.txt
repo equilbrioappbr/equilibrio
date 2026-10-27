@@ -1,0 +1,14 @@
+OAXO v27 — Reorganização real da área Finanças
+
+Base: v26. O Centro Financeiro Orbital e os módulos existentes foram preservados.
+
+Mudanças implementadas na aba Finanças:
+- Navegação compacta por âncoras: Diagnóstico, Metas, Crédito e dívidas, Movimentações e Mercado.
+- Seções longas recolhíveis para não empilhar todos os formulários na tela inicial.
+- O núcleo orbital e o saldo continuam em destaque no topo.
+- Mantidos os formulários e identificadores usados para salvar metas, contratos, movimentações e contas.
+- O cadastro de contratos não gera saídas automaticamente, evitando dupla contagem.
+- A seção Mercado deixa claro que não há cotação ao vivo até conectar uma fonte de dados.
+- Versão do service worker atualizada para reduzir entrega de arquivos antigos em cache.
+
+Atenção: testar no navegador com a conta real após publicação; não altere regras do Firebase nem limpe dados locais sem confirmar a sincronização.

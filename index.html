@@ -191,6 +191,22 @@
     @keyframes financeCoreEnter{0%{opacity:0;transform:scale(.82) rotate(-8deg);filter:blur(4px)}65%{opacity:1;transform:scale(1.025) rotate(1deg);filter:blur(0)}100%{transform:scale(1) rotate(0)}}@keyframes financeOrbitA{from{transform:rotate(0)}to{transform:rotate(360deg)}}@keyframes financeOrbitB{from{transform:rotate(360deg)}to{transform:rotate(0)}}@keyframes financeGlow{0%,100%{opacity:.48;transform:scale(.94)}50%{opacity:1;transform:scale(1.06)}}@keyframes financePulse{0%,100%{opacity:.55;transform:scale(.96)}50%{opacity:1;transform:scale(1.08)}}@keyframes financeDot{0%,100%{opacity:.6;box-shadow:0 0 4px var(--orbit-health)}50%{opacity:1;box-shadow:0 0 14px var(--orbit-health)}}
     @media(max-width:480px){.finance-orbit{padding:15px;border-radius:19px}.finance-orbit-stage{min-height:215px}.finance-orbit-svg{max-height:235px}.finance-orbit-metrics{gap:6px}.finance-orbit-metrics>div{padding:9px 7px}.finance-orbit-metrics small{font-size:8px}.finance-orbit-foot{font-size:9px}}
     @media(prefers-reduced-motion:reduce){.finance-orbit-svg,.finance-ring-a,.finance-ring-b,.finance-ring-c,.finance-core-glow,.finance-core-pulse,.finance-health-dot{animation:none!important}}
+
+    /* OAXO v27 — financial dashboard compact navigation */
+    .finance-hub-nav{display:flex;gap:8px;overflow-x:auto;padding:3px 1px 12px;margin:0 0 4px;scrollbar-width:thin;scroll-snap-type:x proximity}
+    .finance-hub-nav a{flex:0 0 auto;scroll-snap-align:start;text-decoration:none;color:var(--text);font-size:12px;font-weight:750;padding:10px 13px;border:1px solid var(--line);border-radius:999px;background:var(--card);white-space:nowrap}
+    .finance-hub-nav a:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+    .finance-panel{margin:0 0 10px;border:1px solid var(--line);border-radius:17px;background:var(--card);overflow:hidden;scroll-margin-top:18px}
+    .finance-panel>summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 16px;font-weight:800;color:var(--text)}
+    .finance-panel>summary::-webkit-details-marker{display:none}
+    .finance-panel>summary:after{content:'＋';font-size:19px;color:var(--muted);flex:0 0 auto}
+    .finance-panel[open]>summary:after{content:'−'}
+    .finance-panel>summary span{font-size:14px}
+    .finance-panel>summary small{font-size:11px;font-weight:550;color:var(--muted);text-align:right}
+    .finance-panel-body{padding:0 12px 12px;border-top:1px solid var(--line)}
+    .finance-panel-body>.card{margin-top:12px;margin-bottom:0}
+    .finance-panel-body>.card+.card{margin-top:10px}
+    @media(max-width:480px){.finance-hub-nav a{padding:9px 11px;font-size:11px}.finance-panel>summary{padding:13px 12px}.finance-panel>summary small{max-width:45%;line-height:1.35}.finance-panel-body{padding:0 8px 8px}}
 </style>
 
 <style id="oaxo-followers-clickable">

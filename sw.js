@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v26-financas-organizadas';
+const CACHE_NAME = 'oaxo-v27-financas-reorganizadas';
 const APP_PREFIX = 'oaxo-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 
