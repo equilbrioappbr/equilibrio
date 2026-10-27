@@ -1,0 +1,9 @@
+OAXO v11 — Explorar em grade inspirado no Instagram
+
+- Tela Explorar com busca de usuários, grade responsiva de publicações e estados vazios.
+- Tiles de fotos e publicações textuais abrem o perfil do autor.
+- Respeita o conjunto de publicações públicas, do próprio usuário e de perfis seguidos.
+- Mantém o formulário de busca existente e os demais módulos do projeto.
+- CSS responsivo para desktop e celular, em tema escuro/prateado.
+
+Nota: é uma adaptação visual/funcional inspirada no padrão de descoberta do Instagram; não é uma cópia integral. A atualização não foi testada no Firebase/site publicado.
