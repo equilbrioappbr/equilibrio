@@ -1,0 +1,9 @@
+OAXO v10 — Perfil com seguidores clicáveis
+
+- No perfil, os números de Publicações, Seguindo, Seguidores e Nível agora são itens clicáveis.
+- “Seguidores” abre uma lista com as pessoas que seguem a conta, mostrando foto/iniciais, nome e @usuário.
+- Ao tocar em uma pessoa da lista, abre o perfil dela.
+- “Seguindo” abre a área de perfis seguidos.
+- A lista usa os documentos da subcoleção profiles/{uid}/followers do Firestore; só mostra seguidores que o Firebase permite ler.
+
+Instalação: extraia o ZIP e envie os arquivos para a raiz do repositório GitHub Pages, substituindo os arquivos existentes.
