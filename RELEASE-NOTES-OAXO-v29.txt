@@ -1,0 +1,2 @@
+OAXO v29 - MONOLITH FINANCAS
+Redesenho visual da aba Financas: identidade Monolith, preto profundo, prata, ciano discreto, saldo tipografico em destaque, navegacao compacta e secoes recolhiveis. Preserva logica existente, dados e modulos restantes. Nao inclui cotacoes ao vivo.
