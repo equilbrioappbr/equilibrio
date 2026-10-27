@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v21-home-light-contrast';
+const CACHE_NAME = 'oaxo-v22-home-layout-alaska';
 const APP_PREFIX = 'oaxo-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 

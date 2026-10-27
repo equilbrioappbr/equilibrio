@@ -1,0 +1,10 @@
+OAXO v22 — Início simplificado e cores corrigidas
+
+- Removido somente o card de apresentação da página inicial.
+- Stories permanecem no topo, com “GENTE QUE INSPIRA”, “Pessoas e novidades” e acesso “Explorar”.
+- Adicionadas ações compactas “＋ Sua jornada” e “⌕ Encontrar gente” abaixo dos Stories.
+- Mantidos os módulos Finanças, Alimentação e Treinos.
+- Mantida a seção “SUA COMUNIDADE”, o Feed, atualizar, filtros “Para você” e “Seguindo”, estado vazio e “Descobrir pessoas”.
+- Tema claro usa branco Alasca/cinza suave, grafite e prata; removidos verdes dos títulos e tons claros com pouco contraste.
+- Tema escuro preservado.
+- Service worker atualizado para invalidar o cache anterior.

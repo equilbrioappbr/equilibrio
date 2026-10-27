@@ -322,6 +322,31 @@ html[data-theme="light"] .home-feed-heading h3{color:#202327!important}
 html[data-theme="light"] .home-see-all{color:#25292e!important}
 html[data-theme="light"] .home-person-ring{border-color:#7b8188!important}
 html[data-theme="light"] .home-person-ring.followed{border-color:#c0c3c5!important}
+
+    /* OAXO v22 — início sem card de apresentação; tema claro Alasca e identidade grafite/prata */
+    .home-quick-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:-7px 0 20px}
+    .home-quick-action{display:flex;align-items:center;gap:9px;min-width:0;padding:12px 13px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);text-align:left;box-shadow:0 3px 10px #10111408}
+    .home-quick-action span{font-size:23px;line-height:1;color:var(--brand);font-weight:500}
+    .home-quick-action strong{font-size:12px;font-weight:750;white-space:nowrap}
+    .home-people-title .home-eyebrow,.home-feed-heading .home-eyebrow{color:var(--text)!important;opacity:1!important}
+    html[data-theme="light"] .home-people-title .home-eyebrow,html[data-theme="light"] .home-feed-heading .home-eyebrow{color:#45484d!important}
+    html[data-theme="light"] .home-people-title h3,html[data-theme="light"] .home-feed-heading h3{color:#202327!important}
+    html[data-theme="light"] .home-people{border-color:#d0d0cd!important}
+    html[data-theme="light"] .home-person-ring{border-color:#aeb0b3!important}
+    html[data-theme="light"] .home-person-ring.own{border-color:#55595f!important}
+    html[data-theme="light"] .home-person-plus{background:#e3e3e0!important;color:#24262a!important}
+    html[data-theme="light"] .home-quick-action{background:#e9e9e6!important;border-color:#d0d0cd!important;color:#202327!important;box-shadow:none!important}
+    html[data-theme="light"] .home-quick-action span{color:#292c31!important}
+    html[data-theme="light"] .home-module{background:#e9e9e6!important;border-color:#d0d0cd!important;color:#202327!important;box-shadow:none!important}
+    html[data-theme="light"] .home-module-icon{background:#dededb!important;color:#292c31!important}
+    html[data-theme="light"] .home-feed-switch{background:#e9e9e6!important;border-color:#d0d0cd!important}
+    html[data-theme="light"] .home-feed-switch button{color:#55585d!important}
+    html[data-theme="light"] .home-feed-switch button.active{background:#d6d7d5!important;color:#202327!important}
+    html[data-theme="light"] .home-empty{background:#e9e9e6!important;border-color:#c6c7c4!important;color:#202327!important}
+    html[data-theme="light"] .home-empty p{color:#55585d!important}
+    html[data-theme="light"] .home-empty>span{background:#d9dad7!important;color:#292c31!important}
+    html[data-theme="light"] .home-empty .btn.primary{background:#24262a!important;color:#fff!important;border-color:#24262a!important}
+    @media(max-width:390px){.home-quick-actions{gap:7px}.home-quick-action{padding:11px 9px;gap:6px}.home-quick-action strong{font-size:11px}}
 </style>
 
 <svg aria-hidden="true" width="0" height="0" style="position:absolute;overflow:hidden"><defs><linearGradient id="oaxoBlackChrome" x1="0" y1="0" x2="0.8" y2="1"><stop offset="0%" stop-color="#000000"/><stop offset="32%" stop-color="#3b3d42"/><stop offset="52%" stop-color="#050505"/><stop offset="74%" stop-color="#55585f"/><stop offset="100%" stop-color="#050505"/></linearGradient></defs></svg>
