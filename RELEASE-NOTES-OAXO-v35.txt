@@ -1,0 +1,10 @@
+OAXO v35 — FINANCEIRO MINIMALISTA
+
+- Redesenho visual do financeiro com tipografia geométrica e espaçada inspirada no manual visual OAXO.
+- Navegação compacta em linhas, sem grandes cards de botão.
+- Painel de saldo sem caixa pesada; métricas compactas e separadas por linhas finas.
+- Redução de bordas, sombras, brilhos e superfícies escuras maciças.
+- Mantidas as páginas exclusivas do financeiro e a lógica da aplicação.
+- Alteração concentrada em CSS no index.html.
+
+Validação: sintaxe JavaScript e integridade do ZIP; não houve teste visual em navegador nem teste de sincronização Firebase.
