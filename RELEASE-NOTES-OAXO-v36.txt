@@ -1,0 +1,9 @@
+OAXO v36 — CONTRASTE TIPOGRÁFICO
+
+- Mantido o layout minimalista aprovado na v35.
+- Aumentado o contraste dos títulos, valores, rótulos, descrições, navegação e placeholders.
+- Prata clara e branco suave nos textos principais; cinzas mais claros nos textos secundários; ciano discreto nos indicadores.
+- Regras específicas para tema claro, sem alterar o restante do aplicativo.
+- Nenhuma alteração na lógica financeira, autenticação ou Firebase.
+
+Validação: ZIP íntegro e sintaxe JavaScript verificada. Não houve teste visual em navegador.
