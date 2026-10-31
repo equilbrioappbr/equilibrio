@@ -1,0 +1,6 @@
+OAXO v37 — Correção dos botões de ação nas páginas financeiras.
+
+- Preserva o layout minimalista da v35 e o contraste da v36.
+- Corrige dimensões, alinhamento, espaçamento e quebra dos botões Editar/Excluir/ações.
+- Regras limitadas ao conteúdo financeiro; não altera lógica, autenticação ou Firebase.
+- Ainda requer teste visual no navegador e validação funcional com dados reais.

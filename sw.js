@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v27-financas-reorganizadas';
+const CACHE_NAME = 'oaxo-v39-market-real-delay';
 const APP_PREFIX = 'oaxo-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 

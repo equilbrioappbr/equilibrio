@@ -1,0 +1,14 @@
+OAXO v39 — OAXO MARKET
+
+- Substitui a área Mercado sem conexão por painel de mercado com arquitetura pronta para cotações reais com atraso.
+- Adiciona pesquisa de ativos, cards de cotações, status da fonte e horário da consulta.
+- Adiciona carteira pessoal com quantidade, preço médio, valor de mercado e resultado estimado.
+- Carteira é sincronizada no payload privado já existente do Firestore; regras Firestore não foram alteradas.
+- Adiciona Cloudflare Worker em cloudflare-market/ para intermediar brapi e manter token fora do navegador.
+- Worker limita símbolos, usa allowlist de origens e cache de 15 minutos.
+- Atualiza nome do cache PWA para forçar atualização dos arquivos da aplicação.
+
+ATIVAÇÃO EXTERNA NECESSÁRIA:
+Consulte CONFIGURAR-OAXO-MARKET.txt. É necessário publicar o Worker gratuito, cadastrar BRAPI_TOKEN como Secret no Cloudflare e inserir a URL real do Worker em MARKET_API_BASE no app.js. Sem isso, o app não exibirá cotações e mostrará a necessidade de configuração.
+
+Firebase Blaze não é necessário nem deve ser habilitado. Não foi alterado firestore.rules.

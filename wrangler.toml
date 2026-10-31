@@ -1,0 +1,7 @@
+name = "oaxo-market-api"
+main = "worker.js"
+compatibility_date = "2026-10-31"
+workers_dev = true
+
+[vars]
+# Não coloque tokens neste arquivo. Configure BRAPI_TOKEN com `wrangler secret put BRAPI_TOKEN`.

@@ -1,0 +1,41 @@
+OAXO MARKET v39 — ATUALIZAÇÃO COM COTAÇÕES REAIS (COM ATRASO)
+
+O QUE ESTA VERSÃO ENTREGA
+- Novo painel OAXO MARKET com identidade grafite, prata e ciano.
+- Consulta de ativos brasileiros pela brapi (quando o Worker estiver configurado).
+- Carteira pessoal: código, quantidade e preço médio, com cálculo de valor atual e resultado quando houver cotação.
+- Carteira guardada no documento privado appData/main do próprio usuário no Firestore, dentro do payload já sincronizado pelo app.
+- Nenhuma chave de API incluída no frontend ou no ZIP.
+- Worker separado em cloudflare-market/worker.js, com segredo BRAPI_TOKEN, allowlist de origens e cache de 15 minutos.
+- Sem Firebase Blaze, Cloud Functions ou novos serviços Firebase pagos.
+
+IMPORTANTE: A CONEXÃO AINDA PRECISA SER ATIVADA
+Este ZIP não consegue publicar serviços na conta Cloudflare nem criar uma chave brapi por você. Por segurança, não inventei token ou endereço de Worker. Até configurar os passos abaixo, o painel mostrará que o endpoint não está configurado e NÃO exibirá cotações fictícias.
+
+PASSO A PASSO PARA ATIVAR
+1. Crie uma conta gratuita em https://dash.cloudflare.com/ e abra Workers & Pages.
+2. Crie um Worker chamado oaxo-market-api.
+3. Publique o conteúdo de cloudflare-market/worker.js como código do Worker (ou use Wrangler com o arquivo wrangler.toml).
+4. Crie/acesse sua conta brapi em https://brapi.dev/ e obtenha o token do plano que você escolher. Confira os limites e o atraso vigentes diretamente na brapi.
+5. No Cloudflare, abra Settings > Variables and Secrets > Add > Secret. Nome: BRAPI_TOKEN. Valor: seu token brapi. Salve e faça deploy. Nunca envie o token para o GitHub, app.js ou conversas.
+6. O endereço final será parecido com https://oaxo-market-api.SUA-CONTA.workers.dev
+7. No app.js, procure MARKET_API_BASE e substitua https://SEU-WORKER.workers.dev pelo endereço real do Worker. Não inclua /quotes no final.
+8. Publique os arquivos da raiz no GitHub Pages. A pasta cloudflare-market é material de implantação do Worker; pode ficar no repositório, pois não contém segredo.
+
+TESTE
+Abra https://SEU-WORKER.workers.dev/quotes?symbols=PETR4,VALE3 no navegador. Deve retornar JSON com source=brapi e results. Se retornar erro sobre BRAPI_TOKEN, configure o segredo. Se retornar erro do provedor, confira token, limites e disponibilidade da brapi.
+Depois abra Finanças > OAXO MARKET e clique em Atualizar.
+
+SEGURANÇA E LIMITAÇÕES
+- A rota serve apenas cotações públicas; dados de carteira e dados pessoais não são enviados ao Worker.
+- A chave brapi é lida apenas do secret BRAPI_TOKEN no backend.
+- CORS limita origens de navegador conhecidas, mas CORS não é autenticação nem proteção contra chamadas diretas. O endpoint contém somente dados públicos e o cache reduz o consumo da API; monitore uso/limites do Cloudflare e da brapi.
+- O cache é de 15 minutos. A própria brapi pode entregar dados com atraso maior. O horário exibido é o momento em que o Worker consultou a fonte, não uma promessa de horário de negociação.
+- A lista inicial cobre ações/ETFs brasileiros. Não foram simulados dólar, cripto, ouro ou índices sem uma fonte validada.
+- Valores da carteira são para acompanhamento informativo; não há execução de ordens, integração com corretora ou recomendação de investimento.
+
+PRESERVAÇÃO
+- Firebase Authentication e configuração Firebase existentes foram mantidos.
+- firestore.rules não foi alterado.
+- Não habilite Firebase Blaze.
+- Faça backup dos dados antes de substituir arquivos e teste login, sincronização, finanças, alimentação, treinos e rede social após publicar.
