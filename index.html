@@ -485,6 +485,140 @@ html[data-theme="light"] .finance-panel-body label { color:#424B56!important; }
 html[data-theme="light"] .finance-panel-body input,html[data-theme="light"] .finance-panel-body select,html[data-theme="light"] .finance-panel-body textarea { color:#171B21!important; }
 html[data-theme="light"] .finance-panel-body input::placeholder,html[data-theme="light"] .finance-panel-body textarea::placeholder { color:#69727D!important; opacity:1!important; }
 </style>
+
+
+<style id="oaxo-finance-actions-v37">
+/* v37 — corrige controles compactos nas páginas financeiras sem alterar o layout */
+.finance-panel-body button,
+.finance-panel-body .btn {
+  box-sizing:border-box!important;
+  width:auto!important;
+  max-width:100%!important;
+  min-width:0!important;
+  min-height:32px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  vertical-align:middle!important;
+  white-space:normal!important;
+  line-height:1.25!important;
+  text-align:center!important;
+  flex:0 0 auto!important;
+  padding:7px 11px!important;
+  font-size:11px!important;
+  letter-spacing:.025em!important;
+  border-radius:5px!important;
+  overflow:visible!important;
+}
+.finance-panel-body .btn.smallbtn,
+.finance-panel-body button.smallbtn {
+  min-height:30px!important;
+  padding:6px 10px!important;
+  font-size:10px!important;
+  font-weight:600!important;
+  white-space:nowrap!important;
+}
+.finance-panel-body .bill-actions {
+  display:flex!important;
+  flex-wrap:wrap!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:6px!important;
+  max-width:100%!important;
+}
+.finance-panel-body [data-edit-bill],
+.finance-panel-body [data-remove-bill],
+.finance-panel-body [data-toggle-bill],
+.finance-panel-body [data-delete],
+.finance-panel-body [data-delete-finance-goal],
+.finance-panel-body [data-remove-finance-contract] {
+  width:auto!important;
+  min-width:58px!important;
+  min-height:30px!important;
+  padding:6px 10px!important;
+  border:1px solid #596574!important;
+  background:transparent!important;
+  color:#E8EDF3!important;
+  border-radius:5px!important;
+  font-size:10px!important;
+  font-weight:600!important;
+  letter-spacing:.02em!important;
+  white-space:nowrap!important;
+}
+.finance-panel-body [data-remove-bill],
+.finance-panel-body [data-delete],
+.finance-panel-body [data-delete-finance-goal],
+.finance-panel-body [data-remove-finance-contract] {
+  border-color:#76565b!important;
+  color:#F0C5C9!important;
+}
+.finance-panel-body [data-edit-bill]:hover,
+.finance-panel-body [data-toggle-bill]:hover {background:#FFFFFF0D!important;border-color:#AAB8C8!important}
+.finance-panel-body [data-remove-bill]:hover,
+.finance-panel-body [data-delete]:hover,
+.finance-panel-body [data-delete-finance-goal]:hover,
+.finance-panel-body [data-remove-finance-contract]:hover {background:#A944521A!important;border-color:#C77B84!important}
+.finance-panel-body .item {min-width:0!important;gap:10px!important;}
+.finance-panel-body .item>div:last-child {min-width:0!important;max-width:100%!important;}
+.finance-panel-body .item>div:last-child>button {margin-top:5px!important;}
+html[data-theme="light"] .finance-panel-body [data-edit-bill],
+html[data-theme="light"] .finance-panel-body [data-toggle-bill] {color:#29323D!important;border-color:#AAB3BE!important;}
+html[data-theme="light"] .finance-panel-body [data-remove-bill],
+html[data-theme="light"] .finance-panel-body [data-delete],
+html[data-theme="light"] .finance-panel-body [data-delete-finance-goal],
+html[data-theme="light"] .finance-panel-body [data-remove-finance-contract] {color:#8B343D!important;border-color:#D4A5AA!important;}
+@media(max-width:680px){
+ .finance-panel-body .bill-actions{justify-content:flex-start!important;}
+ .finance-panel-body .item{align-items:flex-start!important;}
+ .finance-panel-body .item>div:last-child{text-align:left!important;}
+ .finance-panel-body .btn.smallbtn,.finance-panel-body button.smallbtn{font-size:10px!important;padding:6px 8px!important;}
+}
+</style>
+
+
+<style id="oaxo-v38-bill-actions-layout">
+/* v38: estrutura dedicada para ações das contas; evita botões comprimidos em quadrados */
+.finance-panel-body .bill-item {
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr)!important;
+  align-items:start!important;
+  gap:12px!important;
+  width:100%!important;
+}
+.finance-panel-body .bill-item .item-main { min-width:0!important; width:100%!important; }
+.finance-panel-body .bill-item .bill-actions {
+  display:flex!important;
+  flex-direction:row!important;
+  flex-wrap:wrap!important;
+  justify-content:flex-start!important;
+  align-items:center!important;
+  gap:8px!important;
+  width:100%!important;
+  min-width:0!important;
+}
+.finance-panel-body .bill-item .bill-actions button,
+.finance-panel-body .bill-item .bill-actions .btn,
+.finance-panel-body .bill-item .bill-actions .smallbtn {
+  display:inline-flex!important;
+  flex:0 0 auto!important;
+  width:auto!important;
+  min-width:max-content!important;
+  max-width:100%!important;
+  min-height:34px!important;
+  padding:7px 12px!important;
+  white-space:nowrap!important;
+  word-break:normal!important;
+  overflow-wrap:normal!important;
+  line-height:1.2!important;
+  font-size:11px!important;
+  text-align:center!important;
+}
+@media(max-width:420px){
+ .finance-panel-body .bill-item .bill-actions { gap:7px!important; }
+ .finance-panel-body .bill-item .bill-actions button { padding:7px 9px!important; font-size:10px!important; }
+}
+</style>
+
 </head>
 <body>
 <div id="oaxoSplash" role="status" aria-label="Carregando OAXO">
