@@ -17,3 +17,12 @@ Extrair e substituir os arquivos na raiz do repositório. Publicar juntos index.
 
 VALIDAÇÃO
 JavaScript validado com node --check; manifesto validado como JSON; ZIP validado após empacotamento. A validação funcional do Firebase deve ser feita após publicação no ambiente real.
+
+
+V.51 — Foto de perfil sem URL
+- Removido o campo de URL pública da foto de perfil.
+- Incluído seletor de imagem compatível com câmera/galeria em dispositivos móveis e arquivos no computador.
+- Prévia local antes de salvar; imagem centralizada, quadrada, redimensionada para 320×320 e comprimida em JPEG.
+- Foto armazenada como imagem compactada no documento do próprio perfil Firestore, sincronizando entre dispositivos sem Firebase Storage.
+- Limites: arquivo original até 12 MB; imagem final limitada a 180 KB para preservar o limite do documento Firestore.
+- Mantidos os demais dados, privacidade e fluxo de atualização do perfil.

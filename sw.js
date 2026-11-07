@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v50-profile-minimal';
+const CACHE_NAME = 'oaxo-v51-profile-photo-upload';
 const APP_PREFIX = 'oaxo-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
