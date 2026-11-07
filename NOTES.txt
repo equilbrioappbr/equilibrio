@@ -32,3 +32,15 @@ OAXO v.52 — Legibilidade do modo claro
 - Ajustada a paleta do modo claro para fundo suave, superfícies brancas, texto escuro e cinzas secundários com contraste maior.
 - Melhorada a leitura de títulos, descrições, rótulos, campos, botões, abas e informações secundárias.
 - Preservados o layout, a navegação, os módulos e os painéis escuros de identidade (finanças, treino e áreas especiais). Nenhum card ou componente novo foi adicionado.
+
+
+OAXO v.53 — Correção global do modo claro
+- Corrigida a origem da baixa legibilidade: normalização global das cores de texto, campos, botões e superfícies, inclusive elementos criados dinamicamente pelos módulos.
+- Forçado color-scheme: light no documento e nos controles nativos, evitando que iOS/PWA aplique aparência escura do sistema aos campos.
+- Preservadas superfícies intencionalmente escuras da identidade OAXO com texto claro.
+- Movido o CSS do seletor de foto para dentro do documento HTML.
+- Cache do Service Worker atualizado para v.53, removendo o cache antigo do aplicativo instalado na ativação.
+- Nenhum card, módulo ou elemento visual novo adicionado.
+
+PUBLICAÇÃO v.53
+Substituir os arquivos do pacote na raiz do repositório e publicar index.html, app.js e sw.js juntos. No iPhone, fechar o OAXO instalado completamente e abrir novamente após a publicação para o Service Worker atualizar.

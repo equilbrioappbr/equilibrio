@@ -946,8 +946,31 @@ html[data-theme="light"] .fitness-week-overview h3,html[data-theme="light"] .fin
 html[data-theme="light"] .finance-orbit-balance strong{color:#f4f6f8!important}
 </style>
 
+
+<style id="oaxo-v53-light-global-fix">
+/* v53: normalização global do tema claro. Corrige cores fixas herdadas por módulos e PWA/iOS. */
+html[data-theme="light"]{color-scheme:light!important;--bg:#f4f6f8!important;--card:#ffffff!important;--text:#171a20!important;--muted:#4b5563!important;--line:#cbd2da!important;--brand:#171a20!important;--brand2:#e5e9ee!important;--danger:#a52232!important;--shadow:0 4px 16px #1822300b!important}
+html[data-theme="light"] body{background:#f4f6f8!important;color:#171a20!important;color-scheme:light!important}
+/* Neutraliza cores de texto hard-coded em qualquer módulo, inclusive conteúdo criado via JavaScript. */
+html[data-theme="light"] body :where(*){color:#202630!important;text-shadow:none}
+html[data-theme="light"] body :where(h1,h2,h3,h4,h5,h6,strong,b,summary,label,legend,th){color:#171a20!important}
+html[data-theme="light"] body :where(p,small,em,.muted,.empty,.footnote,.account-label,.field label,.item small,.quick-food-help){color:#4b5563!important;opacity:1!important}
+html[data-theme="light"] body :where(a,.privacy-link,.oaxo-link-button){color:#155d78!important}
+html[data-theme="light"] body :where(input,select,textarea){background:#fff!important;color:#171a20!important;border-color:#b9c3ce!important;caret-color:#171a20!important;-webkit-text-fill-color:#171a20!important}
+html[data-theme="light"] body :where(input,textarea)::placeholder{color:#66717e!important;opacity:1!important;-webkit-text-fill-color:#66717e!important}
+html[data-theme="light"] body :where(button,.btn,.tab,.google-btn){color:#202630!important}
+html[data-theme="light"] body :where(.card,.auth-card,.privacy-dialog-card,.nutrition-modal,.calendar-card,.item,.notice,.home-module,.home-quick-action,.home-feed-switch,.home-empty,.oaxo-focus-card,.oaxo-tools-disclosure,.oaxo-unlock-note,.oaxo-recommendation,.oaxo-greeting-mark,.oaxo-focus-choices button,.oaxo-tools-grid button,.fitness-command-strip>div,.fitness-plan-day,.account-section,.badge-readme,.social-profile-card,.social-profile-stats>div){background-color:#fff!important;color:#202630!important;border-color:#d2d8df!important;box-shadow:none!important}
+html[data-theme="light"] body :where(.tab.active,.social-tabs .tab.active,.home-feed-switch button.active,.food-page-nav button.active){background:#202630!important;color:#fff!important;border-color:#202630!important}
+html[data-theme="light"] body :where(.btn.primary,.primary,button.primary,.home-create,.oaxo-rec-action){background:#202630!important;color:#fff!important;border-color:#202630!important}
+/* Superfícies intencionalmente escuras da identidade OAXO mantêm texto claro no modo claro. */
+html[data-theme="light"] body :where(.account-hero,.social-welcome,.fitness-hero,.fitness-week-overview,.finance-orbit,.game-card,.goal-box,.monthly-collectible,.oaxo-camera-stage){color:#f4f6f8!important}
+html[data-theme="light"] body :where(.account-hero,.social-welcome,.fitness-hero,.fitness-week-overview,.finance-orbit,.game-card,.goal-box,.monthly-collectible,.oaxo-camera-stage) :where(*){color:#f4f6f8!important;text-shadow:none!important}
+html[data-theme="light"] body :where(.fitness-hero small,.fitness-eyebrow,.fitness-hero-mark span){color:#83d9ff!important}
+html[data-theme="light"] :where(.status-paid){color:#17683a!important}html[data-theme="light"] :where(.status-pending){color:#805900!important}html[data-theme="light"] :where(.status-overdue,.auth-error){color:#a52232!important}
+html[data-theme="light"] :where(.badge-influencer){color:#c02c68!important}html[data-theme="light"] :where(.badge-rare){color:#8a5b16!important}html[data-theme="light"] :where(.badge-tester){color:#176bb5!important}
+html[data-theme="light"] .brand .logo.oaxo-emblem{background:linear-gradient(145deg,#fff,#e6e8ed)!important}
+@media(prefers-color-scheme:dark){html[data-theme="light"]{color-scheme:light!important}html[data-theme="light"] body{color-scheme:light!important}}
+</style>
+
 </body>
 </html>
-<style>
-.account-photo-picker{display:flex;align-items:center;gap:14px;padding:12px 0}.account-photo-picker #accountPhotoPreview{flex:0 0 auto}.account-photo-controls{display:flex;flex-direction:column;align-items:flex-start;gap:7px}.account-photo-controls .btn{cursor:pointer}.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
-</style>
