@@ -1,26 +1,19 @@
-OAXO v.49 — INSTALAÇÃO COMO APLICATIVO (PWA)
+OAXO v.50 — PERFIL MINIMALISTA
 
 OBJETIVO
-Ajustar a instalação do OAXO para abrir em modo aplicativo independente, sem a interface normal do navegador, quando instalado corretamente.
+Simplificar a área Meu Perfil, reduzindo a quantidade de blocos visíveis e organizando as funções em seções expansíveis.
 
 ALTERAÇÕES
-1. Manifesto PWA com display standalone, identificação OAXO, cores de abertura e ícones any/maskable separados.
-2. Ícone Apple Touch 180x180 dedicado para instalação na Tela de Início do iPhone.
-3. Metadados iOS para web app, título e barra de status preta/translúcida.
-4. Metadado Android para modo aplicativo e favicon de alta resolução.
-5. Área segura superior respeitando o recorte/notch do iPhone em modo instalado.
-6. Cor da barra do navegador/sistema acompanha o tema claro ou escuro escolhido no OAXO.
-7. Instruções do botão Instalar corrigidas para OAXO, incluindo a opção “Abrir como App da Web” no iPhone quando disponível.
-8. Service Worker atualizado para v.49 e cache dos ícones de instalação.
-
-IMPORTANTE
-- No iPhone, abrir o site no Safari > Compartilhar > Adicionar à Tela de Início. Nas opções, ativar “Abrir como App da Web”, se exibido. Abrir depois pelo ícone criado.
-- No Android, usar Chrome > menu ⋮ > Instalar app (ou Adicionar à tela inicial) e abrir pelo ícone instalado.
-- Se o atalho antigo continuar abrindo como navegador, removê-lo da Tela de Início e instalar novamente após publicar esta versão.
-- A instalação PWA não remove automaticamente todos os elementos do sistema operacional (como indicador de gesto ou status bar); o modo standalone remove a interface de abas/endereço do navegador.
+1. Cabeçalho compacto com foto, nome, e-mail, usuário, privacidade e indicador de conta conectada.
+2. Dados do perfil em uma seção recolhida por padrão: nome, usuário, foto, biografia e visibilidade.
+3. Segurança e acesso em seção própria, com provedor, e-mail, data de criação, atalho da Conta Google e saída da conta.
+4. Dados e privacidade agrupados com exportação JSON e política de privacidade.
+5. Selos OAXO agrupados em seção própria, preservando atribuição por UID e explicação dos selos.
+6. Estilo mais leve e compacto, com menos cartões, bordas, textos e elementos simultâneos.
+7. Preservadas as integrações existentes, IDs de formulário, eventos, dados do Firebase e navegação.
 
 PUBLICAÇÃO
-Extrair e substituir os arquivos na raiz do repositório. Este pacote contém 9 arquivos, incluindo apple-touch-icon.png. Publicar juntos index.html, manifest.json, app.js e sw.js.
+Extrair e substituir os arquivos na raiz do repositório. Publicar juntos index.html, app.js e sw.js; manter manifest.json, ícones e firestore.rules do pacote.
 
 VALIDAÇÃO
-Validar sintaxe JavaScript, JSON do manifesto e integridade do ZIP antes da publicação. A instalação efetiva deve ser testada em iPhone e Android após deploy HTTPS.
+JavaScript validado com node --check; manifesto validado como JSON; ZIP validado após empacotamento. A validação funcional do Firebase deve ser feita após publicação no ambiente real.
