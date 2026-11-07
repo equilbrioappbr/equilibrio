@@ -141,7 +141,6 @@
     .home-hero-orbit,.home-hero-orbit:before{border-color:#d7dbe31c!important;box-shadow:0 0 0 25px #d7dbe308,0 0 0 52px #d7dbe305!important}.home-hero-orbit:after{background:radial-gradient(circle at 35% 30%,#d7dbe322,transparent 65%)!important}.home-hero-orbit span{color:#d9dde4!important;text-shadow:0 0 32px #d9dde433!important}
     .home-module{background:linear-gradient(145deg,#111317,#0b0c0e)!important;border-color:#30343b!important;box-shadow:inset 0 1px #ffffff06,0 7px 18px #0005!important}.home-module-icon,.home-module:nth-child(1) .home-module-icon,.home-module:nth-child(2) .home-module-icon,.home-module:nth-child(3) .home-module-icon{background:linear-gradient(145deg,#292d34,#17191e)!important;color:#d4d8df!important;border:1px solid #414650!important}
     .home-feed-switch button.active,.tab.active{background:linear-gradient(145deg,#2b2e35,#191b20)!important;color:#f2f3f5!important;border-color:#aeb4bf!important}.card{background:linear-gradient(145deg,#111317,#0b0c0e)!important;border-color:#2d3037!important}
-    .mobile-social-nav{background:#090a0c!important;border-top-color:#333740!important}.mobile-social-nav button.active,.mobile-social-nav button.active small{color:#e0e3e9!important}
     .auth-card{background:linear-gradient(145deg,#111317,#08090b)!important;border-color:#414650!important;box-shadow:0 24px 70px #000b,inset 0 1px #ffffff0a!important}
     @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
@@ -736,17 +735,17 @@ html[data-theme="light"] .move-day.is-active>span{background:#dff4f8;border-colo
     <p style="font-size:12px;line-height:1.5;margin-top:-6px">A leitura do aviso é opcional: <button class="privacy-link" type="button" id="openPrivacy">Ler Aviso de Privacidade</button>.</p>
     <button class="google-btn" id="googleLogin" type="button" disabled><span aria-hidden="true" style="font-size:18px;font-weight:800">G</span> Entrar com Google</button>
     <p id="authStatus" class="auth-error" role="status"></p>
-    <p class="muted" style="font-size:11px;margin-top:16px">Mantenha backups JSON regularmente. A sincronização exige conexão com a internet; mantenha os dados locais até confirmar que tudo está sincronizado.</p>
+    <p class="muted" style="font-size:11px;margin-top:16px">A sincronização exige conexão com a internet. Mantenha sua conta Google protegida para preservar o acesso aos registros.</p>
   </div>
 </section>
 <div id="privacyDialog" class="privacy-dialog hidden" role="dialog" aria-modal="true" aria-labelledby="privacyTitle">
   <div class="privacy-dialog-card"><div class="section-title"><h3 id="privacyTitle">Aviso de Privacidade — OAXO</h3><button class="btn smallbtn" id="closePrivacy" type="button">Fechar</button></div>
     <p><strong>1. Dados da conta.</strong> Ao entrar com Google, o Firebase Authentication processa informações necessárias à autenticação, como identificador da conta, nome, e-mail e foto de perfil, conforme as permissões concedidas e as políticas do Google/Firebase.</p>
     <p><strong>2. Registros pessoais.</strong> Seus lançamentos financeiros, contas, alimentos, lista e histórico de compras, pesos e treinos são guardados localmente e sincronizados com o Cloud Firestore associado ao projeto Equilíbrio. As regras do banco limitam leitura e gravação ao usuário autenticado cujo UID corresponde ao caminho dos dados. Os dados não são criptografados de ponta a ponta.</p>
-    <p><strong>3. Sincronização e backups.</strong> A sincronização depende de conexão, configuração do Firebase e regras de acesso válidas. Exporte backups JSON periodicamente e mantenha-os em local seguro. Um backup contém dados pessoais e não deve ser compartilhado publicamente. Não apague os dados locais até confirmar a sincronização.</p>
+    <p><strong>3. Sincronização e backups.</strong> A sincronização depende de conexão, configuração do Firebase e regras de acesso válidas. Mantenha sua conta Google protegida e confirme que a sincronização foi concluída antes de trocar de aparelho.</p>
     <p><strong>4. Serviços externos.</strong> A autenticação é fornecida pelo Firebase/Google. A consulta de código de barras pode enviar o código pesquisado à base pública Open Food Facts; os botões de consulta GS1 abrem o site da GS1 Brasil. Esses serviços têm suas próprias políticas de privacidade.</p>
     <p><strong>5. Segurança e finalidade.</strong> O aplicativo é uma ferramenta pessoal de organização, não um serviço bancário, diagnóstico médico ou aconselhamento profissional. Proteja a conta Google e saia da sessão em dispositivos compartilhados. O acesso aos dados depende da autenticação e das regras do Firebase.</p>
-    <p><strong>6. Controle.</strong> Você pode sair da conta pelo botão “Sair”. Sair não apaga os registros locais. Para apagar registros, use as funções disponíveis no app ou limpe os dados locais do navegador, considerando que a ação pode ser irreversível sem backup.</p>
+    <p><strong>6. Controle.</strong> Você pode sair da conta pelo botão “Sair”. Sair não apaga os registros locais. Para apagar registros, use as funções disponíveis no app ou limpe os dados locais do navegador, considerando que a ação pode ser irreversível.</p>
     <button class="btn primary" id="privacyOk" type="button">Entendi</button>
   </div>
 </div>
@@ -755,7 +754,7 @@ html[data-theme="light"] .move-day.is-active>span{background:#dff4f8;border-colo
   <nav class="tabs oaxo-main-nav" aria-label="Navegação principal"><button class="tab active" data-tab="home"><span class="nav-icon">⌂</span>Início</button><button class="tab" data-tab="finance"><span class="nav-icon">↗</span>Finanças</button><button class="tab" data-tab="food"><span class="nav-icon">◉</span>Alimentação</button><button class="tab" data-tab="fitness"><span class="nav-icon">⌁</span>Treinos</button></nav>
   <main id="app"></main>
   <nav class="mobile-social-nav oaxo-main-nav" aria-label="Navegação principal"><button data-tab="home" aria-label="Início"><span class="nav-icon">⌂</span><small>Início</small></button><button data-tab="finance" aria-label="Finanças"><span class="nav-icon">↗</span><small>Finanças</small></button><button data-tab="food" aria-label="Alimentação"><span class="nav-icon">◉</span><small>Alimentação</small></button><button data-tab="fitness" aria-label="Treinos"><span class="nav-icon">⌁</span><small>Treinos</small></button><button data-tab="account" aria-label="Meu perfil"><span class="nav-icon">◉</span><small>Perfil</small></button></nav>
-  <div class="bottom"><div class="bottom-actions"><button class="btn primary" id="installBtn" type="button">＋ Instalar app</button><button class="btn" id="exportBtn">⬇ Backup</button><button class="btn" id="importBtn">⬆ Importar</button><button class="btn" id="shareAppBtn" type="button">↗ Enviar</button><button class="about-link" data-tab="about" type="button">Políticas de LGPD</button><input id="importFile" type="file" accept="application/json,.json" class="hidden"></div></div>
+  <div class="bottom"><div class="bottom-actions"><button class="btn primary" id="installBtn" type="button">＋ Instalar app</button><button class="about-link" data-tab="about" type="button">Políticas de LGPD</button></div></div>
 </div>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth-compat.js"></script>
@@ -974,3 +973,21 @@ html[data-theme="light"] .brand .logo.oaxo-emblem{background:linear-gradient(145
 
 </body>
 </html>
+
+<style id="oaxo-v54-mobile-nav-contrast">
+/* Barra inferior: contraste explícito em iOS e Android, nos dois temas. */
+@media(max-width:680px){
+  .mobile-social-nav{background:#f4f5f7!important;background-color:#f4f5f7!important;border-top:1px solid #c7cbd2!important;box-shadow:0 -5px 22px #10182820!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+  .mobile-social-nav button,.mobile-social-nav button small,.mobile-social-nav button .nav-icon{color:#555b66!important;opacity:1!important}
+  .mobile-social-nav button.active{background:#e1e4e9!important;color:#101216!important;border-radius:12px!important}
+  .mobile-social-nav button.active small,.mobile-social-nav button.active .nav-icon{color:#101216!important;font-weight:850!important;opacity:1!important}
+  .mobile-social-nav button.active:before{background:#101216!important;width:26px!important;height:3px!important;top:-5px!important}
+  html[data-theme="dark"] .mobile-social-nav{background:#101216!important;background-color:#101216!important;border-top-color:#343943!important;box-shadow:0 -5px 22px #0008!important}
+  html[data-theme="dark"] .mobile-social-nav button,html[data-theme="dark"] .mobile-social-nav button small,html[data-theme="dark"] .mobile-social-nav button .nav-icon{color:#b8bec9!important}
+  html[data-theme="dark"] .mobile-social-nav button.active{background:#292e37!important;color:#fff!important}
+  html[data-theme="dark"] .mobile-social-nav button.active small,html[data-theme="dark"] .mobile-social-nav button.active .nav-icon{color:#fff!important}
+  html[data-theme="dark"] .mobile-social-nav button.active:before{background:#e2e6ed!important}
+}
+/* O botão de instalação não aparece dentro do app já instalado. */
+html.oaxo-is-installed #installBtn{display:none!important}
+</style>

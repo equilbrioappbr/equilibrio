@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v53-light-global-fix';
+const CACHE_NAME = 'oaxo-v54-nav-fast-update';
 const APP_PREFIX = 'oaxo-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 

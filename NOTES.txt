@@ -44,3 +44,11 @@ OAXO v.53 — Correção global do modo claro
 
 PUBLICAÇÃO v.53
 Substituir os arquivos do pacote na raiz do repositório e publicar index.html, app.js e sw.js juntos. No iPhone, fechar o OAXO instalado completamente e abrir novamente após a publicação para o Service Worker atualizar.
+
+
+OAXO v.54 — Navegação mobile, instalação e limpeza da interface
+- Corrigido o contraste da barra inferior em iPhone e Android, com estados ativo/inativo específicos para modo claro e escuro.
+- Removidos os botões Enviar, Backup e Importar da interface.
+- Removida a ação de exportação de dados do perfil, conforme solicitado.
+- O botão “Instalar app” desaparece quando o OAXO é executado como aplicativo instalado (iOS/Android).
+- Atualização do Service Worker verificada ao abrir, retornar à página e voltar ao primeiro plano; cache versionado para ativação imediata.
