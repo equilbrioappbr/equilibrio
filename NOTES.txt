@@ -1,34 +1,30 @@
-OAXO v.47 — OAXO MOVE / TREINOS
+OAXO v.48 — OAXO MOVE MINIMALISTA
 
 BASE
-- Continuação da versão v.46 (Perfil, Segurança e Selos).
-- Atualização concentrada na área Treinos; mantém os módulos Finanças, Alimentação, Perfil e rede social.
-- Não remove nem migra destrutivamente registros existentes.
+- Continuação da versão v.47 (OAXO MOVE / Treinos).
+- Atualização focada na simplificação visual e na organização da área Treinos.
+- Mantém os demais módulos, arquivos, integrações e registros existentes.
 
-NOVIDADES FUNCIONAIS EM TREINOS
-1. Nova identidade visual OAXO MOVE, com cabeçalho próprio e painel de desempenho semanal.
-2. Planejamento semanal configurável de segunda a domingo: musculação, caminhada, corrida, bicicleta, funcional, mobilidade, outra atividade ou descanso.
-3. O planejamento é salvo em data.goals.trainingPlan, dentro do mesmo documento de dados pessoais já sincronizado pelo fluxo atual do Firebase/local storage.
-4. Indicador de aderência ao planejamento, comparando as atividades registradas na semana com os dias planejados. O indicador é informativo e limitado a 100%.
-5. Atalhos de preenchimento para musculação, caminhada, corrida, bicicleta e mobilidade.
-6. Registro de distância em quilômetros para atividades em que fizer sentido, além de data, modalidade, sessão, foco, exercício, séries, repetições, carga, duração, esforço e observações.
-7. Distância e modalidade passam a aparecer no histórico diário e na lista de treinos.
-8. Mantém comparação de evolução por exercício, pesagens, calendário e registros anteriores.
+MUDANÇAS
+1. Tela inicial de Treinos reduzida a cabeçalho compacto, resumo semanal, dias da semana e três indicadores essenciais.
+2. Registro de atividade movido para uma seção recolhível, com atalhos por modalidade e os mesmos campos de registro.
+3. Planejamento semanal, evolução por exercício, calendário/histórico, peso corporal e conquistas/rotina passam a ficar em seções recolhíveis.
+4. Última atividade permanece visível na tela inicial, sem ocupar um cartão grande.
+5. Mantidos os recursos existentes de salvamento, histórico, calendário, pesagens, XP, níveis, hidratação e planejamento.
+6. Layout responsivo com menor espaçamento, tipografia mais contida e destaque ciano reservado à ação principal.
 
-COMPATIBILIDADE E SEGURANÇA
-- Registros antigos continuam válidos; distância fica vazia nos registros anteriores.
-- O plano semanal é opcional e pode ficar todo como descanso até o usuário configurá-lo.
-- Não são calculadas calorias gastas nem prescritas cargas, metas de intensidade ou rotinas médicas.
-- O usuário define a própria programação; orientações de saúde permanecem como ressalva.
-- Cache do Service Worker atualizado para v.47 para forçar a renovação dos arquivos publicados.
+COMPATIBILIDADE
+- Não remove registros existentes nem altera o formato dos dados.
+- Mantém o formulário workForm, trainingPlanForm e os identificadores de eventos existentes.
+- Nenhuma alteração obrigatória nas regras do Firestore.
+- Cache do Service Worker atualizado para v.48.
 
 PUBLICAÇÃO
 - Extrair o ZIP e substituir os 8 arquivos na raiz do repositório.
-- Publicar o novo sw.js junto com index.html e app.js.
-- Não há alteração obrigatória nas regras do Firestore para esta atualização.
+- Publicar app.js, index.html e sw.js juntos.
 
-VALIDAÇÃO REALIZADA
-- Sintaxe de app.js validada com node --check.
+VALIDAÇÃO
+- Sintaxe JavaScript validada com node --check.
 - Integridade do ZIP validada com unzip -t.
-- Conferência estrutural dos novos campos, formulário, salvamento e eventos realizada.
-- A gravação/sincronização com Firebase precisa ser confirmada no ambiente publicado com uma conta autenticada.
+- Verificação estrutural dos formulários e dos eventos de registro/planejamento realizada.
+- Teste final de interface e sincronização Firebase deve ser feito após publicar no domínio.
