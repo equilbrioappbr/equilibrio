@@ -1,31 +1,23 @@
-OAXO v43 — ALIMENTAÇÃO E COMPRAS INTEGRADAS
-Data: 07/11/2026
-Base: OAXO v42 — Início minimalista
+OAXO v44 — NAVEGAÇÃO INTERNA DA ALIMENTAÇÃO
 
-ATUALIZAÇÕES
-- Alimentação redesenhada no padrão minimalista da v42, com suporte ao tema claro/escuro já existente.
-- Nova visão geral com recomendação contextual baseada nos registros do dia e atalhos compactos.
-- Registro de refeições organizado por tipo: café da manhã, almoço, lanche, jantar e outro.
-- Campos nutricionais avançados opcionais; calorias deixam de dominar a tela.
-- Histórico de consumo com edição e exclusão preservadas.
-- Pesquisa de alimentos mantida e leitor de código de barras movido para uma área secundária expansível.
-- Lista de compras integrada: preço por item, quantidades, categorias, importação e marcação de itens comprados.
-- Fechamento de compra consolidado: exige preço em todos os itens marcados, cria uma única despesa de Alimentação no Finanças e grava o vínculo nos itens para impedir lançamento duplicado.
-- Compras finalizadas permanecem no histórico; lista pendente e histórico ficam separados.
-- Cache do service worker atualizado para forçar a instalação dos novos arquivos.
-- Mantidos autenticação Firebase, Firestore, Finanças, Treinos, ícones e regras de acesso da versão-base.
+Esta versão corrige a experiência de navegação da seção Alimentação. Os atalhos agora abrem visualizações internas independentes, em vez de apenas rolar até seções de uma página longa.
 
-COMO PUBLICAR
-- Extraia o ZIP e envie os 8 arquivos da raiz para a raiz do repositório GitHub, substituindo os arquivos existentes.
-- Não envie a pasta inteira como subdiretório.
-- Aguarde a publicação do GitHub Pages e atualize o aplicativo no navegador. Se estiver instalado como PWA, feche e abra novamente para receber o novo cache.
+Telas da Alimentação:
+- Visão geral
+- Refeições (registro e histórico)
+- Compras (lista e histórico de compras)
+- Hábitos (histórico alimentar)
+- Produtos (pesquisa e leitor de código de barras secundário)
 
-VALIDAÇÃO REALIZADA NESTA ENTREGA
-- Verificação sintática de app.js com Node.js (node --check).
-- Conferência estrutural dos arquivos do pacote e integridade do ZIP.
-- Não foi executado teste autenticado no Firebase nem teste ponta a ponta em navegador real; valide login, registro de refeição, lista, finalização de compra e lançamento financeiro em uma conta de teste antes de anunciar a atualização.
+A navegação permanece dentro do OAXO, com retorno à visão geral. Os registros existentes continuam usando a estrutura de dados da versão anterior. A lista de compras e o fechamento consolidado com Finanças foram preservados.
 
-OBSERVAÇÕES
-- A consulta de alimentos depende da disponibilidade e atualização das bases públicas; confira rótulos e fontes.
-- A estimativa nutricional não é prescrição nem substitui orientação profissional.
-- O lançamento financeiro só ocorre após a ação explícita de finalizar a compra.
+Publicação:
+1. Extraia este ZIP.
+2. Envie os 8 arquivos para a raiz do repositório GitHub, substituindo os arquivos anteriores.
+3. Aguarde a publicação do Pages e atualize o navegador sem cache se a versão antiga continuar aparecendo.
+
+Validação realizada nesta entrega:
+- Sintaxe JavaScript validada com Node.js.
+- Integridade do arquivo ZIP validada.
+
+Ainda é necessário testar no navegador com uma conta Firebase autenticada: navegação entre telas, registro/edição/exclusão de refeições, pesquisa de produtos, câmera/leitor, inclusão e finalização de compras e lançamento financeiro. Não há garantia de teste real de Firebase nesta entrega.
