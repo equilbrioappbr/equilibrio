@@ -1,40 +1,34 @@
-OAXO v46 — PERFIL, CONTROLE DA CONTA E SELOS
+OAXO v.47 — OAXO MOVE / TREINOS
 
-Esta versão adiciona uma central de perfil à base v45 (Treinos), preservando os módulos e os registros existentes.
+BASE
+- Continuação da versão v.46 (Perfil, Segurança e Selos).
+- Atualização concentrada na área Treinos; mantém os módulos Finanças, Alimentação, Perfil e rede social.
+- Não remove nem migra destrutivamente registros existentes.
 
-Novidades:
-- Atalho Meu Perfil no cabeçalho e na navegação fixa do celular.
-- Central de conta com nome, e-mail, provedor de autenticação e data de criação da conta.
-- Edição de nome de exibição, @usuário, foto por URL, biografia e privacidade do perfil.
-- Verificação de disponibilidade do @usuário antes de salvar.
-- Exportação dos dados da conta em JSON, incluindo perfil e registros disponíveis no app.
-- Atalho para segurança da Conta Google e encerramento de sessão.
-- Selos vinculados ao UID, sem opção de autoatribuição ou remoção pelo usuário.
-- LEIA-ANTES com a legenda dos selos e explicação de que a atribuição é administrativa.
-- Paleta preparada para Proprietário (dourado), Influenciador exclusivo (roxo), Influenciador (rosa), Raro (dourado escuro), Testador oficial (azul) e Verificado (multicolorido).
+NOVIDADES FUNCIONAIS EM TREINOS
+1. Nova identidade visual OAXO MOVE, com cabeçalho próprio e painel de desempenho semanal.
+2. Planejamento semanal configurável de segunda a domingo: musculação, caminhada, corrida, bicicleta, funcional, mobilidade, outra atividade ou descanso.
+3. O planejamento é salvo em data.goals.trainingPlan, dentro do mesmo documento de dados pessoais já sincronizado pelo fluxo atual do Firebase/local storage.
+4. Indicador de aderência ao planejamento, comparando as atividades registradas na semana com os dias planejados. O indicador é informativo e limitado a 100%.
+5. Atalhos de preenchimento para musculação, caminhada, corrida, bicicleta e mobilidade.
+6. Registro de distância em quilômetros para atividades em que fizer sentido, além de data, modalidade, sessão, foco, exercício, séries, repetições, carga, duração, esforço e observações.
+7. Distância e modalidade passam a aparecer no histórico diário e na lista de treinos.
+8. Mantém comparação de evolução por exercício, pesagens, calendário e registros anteriores.
 
-Regras de identidade:
-- Foram preservados os UIDs já conhecidos do Proprietário e do Influenciador exclusivo.
-- Os selos Influenciador, Raro, Testador oficial e Verificado estão preparados visualmente, mas sem UIDs atribuídos nesta versão. Não foram concedidos automaticamente a ninguém.
-- O perfil público mostra apenas o ícone do selo; a explicação fica no LEIA-ANTES.
-- Os selos não são editáveis no formulário do usuário.
+COMPATIBILIDADE E SEGURANÇA
+- Registros antigos continuam válidos; distância fica vazia nos registros anteriores.
+- O plano semanal é opcional e pode ficar todo como descanso até o usuário configurá-lo.
+- Não são calculadas calorias gastas nem prescritas cargas, metas de intensidade ou rotinas médicas.
+- O usuário define a própria programação; orientações de saúde permanecem como ressalva.
+- Cache do Service Worker atualizado para v.47 para forçar a renovação dos arquivos publicados.
 
-Segurança e limites:
-- O login continua sendo feito pelo Google/Firebase. O OAXO não cria, recebe nem armazena uma senha própria.
-- Alteração de senha, autenticação em duas etapas e dispositivos conectados são gerenciados na Conta Google.
-- O perfil social grava somente os campos de perfil no documento profiles/{uid}; e-mail e registros financeiros, alimentares e de treino não são publicados nesse documento.
-- A exportação reúne o perfil e os dados carregados pela conta no app. Mantenha o arquivo em local seguro.
-- A exclusão integral da conta e dos dados do Firebase não foi simulada nem implementada como botão nesta versão, para evitar exclusão parcial ou dados órfãos.
-- A privacidade do perfil privado também converte publicações públicas existentes para visibilidade de seguidores.
+PUBLICAÇÃO
+- Extrair o ZIP e substituir os 8 arquivos na raiz do repositório.
+- Publicar o novo sw.js junto com index.html e app.js.
+- Não há alteração obrigatória nas regras do Firestore para esta atualização.
 
-Publicação:
-1. Extraia o ZIP.
-2. Envie os 8 arquivos para a raiz do repositório GitHub, substituindo os anteriores.
-3. Publique também as regras firestore.rules no Firebase Console caso estejam diferentes das regras da v45.
-4. Após a publicação, entre com Google, abra Perfil, edite os dados e teste a exportação JSON.
-5. Recarregue o app; o cache do service worker foi atualizado para v46.
-
-Validação técnica:
-- Sintaxe JavaScript validada com Node.js.
-- Integridade do ZIP validada após empacotamento.
-- Não foi possível executar teste de ponta a ponta com uma sessão real do Firebase neste ambiente. Verifique leitura/criação do documento profiles/{uid}, atualização do perfil e exportação após publicar.
+VALIDAÇÃO REALIZADA
+- Sintaxe de app.js validada com node --check.
+- Integridade do ZIP validada com unzip -t.
+- Conferência estrutural dos novos campos, formulário, salvamento e eventos realizada.
+- A gravação/sincronização com Firebase precisa ser confirmada no ambiente publicado com uma conta autenticada.
