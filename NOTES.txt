@@ -1,17 +1,15 @@
-OAXO v41 — SEM REDE SOCIAL
-Data: 07/11/2026
+OAXO v42 — INÍCIO MINIMALISTA E ADAPTÁVEL
 
-ATUALIZAÇÕES
-- Removidas as entradas de navegação social: Explorar, Publicar, Perfil público e Comunidade.
-- Removida a inicialização automática das consultas sociais no Firestore durante o login.
-- Tela inicial reconstruída como painel pessoal, sem feed, stories ou descoberta de pessoas.
-- Foco inicial limitado a Finanças, Alimentação e Treinos e hábitos.
-- Navegação principal simplificada para Início, Finanças, Alimentação e Treinos.
-- Mantidos Firebase Authentication, Firestore, dados pessoais e módulos existentes.
-- Conteúdo social antigo no Firestore não foi apagado; apenas deixou de ser carregado/exibido.
-- Histórico de versões consolidado neste único arquivo NOTES.txt.
+- Redesenhada a tela inicial com saudação compacta e uma recomendação principal.
+- Recomendações calculadas a partir dos registros reais do usuário em Finanças, Alimentação e Treinos.
+- Ações diretas para continuar na área recomendada.
+- Ferramentas organizadas em lista recolhível, reduzindo a poluição visual.
+- Indicador discreto de atividade, sem pontos, níveis ou métricas artificiais.
+- Tema passa a acompanhar a preferência do aparelho por padrão; a alternância manual continua disponível como preferência local.
+- Criada nova chave de preferência de tema para que configurações antigas não impeçam a adaptação automática.
+- Preservados os módulos, dados locais, Firebase e regras existentes.
 
-IMPORTANTE
-- Esta atualização remove a experiência social da interface, mas não apaga coleções antigas (profiles, posts, follows etc.) do Firebase. Não exclua essas coleções sem backup e decisão explícita.
-- Revisar em ambiente de teste: login, troca de tema, Finanças, Alimentação, Treinos, backup/importação, navegação móvel e políticas LGPD.
-- A publicação deve substituir os arquivos do site pelo conteúdo deste ZIP; não enviar arquivos avulsos duplicados.
+NOTAS DE IMPLEMENTAÇÃO
+- A recomendação é heurística e baseada somente na quantidade de registros já existentes; não utiliza IA nem faz inferências sensíveis.
+- Nenhum dado de usuário foi apagado ou migrado.
+- Testes realizados nesta entrega: validação de sintaxe JavaScript, Service Worker, integridade do ZIP e conferência dos arquivos essenciais. Teste em Firebase de produção e dispositivos reais ainda depende da publicação.

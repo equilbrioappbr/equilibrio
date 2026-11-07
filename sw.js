@@ -1,4 +1,4 @@
-const CACHE_NAME = 'oaxo-v41-no-social';
+const CACHE_NAME = 'oaxo-v42-minimal-home';
 const APP_PREFIX = 'oaxo-';
 const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
 

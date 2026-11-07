@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f0f1f3">
-  <script>(function(){try{var t=localStorage.getItem("equilibrio-v1-theme");if(!t&&window.matchMedia)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t||"light";}catch(e){document.documentElement.dataset.theme="light";}})();</script>
+  <script>(function(){try{var t=localStorage.getItem("oaxo-v42-theme-override");if(!t&&window.matchMedia)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t||"light";}catch(e){document.documentElement.dataset.theme="light";}})();</script>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="OAXO">
@@ -627,6 +627,41 @@ html[data-theme="light"] .finance-panel-body [data-remove-finance-contract] {col
 html[data-theme="light"] .oaxo-focus-card,html[data-theme="light"] .oaxo-tools-disclosure,html[data-theme="light"] .oaxo-unlock-note{background:#e9eae7!important;color:#202327!important;border-color:#cfd1ce!important;box-shadow:none}
 html[data-theme="light"] .oaxo-focus-choices button,html[data-theme="light"] .oaxo-tools-grid button,html[data-theme="light"] .oaxo-focus-icon{background:#f4f5f2!important;color:#202327!important;border-color:#d4d6d2!important}
 @media(max-width:390px){.oaxo-focus-card{padding:15px}.oaxo-focus-choices{grid-template-columns:1fr}.oaxo-focus-choices button{display:grid;grid-template-columns:30px 1fr;align-items:center;column-gap:8px}.oaxo-focus-choices button>span{grid-row:span 2}.oaxo-focus-choices small{grid-column:2}}
+</style>
+
+<style id="oaxo-v42-minimal-home">
+.oaxo-home-v42{max-width:760px;margin:0 auto;padding:8px 0 20px}
+.oaxo-home-greeting{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 2px 22px}
+.oaxo-home-date{display:block;color:var(--muted);font-size:11px;font-weight:650;letter-spacing:.045em;text-transform:capitalize}
+.oaxo-home-greeting h1{margin:7px 0 3px;font-size:clamp(27px,5vw,35px);line-height:1.08;letter-spacing:-1.15px;font-weight:760}
+.oaxo-home-greeting p{margin:0;color:var(--muted);font-size:13px}
+.oaxo-home-avatar{width:42px;height:42px;flex:0 0 42px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:var(--card);color:var(--text);font-weight:750;font-size:15px}
+.oaxo-recommendation{position:relative;overflow:hidden;padding:19px;border:1px solid var(--line);border-radius:19px;background:var(--card);box-shadow:var(--shadow)}
+.oaxo-recommendation-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.12em}
+.oaxo-recommendation-mark{font-size:17px;color:var(--brand)}
+.oaxo-recommendation-body{display:flex;align-items:flex-start;gap:13px;margin:17px 0 16px}
+.oaxo-recommendation-icon{width:43px;height:43px;flex:0 0 43px;display:grid;place-items:center;border-radius:13px;background:var(--brand2);color:var(--text);font-size:23px}
+.oaxo-recommendation-copy{min-width:0}
+.oaxo-recommendation-copy h2{margin:1px 0 5px;font-size:clamp(19px,4vw,23px);line-height:1.15;letter-spacing:-.55px}
+.oaxo-recommendation-copy p{margin:0;color:var(--muted);font-size:13px;line-height:1.5;max-width:520px}
+.oaxo-recommendation-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:13px;border-top:1px solid var(--line)}
+.oaxo-recommendation-cta{border:0;background:var(--text);color:var(--bg);border-radius:11px;padding:10px 14px;font-size:12px;font-weight:750;cursor:pointer}
+.oaxo-recommendation-cta span{margin-left:8px;font-size:16px}
+.oaxo-change-focus{border:0;background:transparent;color:var(--muted);font-size:11px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px 2px}
+.oaxo-recommendation-hint{color:var(--muted);font-size:10px}
+.oaxo-progress-subtle{display:flex;align-items:center;gap:9px;padding:15px 3px 13px;color:var(--muted);font-size:11px}
+.oaxo-progress-subtle strong{color:var(--text);font-weight:650}
+.oaxo-progress-dot{width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:var(--brand)}
+.oaxo-tools-disclosure{margin:4px 0 0!important;padding:0 14px!important;border-radius:15px!important;background:var(--card)!important}
+.oaxo-tools-disclosure summary{padding:15px 0!important;font-size:12px!important}
+.oaxo-tools-list{display:grid;padding:0 0 7px}
+.oaxo-tools-list button{width:100%;display:flex;align-items:center;gap:11px;padding:11px 2px;border:0;border-top:1px solid var(--line);background:transparent;color:var(--text);text-align:left;cursor:pointer}
+.oaxo-tool-symbol{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:10px;background:var(--brand2);font-size:19px}
+.oaxo-tools-list button>span:nth-child(2){display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
+.oaxo-tools-list strong{font-size:12px}.oaxo-tools-list small{font-size:10px;color:var(--muted)}.oaxo-tool-arrow{font-size:22px;color:var(--muted)}
+.oaxo-home-footnote{margin:16px 3px 0;color:var(--muted);font-size:10px;line-height:1.5}
+@media(max-width:420px){.oaxo-home-v42{padding-top:3px}.oaxo-home-greeting{padding:10px 2px 18px}.oaxo-recommendation{padding:16px}.oaxo-recommendation-body{gap:10px;margin:14px 0}.oaxo-recommendation-copy p{font-size:12px}.oaxo-recommendation-footer{align-items:flex-start}}
+@media(prefers-reduced-motion:no-preference){.oaxo-recommendation{animation:oaxoHomeEnter .28s ease-out both}@keyframes oaxoHomeEnter{from{opacity:.7;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}}
 </style>
 
 </head>
