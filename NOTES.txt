@@ -1,0 +1,17 @@
+OAXO v41 — SEM REDE SOCIAL
+Data: 07/11/2026
+
+ATUALIZAÇÕES
+- Removidas as entradas de navegação social: Explorar, Publicar, Perfil público e Comunidade.
+- Removida a inicialização automática das consultas sociais no Firestore durante o login.
+- Tela inicial reconstruída como painel pessoal, sem feed, stories ou descoberta de pessoas.
+- Foco inicial limitado a Finanças, Alimentação e Treinos e hábitos.
+- Navegação principal simplificada para Início, Finanças, Alimentação e Treinos.
+- Mantidos Firebase Authentication, Firestore, dados pessoais e módulos existentes.
+- Conteúdo social antigo no Firestore não foi apagado; apenas deixou de ser carregado/exibido.
+- Histórico de versões consolidado neste único arquivo NOTES.txt.
+
+IMPORTANTE
+- Esta atualização remove a experiência social da interface, mas não apaga coleções antigas (profiles, posts, follows etc.) do Firebase. Não exclua essas coleções sem backup e decisão explícita.
+- Revisar em ambiente de teste: login, troca de tema, Finanças, Alimentação, Treinos, backup/importação, navegação móvel e políticas LGPD.
+- A publicação deve substituir os arquivos do site pelo conteúdo deste ZIP; não enviar arquivos avulsos duplicados.
