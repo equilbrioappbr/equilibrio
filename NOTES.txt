@@ -1,23 +1,28 @@
-OAXO v44 — NAVEGAÇÃO INTERNA DA ALIMENTAÇÃO
+OAXO v45 — ATUALIZAÇÃO DA FUNÇÃO TREINOS
 
-Esta versão corrige a experiência de navegação da seção Alimentação. Os atalhos agora abrem visualizações internas independentes, em vez de apenas rolar até seções de uma página longa.
+Esta versão amplia a área Treinos sem remover os registros já existentes e sem alterar a estrutura dos demais módulos.
 
-Telas da Alimentação:
-- Visão geral
-- Refeições (registro e histórico)
-- Compras (lista e histórico de compras)
-- Hábitos (histórico alimentar)
-- Produtos (pesquisa e leitor de código de barras secundário)
+Novidades:
+- Painel semanal com quantidade de sessões, dias ativos, duração registrada e volume estimado de musculação.
+- Registro de atividades para musculação, caminhada, corrida, bicicleta, funcional, alongamento/mobilidade e outras modalidades.
+- Campos adicionais para grupo muscular/foco, duração, esforço percebido, séries, repetições, carga e observações.
+- Comparação dos dois registros mais recentes de cada exercício para acompanhar variação de carga.
+- Histórico diário passa a exibir modalidade, foco, duração e esforço quando esses dados estiverem disponíveis.
+- Registros antigos continuam compatíveis; campos novos ficam em branco/valores neutros nos registros anteriores.
+- Layout responsivo com identidade OAXO MOVE, incluindo ajuste para telas pequenas.
 
-A navegação permanece dentro do OAXO, com retorno à visão geral. Os registros existentes continuam usando a estrutura de dados da versão anterior. A lista de compras e o fechamento consolidado com Finanças foram preservados.
+Cuidados:
+- O volume é uma estimativa (séries × repetições × carga) e só representa exercícios com carga registrada.
+- O painel semanal considera a semana corrente de segunda a domingo e não inventa duração quando ela não foi informada.
+- A função não prescreve cargas, metas de emagrecimento ou calorias queimadas.
+- A orientação exibida recomenda progressão gradual e interrupção diante de sinais de alerta.
 
 Publicação:
-1. Extraia este ZIP.
+1. Extraia o ZIP.
 2. Envie os 8 arquivos para a raiz do repositório GitHub, substituindo os arquivos anteriores.
-3. Aguarde a publicação do Pages e atualize o navegador sem cache se a versão antiga continuar aparecendo.
+3. Aguarde a publicação e recarregue o OAXO. O nome do cache do service worker foi atualizado para solicitar os novos arquivos.
 
-Validação realizada nesta entrega:
+Validação técnica:
 - Sintaxe JavaScript validada com Node.js.
-- Integridade do arquivo ZIP validada.
-
-Ainda é necessário testar no navegador com uma conta Firebase autenticada: navegação entre telas, registro/edição/exclusão de refeições, pesquisa de produtos, câmera/leitor, inclusão e finalização de compras e lançamento financeiro. Não há garantia de teste real de Firebase nesta entrega.
+- Integridade do ZIP validada após empacotamento.
+- A sincronização Firebase e a interface precisam de teste final no navegador autenticado; não foi simulada uma sessão real de conta.
