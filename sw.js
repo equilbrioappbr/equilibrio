@@ -1,6 +1,6 @@
-const CACHE_NAME = 'oaxo-v48-move-minimal';
+const CACHE_NAME = 'oaxo-v49-app-install';
 const APP_PREFIX = 'oaxo-';
-const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png'];
+const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_FILES)).then(() => self.skipWaiting()));
@@ -25,7 +25,7 @@ self.addEventListener('fetch', event => {
   if (url.origin !== self.location.origin) return;
 
   const path = url.pathname;
-  const isAppAsset = /\/(?:index\.html|app\.js|manifest\.json|sw\.js)$/.test(path) || path.endsWith('/');
+  const isAppAsset = /\/(?:index\.html|app\.js|manifest\.json|sw\.js|icon-192\.png|icon-512\.png|apple-touch-icon\.png)$/.test(path) || path.endsWith('/');
   if (request.mode === 'navigate' || isAppAsset) {
     event.respondWith((async () => {
       const cache = await caches.open(CACHE_NAME);

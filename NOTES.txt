@@ -1,30 +1,26 @@
-OAXO v.48 — OAXO MOVE MINIMALISTA
+OAXO v.49 — INSTALAÇÃO COMO APLICATIVO (PWA)
 
-BASE
-- Continuação da versão v.47 (OAXO MOVE / Treinos).
-- Atualização focada na simplificação visual e na organização da área Treinos.
-- Mantém os demais módulos, arquivos, integrações e registros existentes.
+OBJETIVO
+Ajustar a instalação do OAXO para abrir em modo aplicativo independente, sem a interface normal do navegador, quando instalado corretamente.
 
-MUDANÇAS
-1. Tela inicial de Treinos reduzida a cabeçalho compacto, resumo semanal, dias da semana e três indicadores essenciais.
-2. Registro de atividade movido para uma seção recolhível, com atalhos por modalidade e os mesmos campos de registro.
-3. Planejamento semanal, evolução por exercício, calendário/histórico, peso corporal e conquistas/rotina passam a ficar em seções recolhíveis.
-4. Última atividade permanece visível na tela inicial, sem ocupar um cartão grande.
-5. Mantidos os recursos existentes de salvamento, histórico, calendário, pesagens, XP, níveis, hidratação e planejamento.
-6. Layout responsivo com menor espaçamento, tipografia mais contida e destaque ciano reservado à ação principal.
+ALTERAÇÕES
+1. Manifesto PWA com display standalone, identificação OAXO, cores de abertura e ícones any/maskable separados.
+2. Ícone Apple Touch 180x180 dedicado para instalação na Tela de Início do iPhone.
+3. Metadados iOS para web app, título e barra de status preta/translúcida.
+4. Metadado Android para modo aplicativo e favicon de alta resolução.
+5. Área segura superior respeitando o recorte/notch do iPhone em modo instalado.
+6. Cor da barra do navegador/sistema acompanha o tema claro ou escuro escolhido no OAXO.
+7. Instruções do botão Instalar corrigidas para OAXO, incluindo a opção “Abrir como App da Web” no iPhone quando disponível.
+8. Service Worker atualizado para v.49 e cache dos ícones de instalação.
 
-COMPATIBILIDADE
-- Não remove registros existentes nem altera o formato dos dados.
-- Mantém o formulário workForm, trainingPlanForm e os identificadores de eventos existentes.
-- Nenhuma alteração obrigatória nas regras do Firestore.
-- Cache do Service Worker atualizado para v.48.
+IMPORTANTE
+- No iPhone, abrir o site no Safari > Compartilhar > Adicionar à Tela de Início. Nas opções, ativar “Abrir como App da Web”, se exibido. Abrir depois pelo ícone criado.
+- No Android, usar Chrome > menu ⋮ > Instalar app (ou Adicionar à tela inicial) e abrir pelo ícone instalado.
+- Se o atalho antigo continuar abrindo como navegador, removê-lo da Tela de Início e instalar novamente após publicar esta versão.
+- A instalação PWA não remove automaticamente todos os elementos do sistema operacional (como indicador de gesto ou status bar); o modo standalone remove a interface de abas/endereço do navegador.
 
 PUBLICAÇÃO
-- Extrair o ZIP e substituir os 8 arquivos na raiz do repositório.
-- Publicar app.js, index.html e sw.js juntos.
+Extrair e substituir os arquivos na raiz do repositório. Este pacote contém 9 arquivos, incluindo apple-touch-icon.png. Publicar juntos index.html, manifest.json, app.js e sw.js.
 
 VALIDAÇÃO
-- Sintaxe JavaScript validada com node --check.
-- Integridade do ZIP validada com unzip -t.
-- Verificação estrutural dos formulários e dos eventos de registro/planejamento realizada.
-- Teste final de interface e sincronização Firebase deve ser feito após publicar no domínio.
+Validar sintaxe JavaScript, JSON do manifesto e integridade do ZIP antes da publicação. A instalação efetiva deve ser testada em iPhone e Android após deploy HTTPS.
