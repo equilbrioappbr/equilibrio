@@ -1,15 +1,31 @@
-OAXO v42 — INÍCIO MINIMALISTA E ADAPTÁVEL
+OAXO v43 — ALIMENTAÇÃO E COMPRAS INTEGRADAS
+Data: 07/11/2026
+Base: OAXO v42 — Início minimalista
 
-- Redesenhada a tela inicial com saudação compacta e uma recomendação principal.
-- Recomendações calculadas a partir dos registros reais do usuário em Finanças, Alimentação e Treinos.
-- Ações diretas para continuar na área recomendada.
-- Ferramentas organizadas em lista recolhível, reduzindo a poluição visual.
-- Indicador discreto de atividade, sem pontos, níveis ou métricas artificiais.
-- Tema passa a acompanhar a preferência do aparelho por padrão; a alternância manual continua disponível como preferência local.
-- Criada nova chave de preferência de tema para que configurações antigas não impeçam a adaptação automática.
-- Preservados os módulos, dados locais, Firebase e regras existentes.
+ATUALIZAÇÕES
+- Alimentação redesenhada no padrão minimalista da v42, com suporte ao tema claro/escuro já existente.
+- Nova visão geral com recomendação contextual baseada nos registros do dia e atalhos compactos.
+- Registro de refeições organizado por tipo: café da manhã, almoço, lanche, jantar e outro.
+- Campos nutricionais avançados opcionais; calorias deixam de dominar a tela.
+- Histórico de consumo com edição e exclusão preservadas.
+- Pesquisa de alimentos mantida e leitor de código de barras movido para uma área secundária expansível.
+- Lista de compras integrada: preço por item, quantidades, categorias, importação e marcação de itens comprados.
+- Fechamento de compra consolidado: exige preço em todos os itens marcados, cria uma única despesa de Alimentação no Finanças e grava o vínculo nos itens para impedir lançamento duplicado.
+- Compras finalizadas permanecem no histórico; lista pendente e histórico ficam separados.
+- Cache do service worker atualizado para forçar a instalação dos novos arquivos.
+- Mantidos autenticação Firebase, Firestore, Finanças, Treinos, ícones e regras de acesso da versão-base.
 
-NOTAS DE IMPLEMENTAÇÃO
-- A recomendação é heurística e baseada somente na quantidade de registros já existentes; não utiliza IA nem faz inferências sensíveis.
-- Nenhum dado de usuário foi apagado ou migrado.
-- Testes realizados nesta entrega: validação de sintaxe JavaScript, Service Worker, integridade do ZIP e conferência dos arquivos essenciais. Teste em Firebase de produção e dispositivos reais ainda depende da publicação.
+COMO PUBLICAR
+- Extraia o ZIP e envie os 8 arquivos da raiz para a raiz do repositório GitHub, substituindo os arquivos existentes.
+- Não envie a pasta inteira como subdiretório.
+- Aguarde a publicação do GitHub Pages e atualize o aplicativo no navegador. Se estiver instalado como PWA, feche e abra novamente para receber o novo cache.
+
+VALIDAÇÃO REALIZADA NESTA ENTREGA
+- Verificação sintática de app.js com Node.js (node --check).
+- Conferência estrutural dos arquivos do pacote e integridade do ZIP.
+- Não foi executado teste autenticado no Firebase nem teste ponta a ponta em navegador real; valide login, registro de refeição, lista, finalização de compra e lançamento financeiro em uma conta de teste antes de anunciar a atualização.
+
+OBSERVAÇÕES
+- A consulta de alimentos depende da disponibilidade e atualização das bases públicas; confira rótulos e fontes.
+- A estimativa nutricional não é prescrição nem substitui orientação profissional.
+- O lançamento financeiro só ocorre após a ação explícita de finalizar a compra.

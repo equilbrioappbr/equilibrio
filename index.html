@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f0f1f3">
-  <script>(function(){try{var t=localStorage.getItem("oaxo-v42-theme-override");if(!t&&window.matchMedia)t=window.matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light";document.documentElement.dataset.theme=t||"light";}catch(e){document.documentElement.dataset.theme="light";}})();</script>
+  <script>(function(){try{var t=localStorage.getItem("equilibrio-v1-theme");if(t!=="light"&&t!=="dark"&&t!=="system"){t="system";localStorage.setItem("equilibrio-v1-theme",t)}var dark=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.dataset.theme=t==="system"?(dark?"dark":"light"):t;}catch(e){document.documentElement.dataset.theme="light";}})();</script>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="OAXO">
@@ -208,7 +208,50 @@
     .finance-panel-body>.card+.card{margin-top:10px}
     @media(max-width:480px){.finance-hub-nav a{padding:9px 11px;font-size:11px}.finance-panel>summary{padding:13px 12px}.finance-panel>summary small{max-width:45%;line-height:1.35}.finance-panel-body{padding:0 8px 8px}}
 .oaxo-main-nav .tab{min-width:0}.oaxo-main-nav .nav-icon{display:inline-flex;align-items:center;justify-content:center}
-    </style>
+    
+    /* OAXO v43 — Alimentação: assistente minimalista e compras integradas */
+    .food-intro{padding:8px 2px 16px}
+    .food-eyebrow,.food-kicker{font-size:10px;letter-spacing:.16em;font-weight:800;color:var(--muted)}
+    .food-intro h2{font-size:clamp(26px,5vw,34px);letter-spacing:-.045em;margin:6px 0 5px}
+    .food-intro>p{max-width:620px;color:var(--muted);font-size:13px;line-height:1.6;margin:0}
+    .food-recommendation{margin-top:16px;padding:16px;border:1px solid var(--line);border-radius:17px;background:var(--card);display:grid;gap:9px;box-shadow:var(--shadow)}
+    .food-recommendation-label{display:flex;justify-content:space-between;color:var(--muted);font-size:10px;letter-spacing:.14em;font-weight:800}
+    .food-recommendation-label span:last-child{color:var(--brand);font-size:16px}
+    .food-recommendation strong{font-size:15px;font-weight:650;line-height:1.45}
+    .food-recommendation .btn{justify-self:start}
+    .food-overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;margin:0 0 12px}
+    .food-overview-item{padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--card);min-width:0}
+    .food-overview-item span,.food-overview-item small{display:block;color:var(--muted);font-size:11px}
+    .food-overview-item strong{display:block;font-size:22px;letter-spacing:-.04em;margin:4px 0;overflow-wrap:anywhere}
+    .food-shortcuts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:7px;margin:12px 0 16px}
+    .food-shortcuts button{border:1px solid var(--line);background:var(--card);color:var(--text);border-radius:12px;padding:10px 5px;font-size:11px;font-weight:650;display:flex;align-items:center;justify-content:center;gap:5px;min-width:0}
+    .food-shortcuts button span{color:var(--brand);font-size:16px}
+    .food-section{scroll-margin-top:18px}
+    .food-section h3{margin:4px 0 0;font-size:17px;letter-spacing:-.02em}
+    .food-section .section-title{margin-bottom:14px}
+    .food-advanced,.food-barcode,.food-import,.food-history-all{border-top:1px solid var(--line);padding-top:12px;margin-top:12px}
+    .food-advanced summary,.food-barcode summary,.food-import summary,.food-history-all summary{cursor:pointer;font-size:13px;font-weight:650;color:var(--text);list-style:none}
+    .food-advanced summary::-webkit-details-marker,.food-barcode summary::-webkit-details-marker,.food-import summary::-webkit-details-marker,.food-history-all summary::-webkit-details-marker{display:none}
+    .food-advanced summary:after,.food-barcode summary:after,.food-import summary:after,.food-history-all summary:after{content:'＋';float:right;color:var(--muted)}
+    .food-advanced[open] summary:after,.food-barcode[open] summary:after,.food-import[open] summary:after,.food-history-all[open] summary:after{content:'−'}
+    .food-barcode summary small{margin-left:7px;color:var(--muted);font-weight:450}
+    .food-advanced>.form{margin-top:12px}
+    .food-price-field{display:flex;flex-direction:column;gap:4px;margin:8px 0}
+    .food-price-field span{font-size:11px;color:var(--muted)}
+    .food-price-field input{width:125px;max-width:100%;padding:7px 9px;border:1px solid var(--line);border-radius:9px;background:var(--bg);color:var(--text)}
+    .food-shopping-item{align-items:center}
+    .food-shopping-actions{display:flex;flex-direction:column;align-items:flex-end;gap:8px;flex-shrink:0}
+    .food-purchase-summary{margin-top:16px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--brand2);display:grid;gap:9px}
+    .food-purchase-summary>div{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px;color:var(--muted)}
+    .food-purchase-summary>div strong{font-size:18px;color:var(--text)}
+    .food-purchase-summary>small{font-size:11px;line-height:1.5;color:var(--muted)}
+    .food-meal-group{margin:12px 0}
+    .food-meal-group>strong{display:block;font-size:12px;color:var(--muted);letter-spacing:.04em;margin:0 0 7px}
+    .food-meal-group .item{margin-top:7px}
+    @media(max-width:520px){.food-overview-grid{gap:6px}.food-overview-item{padding:10px 8px}.food-overview-item strong{font-size:19px}.food-overview-item span,.food-overview-item small{font-size:10px}.food-shortcuts{gap:5px}.food-shortcuts button{font-size:10px;flex-direction:column;gap:3px;padding:9px 3px}.food-shopping-item{align-items:flex-start}.food-shopping-actions{min-width:68px}.food-price-field input{width:100%}}
+    [data-theme="dark"] .food-recommendation,[data-theme="dark"] .food-overview-item{background:var(--card)}
+
+</style>
 
 <style id="oaxo-followers-clickable">
 .social-profile-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
@@ -629,41 +672,14 @@ html[data-theme="light"] .oaxo-focus-choices button,html[data-theme="light"] .oa
 @media(max-width:390px){.oaxo-focus-card{padding:15px}.oaxo-focus-choices{grid-template-columns:1fr}.oaxo-focus-choices button{display:grid;grid-template-columns:30px 1fr;align-items:center;column-gap:8px}.oaxo-focus-choices button>span{grid-row:span 2}.oaxo-focus-choices small{grid-column:2}}
 </style>
 
-<style id="oaxo-v42-minimal-home">
-.oaxo-home-v42{max-width:760px;margin:0 auto;padding:8px 0 20px}
-.oaxo-home-greeting{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:12px 2px 22px}
-.oaxo-home-date{display:block;color:var(--muted);font-size:11px;font-weight:650;letter-spacing:.045em;text-transform:capitalize}
-.oaxo-home-greeting h1{margin:7px 0 3px;font-size:clamp(27px,5vw,35px);line-height:1.08;letter-spacing:-1.15px;font-weight:760}
-.oaxo-home-greeting p{margin:0;color:var(--muted);font-size:13px}
-.oaxo-home-avatar{width:42px;height:42px;flex:0 0 42px;border:1px solid var(--line);border-radius:50%;display:grid;place-items:center;background:var(--card);color:var(--text);font-weight:750;font-size:15px}
-.oaxo-recommendation{position:relative;overflow:hidden;padding:19px;border:1px solid var(--line);border-radius:19px;background:var(--card);box-shadow:var(--shadow)}
-.oaxo-recommendation-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.12em}
-.oaxo-recommendation-mark{font-size:17px;color:var(--brand)}
-.oaxo-recommendation-body{display:flex;align-items:flex-start;gap:13px;margin:17px 0 16px}
-.oaxo-recommendation-icon{width:43px;height:43px;flex:0 0 43px;display:grid;place-items:center;border-radius:13px;background:var(--brand2);color:var(--text);font-size:23px}
-.oaxo-recommendation-copy{min-width:0}
-.oaxo-recommendation-copy h2{margin:1px 0 5px;font-size:clamp(19px,4vw,23px);line-height:1.15;letter-spacing:-.55px}
-.oaxo-recommendation-copy p{margin:0;color:var(--muted);font-size:13px;line-height:1.5;max-width:520px}
-.oaxo-recommendation-footer{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;padding-top:13px;border-top:1px solid var(--line)}
-.oaxo-recommendation-cta{border:0;background:var(--text);color:var(--bg);border-radius:11px;padding:10px 14px;font-size:12px;font-weight:750;cursor:pointer}
-.oaxo-recommendation-cta span{margin-left:8px;font-size:16px}
-.oaxo-change-focus{border:0;background:transparent;color:var(--muted);font-size:11px;text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:8px 2px}
-.oaxo-recommendation-hint{color:var(--muted);font-size:10px}
-.oaxo-progress-subtle{display:flex;align-items:center;gap:9px;padding:15px 3px 13px;color:var(--muted);font-size:11px}
-.oaxo-progress-subtle strong{color:var(--text);font-weight:650}
-.oaxo-progress-dot{width:7px;height:7px;flex:0 0 7px;border-radius:50%;background:var(--brand)}
-.oaxo-tools-disclosure{margin:4px 0 0!important;padding:0 14px!important;border-radius:15px!important;background:var(--card)!important}
-.oaxo-tools-disclosure summary{padding:15px 0!important;font-size:12px!important}
-.oaxo-tools-list{display:grid;padding:0 0 7px}
-.oaxo-tools-list button{width:100%;display:flex;align-items:center;gap:11px;padding:11px 2px;border:0;border-top:1px solid var(--line);background:transparent;color:var(--text);text-align:left;cursor:pointer}
-.oaxo-tool-symbol{width:34px;height:34px;flex:0 0 34px;display:grid;place-items:center;border-radius:10px;background:var(--brand2);font-size:19px}
-.oaxo-tools-list button>span:nth-child(2){display:flex;flex:1;min-width:0;flex-direction:column;gap:3px}
-.oaxo-tools-list strong{font-size:12px}.oaxo-tools-list small{font-size:10px;color:var(--muted)}.oaxo-tool-arrow{font-size:22px;color:var(--muted)}
-.oaxo-home-footnote{margin:16px 3px 0;color:var(--muted);font-size:10px;line-height:1.5}
-@media(max-width:420px){.oaxo-home-v42{padding-top:3px}.oaxo-home-greeting{padding:10px 2px 18px}.oaxo-recommendation{padding:16px}.oaxo-recommendation-body{gap:10px;margin:14px 0}.oaxo-recommendation-copy p{font-size:12px}.oaxo-recommendation-footer{align-items:flex-start}}
-@media(prefers-reduced-motion:no-preference){.oaxo-recommendation{animation:oaxoHomeEnter .28s ease-out both}@keyframes oaxoHomeEnter{from{opacity:.7;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}}
-</style>
 
+<style id="oaxo-v42-minimal-home">
+.oaxo-home-v42{max-width:720px;margin:0 auto;padding:4px 0 22px}.oaxo-greeting{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:16px 2px 22px}.oaxo-home-overline,.oaxo-focus-current small,.oaxo-focus-prompt>small,.oaxo-rec-top>span:first-child,.oaxo-progress-copy>span{display:block;font-size:9px;letter-spacing:.15em;font-weight:800;color:var(--muted)}.oaxo-greeting h1{font-size:clamp(27px,5vw,34px);letter-spacing:-1.2px;margin:7px 0 4px;font-weight:760}.oaxo-greeting p{margin:0;color:var(--muted);font-size:13px}.oaxo-greeting-mark{width:43px;height:43px;flex:0 0 43px;display:grid;place-items:center;border:1px solid var(--line);border-radius:14px;color:var(--text);font-size:21px;font-weight:850;letter-spacing:-2px;background:var(--card)}.oaxo-focus-current{display:flex;align-items:center;gap:11px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.oaxo-focus-current>div{display:grid;gap:3px;min-width:0;flex:1}.oaxo-focus-current strong{font-size:13px;font-weight:680}.oaxo-focus-icon{width:35px;height:35px;flex:0 0 35px;border-radius:11px;display:grid;place-items:center;background:var(--brand2);color:var(--text);font-size:19px}.oaxo-link-button{border:0;background:transparent;color:var(--muted);font-size:11px;font-weight:650;padding:8px}.oaxo-focus-prompt{padding:15px 0 18px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.oaxo-focus-prompt h2{font-size:18px;letter-spacing:-.45px;margin:6px 0}.oaxo-focus-prompt p{font-size:12px;line-height:1.45;color:var(--muted);margin:0 0 12px}.oaxo-focus-choices{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.oaxo-focus-choices button{display:flex;align-items:center;gap:8px;min-width:0;text-align:left;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--text)}.oaxo-focus-choices button>span{font-size:17px;color:var(--muted)}.oaxo-focus-choices strong{font-size:11px;line-height:1.25;font-weight:650}.oaxo-recommendation{margin:18px 0 14px;padding:17px;border:1px solid var(--line);border-radius:17px;background:var(--card);box-shadow:var(--shadow)}.oaxo-rec-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.oaxo-rec-tag{font-size:9px;color:var(--muted);border:1px solid var(--line);padding:4px 7px;border-radius:999px}.oaxo-recommendation h2{font-size:19px;letter-spacing:-.5px;margin:13px 0 5px}.oaxo-recommendation p{font-size:12px;line-height:1.5;color:var(--muted);margin:0 0 14px;max-width:510px}.oaxo-rec-action{display:flex;align-items:center;justify-content:space-between;gap:15px;width:100%;padding:11px 13px;border-radius:11px}.oaxo-rec-action span{font-size:18px}.oaxo-progress{padding:3px 2px 12px}.oaxo-progress-copy{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.oaxo-progress-copy small{font-size:10px;color:var(--muted);text-align:right}.oaxo-progress-track{height:3px;margin-top:9px;border-radius:99px;background:var(--line);overflow:hidden}.oaxo-progress-track i{display:block;height:100%;border-radius:99px;background:var(--brand)}.oaxo-progress-note{display:flex;align-items:center;gap:10px;padding:11px 2px;margin:2px 0 10px;border-top:1px solid var(--line)}.oaxo-progress-mark{font-size:17px;color:var(--muted)}.oaxo-progress-note>span:nth-child(2){display:grid;gap:3px;flex:1}.oaxo-progress-note strong{font-size:11px;font-weight:650}.oaxo-progress-note small{font-size:10px;color:var(--muted)}.oaxo-tools-disclosure{border:0;border-top:1px solid var(--line);border-radius:0;background:transparent;margin:7px 0 0;padding:0}.oaxo-tools-disclosure summary{padding:14px 2px;font-size:12px}.oaxo-tools-grid{padding:0 0 12px}.oaxo-tools-grid button{background:var(--card);border-radius:12px}.oaxo-tools-grid button>span{color:var(--muted)}
+html[data-theme="light"] .oaxo-greeting-mark,html[data-theme="light"] .oaxo-recommendation,html[data-theme="light"] .oaxo-focus-choices button,html[data-theme="light"] .oaxo-tools-grid button{background:#fff!important;color:#24272b!important;border-color:#e0e2e4!important;box-shadow:0 4px 16px #1b253008}
+html[data-theme="dark"] .oaxo-greeting-mark,html[data-theme="dark"] .oaxo-recommendation,html[data-theme="dark"] .oaxo-focus-choices button,html[data-theme="dark"] .oaxo-tools-grid button{background:#14161a!important;color:#f1f3f6!important;border-color:#2d323a!important;box-shadow:none}
+@media(max-width:520px){.oaxo-home-v42{padding-top:0}.oaxo-greeting{padding:12px 1px 18px}.oaxo-focus-choices{grid-template-columns:1fr}.oaxo-focus-choices button{padding:10px 11px}.oaxo-recommendation{margin:14px 0 12px;padding:15px}.oaxo-progress-copy{display:block}.oaxo-progress-copy small{display:block;text-align:left;margin-top:5px}}
+@media(prefers-reduced-motion:reduce){.oaxo-home-v42 *{scroll-behavior:auto!important;transition:none!important}}
+</style>
 </head>
 <body>
 <div id="oaxoSplash" role="status" aria-label="Carregando OAXO">
