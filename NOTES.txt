@@ -1,28 +1,40 @@
-OAXO v45 — ATUALIZAÇÃO DA FUNÇÃO TREINOS
+OAXO v46 — PERFIL, CONTROLE DA CONTA E SELOS
 
-Esta versão amplia a área Treinos sem remover os registros já existentes e sem alterar a estrutura dos demais módulos.
+Esta versão adiciona uma central de perfil à base v45 (Treinos), preservando os módulos e os registros existentes.
 
 Novidades:
-- Painel semanal com quantidade de sessões, dias ativos, duração registrada e volume estimado de musculação.
-- Registro de atividades para musculação, caminhada, corrida, bicicleta, funcional, alongamento/mobilidade e outras modalidades.
-- Campos adicionais para grupo muscular/foco, duração, esforço percebido, séries, repetições, carga e observações.
-- Comparação dos dois registros mais recentes de cada exercício para acompanhar variação de carga.
-- Histórico diário passa a exibir modalidade, foco, duração e esforço quando esses dados estiverem disponíveis.
-- Registros antigos continuam compatíveis; campos novos ficam em branco/valores neutros nos registros anteriores.
-- Layout responsivo com identidade OAXO MOVE, incluindo ajuste para telas pequenas.
+- Atalho Meu Perfil no cabeçalho e na navegação fixa do celular.
+- Central de conta com nome, e-mail, provedor de autenticação e data de criação da conta.
+- Edição de nome de exibição, @usuário, foto por URL, biografia e privacidade do perfil.
+- Verificação de disponibilidade do @usuário antes de salvar.
+- Exportação dos dados da conta em JSON, incluindo perfil e registros disponíveis no app.
+- Atalho para segurança da Conta Google e encerramento de sessão.
+- Selos vinculados ao UID, sem opção de autoatribuição ou remoção pelo usuário.
+- LEIA-ANTES com a legenda dos selos e explicação de que a atribuição é administrativa.
+- Paleta preparada para Proprietário (dourado), Influenciador exclusivo (roxo), Influenciador (rosa), Raro (dourado escuro), Testador oficial (azul) e Verificado (multicolorido).
 
-Cuidados:
-- O volume é uma estimativa (séries × repetições × carga) e só representa exercícios com carga registrada.
-- O painel semanal considera a semana corrente de segunda a domingo e não inventa duração quando ela não foi informada.
-- A função não prescreve cargas, metas de emagrecimento ou calorias queimadas.
-- A orientação exibida recomenda progressão gradual e interrupção diante de sinais de alerta.
+Regras de identidade:
+- Foram preservados os UIDs já conhecidos do Proprietário e do Influenciador exclusivo.
+- Os selos Influenciador, Raro, Testador oficial e Verificado estão preparados visualmente, mas sem UIDs atribuídos nesta versão. Não foram concedidos automaticamente a ninguém.
+- O perfil público mostra apenas o ícone do selo; a explicação fica no LEIA-ANTES.
+- Os selos não são editáveis no formulário do usuário.
+
+Segurança e limites:
+- O login continua sendo feito pelo Google/Firebase. O OAXO não cria, recebe nem armazena uma senha própria.
+- Alteração de senha, autenticação em duas etapas e dispositivos conectados são gerenciados na Conta Google.
+- O perfil social grava somente os campos de perfil no documento profiles/{uid}; e-mail e registros financeiros, alimentares e de treino não são publicados nesse documento.
+- A exportação reúne o perfil e os dados carregados pela conta no app. Mantenha o arquivo em local seguro.
+- A exclusão integral da conta e dos dados do Firebase não foi simulada nem implementada como botão nesta versão, para evitar exclusão parcial ou dados órfãos.
+- A privacidade do perfil privado também converte publicações públicas existentes para visibilidade de seguidores.
 
 Publicação:
 1. Extraia o ZIP.
-2. Envie os 8 arquivos para a raiz do repositório GitHub, substituindo os arquivos anteriores.
-3. Aguarde a publicação e recarregue o OAXO. O nome do cache do service worker foi atualizado para solicitar os novos arquivos.
+2. Envie os 8 arquivos para a raiz do repositório GitHub, substituindo os anteriores.
+3. Publique também as regras firestore.rules no Firebase Console caso estejam diferentes das regras da v45.
+4. Após a publicação, entre com Google, abra Perfil, edite os dados e teste a exportação JSON.
+5. Recarregue o app; o cache do service worker foi atualizado para v46.
 
 Validação técnica:
 - Sintaxe JavaScript validada com Node.js.
 - Integridade do ZIP validada após empacotamento.
-- A sincronização Firebase e a interface precisam de teste final no navegador autenticado; não foi simulada uma sessão real de conta.
+- Não foi possível executar teste de ponta a ponta com uma sessão real do Firebase neste ambiente. Verifique leitura/criação do documento profiles/{uid}, atualização do perfil e exportação após publicar.
