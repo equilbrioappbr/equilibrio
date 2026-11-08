@@ -1,54 +1,65 @@
-OAXO v.50 — PERFIL MINIMALISTA
+OAXO v.55 — FINALIZAÇÃO DO PRODUTO E PREPARAÇÃO COMERCIAL
 
-OBJETIVO
-Simplificar a área Meu Perfil, reduzindo a quantidade de blocos visíveis e organizando as funções em seções expansíveis.
+BASE
+- Atualização construída sobre o backup OAXO v.54 enviado pelo usuário.
+- Preservados os módulos Finanças, Alimentação, Treinos, Início, Perfil, autenticação Google/Firebase e sincronização Firestore.
+- Mantidos os arquivos de identidade, manifesto PWA, ícones e serviços auxiliares.
+- Nenhum dado pessoal ou histórico do usuário foi incluído no pacote.
 
-ALTERAÇÕES
-1. Cabeçalho compacto com foto, nome, e-mail, usuário, privacidade e indicador de conta conectada.
-2. Dados do perfil em uma seção recolhida por padrão: nome, usuário, foto, biografia e visibilidade.
-3. Segurança e acesso em seção própria, com provedor, e-mail, data de criação, atalho da Conta Google e saída da conta.
-4. Dados e privacidade agrupados com exportação JSON e política de privacidade.
-5. Selos OAXO agrupados em seção própria, preservando atribuição por UID e explicação dos selos.
-6. Estilo mais leve e compacto, com menos cartões, bordas, textos e elementos simultâneos.
-7. Preservadas as integrações existentes, IDs de formulário, eventos, dados do Firebase e navegação.
+PRODUTO
+- Direção consolidada: OAXO é um aplicativo de organização e evolução pessoal, não uma rede social.
+- Removida a criação automática de perfil social público durante o login.
+- Perfil reorganizado como área privada de dados pessoais, segurança, privacidade e selos. Foto e nome do perfil ficam em documento privado separado (users/{uid}/appData/profile), sem aumentar o documento principal de registros.
+- Regras Firestore simplificadas: leitura e gravação somente pelo titular em users/{uid}/appData/{documentId}; sem permissões para feed, publicações, seguidores ou perfis públicos.
+- A estrutura antiga de coleções sociais, se existir no Firebase, não é apagada por esta atualização; apenas deixa de ter regras de acesso habilitadas pelo pacote.
+
+COMPARTILHAMENTO
+- Adicionado compartilhamento voluntário de uma arte de evolução em Treinos.
+- A imagem utiliza somente contagens agregadas do mês: treinos, dias ativos e passos registrados.
+- Não inclui valores financeiros, peso, dados alimentares, informações médicas ou identificadores pessoais.
+- Usa o compartilhamento nativo do aparelho quando disponível; caso contrário, baixa um PNG para envio manual ao Instagram, WhatsApp ou outro aplicativo.
+- Nada é publicado automaticamente no OAXO.
+
+MONETIZAÇÃO — ESTRUTURA PREPARADA
+- Adicionada a área OAXO Market, acessível pelo Início e pela lista de ferramentas.
+- Criado offers.js como catálogo configurável de ofertas e links de parceiros.
+- Ofertas só aparecem quando forem cadastradas com título e URL HTTPS; links comerciais são identificados como publicidade/parceria e usam rel=sponsored.
+- Incluída explicação transparente de possível comissão sem custo adicional ao usuário.
+- Criado campo opcional OAXO_SUPPORT_URL para futuro canal oficial de apoio voluntário.
+- Catálogo e apoio iniciam vazios: nenhum parceiro, produto, preço, cupom, comissão ou destino de pagamento foi inventado.
+- Publicidade programática não foi ativada; não há rastreamento de dados pessoais para anúncios.
+- O aplicativo e seus módulos permanecem gratuitos; não há assinatura, paywall ou bloqueio de funcionalidades.
+
+PRIVACIDADE E TRANSPARÊNCIA
+- Política atualizada para descrever o aplicativo sem feed ou rede social, compartilhamento voluntário e identificação de publicidade/afiliados.
+- Nenhum dado financeiro, alimentar ou de treino é enviado a parceiros por esta implementação.
+- A política ainda exige completar identificação do controlador e canal oficial de contato/solicitações LGPD antes de divulgação pública ampla.
+
+PWA E CACHE
+- Cache atualizado para oaxo-v55-finalizacao-monetizacao.
+- offers.js incluído nos arquivos essenciais do Service Worker.
+- Mantida estratégia de atualização ao abrir/retornar ao aplicativo.
+
+ARQUIVOS
+- index.html
+- app.js
+- sw.js
+- offers.js (novo)
+- manifest.json
+- firestore.rules
+- worker.js
+- worker-ia-alimentacao.js
+- wrangler.toml
+- ícones e apple-touch-icon.png
 
 PUBLICAÇÃO
-Extrair e substituir os arquivos na raiz do repositório. Publicar juntos index.html, app.js e sw.js; manter manifest.json, ícones e firestore.rules do pacote.
+1. Extrair o ZIP e enviar todos os arquivos à raiz do repositório, substituindo os correspondentes.
+2. Publicar também as novas regras em firestore.rules no console Firebase.
+3. Após publicação, testar login, sincronização em duas sessões, módulos, edição do perfil, compartilhamento de evolução e atualização PWA em iPhone/Android.
+4. Para ativar receita real, cadastrar somente ofertas de parceiros autorizados em offers.js, com URLs HTTPS e identificação correta de publicidade/afiliado. Configurar OAXO_SUPPORT_URL apenas quando houver destino oficial.
 
-VALIDAÇÃO
-JavaScript validado com node --check; manifesto validado como JSON; ZIP validado após empacotamento. A validação funcional do Firebase deve ser feita após publicação no ambiente real.
-
-
-V.51 — Foto de perfil sem URL
-- Removido o campo de URL pública da foto de perfil.
-- Incluído seletor de imagem compatível com câmera/galeria em dispositivos móveis e arquivos no computador.
-- Prévia local antes de salvar; imagem centralizada, quadrada, redimensionada para 320×320 e comprimida em JPEG.
-- Foto armazenada como imagem compactada no documento do próprio perfil Firestore, sincronizando entre dispositivos sem Firebase Storage.
-- Limites: arquivo original até 12 MB; imagem final limitada a 180 KB para preservar o limite do documento Firestore.
-- Mantidos os demais dados, privacidade e fluxo de atualização do perfil.
-
-
-OAXO v.52 — Legibilidade do modo claro
-- Ajustada a paleta do modo claro para fundo suave, superfícies brancas, texto escuro e cinzas secundários com contraste maior.
-- Melhorada a leitura de títulos, descrições, rótulos, campos, botões, abas e informações secundárias.
-- Preservados o layout, a navegação, os módulos e os painéis escuros de identidade (finanças, treino e áreas especiais). Nenhum card ou componente novo foi adicionado.
-
-
-OAXO v.53 — Correção global do modo claro
-- Corrigida a origem da baixa legibilidade: normalização global das cores de texto, campos, botões e superfícies, inclusive elementos criados dinamicamente pelos módulos.
-- Forçado color-scheme: light no documento e nos controles nativos, evitando que iOS/PWA aplique aparência escura do sistema aos campos.
-- Preservadas superfícies intencionalmente escuras da identidade OAXO com texto claro.
-- Movido o CSS do seletor de foto para dentro do documento HTML.
-- Cache do Service Worker atualizado para v.53, removendo o cache antigo do aplicativo instalado na ativação.
-- Nenhum card, módulo ou elemento visual novo adicionado.
-
-PUBLICAÇÃO v.53
-Substituir os arquivos do pacote na raiz do repositório e publicar index.html, app.js e sw.js juntos. No iPhone, fechar o OAXO instalado completamente e abrir novamente após a publicação para o Service Worker atualizar.
-
-
-OAXO v.54 — Navegação mobile, instalação e limpeza da interface
-- Corrigido o contraste da barra inferior em iPhone e Android, com estados ativo/inativo específicos para modo claro e escuro.
-- Removidos os botões Enviar, Backup e Importar da interface.
-- Removida a ação de exportação de dados do perfil, conforme solicitado.
-- O botão “Instalar app” desaparece quando o OAXO é executado como aplicativo instalado (iOS/Android).
-- Atualização do Service Worker verificada ao abrir, retornar à página e voltar ao primeiro plano; cache versionado para ativação imediata.
+VALIDAÇÃO TÉCNICA
+- Validar sintaxe JavaScript dos arquivos locais.
+- Validar JSON do manifesto.
+- Validar integridade do ZIP final.
+- A validação de login, Firestore, Service Worker e compartilhamento em aparelhos reais depende da publicação no domínio do aplicativo.

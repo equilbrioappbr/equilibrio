@@ -1,6 +1,6 @@
-const CACHE_NAME = 'oaxo-v54-nav-fast-update';
+const CACHE_NAME = 'oaxo-v55-finalizacao-monetizacao';
 const APP_PREFIX = 'oaxo-';
-const CORE_FILES = ['./', './index.html', './app.js', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
+const CORE_FILES = ['./', './index.html', './app.js', './offers.js', './manifest.json', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE_NAME).then(cache => cache.addAll(CORE_FILES)).then(() => self.skipWaiting()));
